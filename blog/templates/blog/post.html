@@ -4,11 +4,6 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 h6">
-                {{ post.date }}
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-12">
 
                 <!-- Panel -->
@@ -16,14 +11,18 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                {{ post.title }}
+                                {{ post.date|date:"Y-m-d H:i" }} || {{ post.title }}
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-default btn-xs">Edit</button>
+                                <button type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="false" aria-controls="collapseTarget">
+                                  Show
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">{{ post.body|linebreaks }}</div>
+                    <div class="panel-body collapse" id="collapseTarget">
+                      {{ post.body|linebreaks }}
+                    </div>
                 </div>
 
             </div>
