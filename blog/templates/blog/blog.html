@@ -2,26 +2,63 @@
 
 {% block content %}
 
-    <div class="panel-group" id="blog-accordion" role="tablist" aria-multiselectable="true">
-        {% for post in object_list %}
+<div class="panel-group" id="blog-accordion" role="tablist" aria-multiselectable="true">
+    {% for post in object_list %}
 
-            <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="panel-header-{{ post.id }}">
-                    <h5 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" aria-expanded="false" aria-controls="#panel-title-{{ post.id }}">
-                            <small><dfn>{{ post.date|date:"H:i d-m-y" }}</dfn></small>
-                            {{ post.title }}
-                        </a>
-                    </h5>
-                </div>
-                <div id="panel-title-{{ post.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panel-header-{{ post.id }}">
-                    <div class="panel-body">
-                        {{ post.body|linebreaks }}
-                    </div>
+        <div class="panel panel-info">
+            <div class="panel-heading" role="tab" id="panel-header-{{ post.id }}">
+                <h5 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" aria-expanded="false" aria-controls="#panel-title-{{ post.id }}">
+                        <small><dfn>{{ post.date|date:"H:i d-m-y" }}</dfn></small> {{ post.title }}
+                    </a>
+                </h5>
+            </div>
+            <div id="panel-title-{{ post.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panel-header-{{ post.id }}">
+                <div class="panel-body">
+                    {{ post.body|linebreaks }}
                 </div>
             </div>
+        </div>
 
-        {% endfor %}
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+{% block manage %}
+
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPost">New <Post></Post></button>
+
+<div class="modal fade" id="addPost" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="post/", method="post", role="form">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">New Post</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title" class="control-label">Title</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="post" class="control-label">Post</label>
+                        <textarea class="form-control" name="post"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 
 {% endblock %}
