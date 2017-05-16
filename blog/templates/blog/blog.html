@@ -4,15 +4,13 @@
 
 {% load tz %}
 
-{% localtime on %}
-
 <div class="panel-group" id="blog-accordion" role="tablist" aria-multiselectable="true">
     {% for post in object_list %}
 
         <div class="panel panel-info">
             <div class="panel-heading" role="tab" id="panel-header-{{ post.id }}">
                 <h5 class="panel-title">
-                    <small><dfn>{{ post.date | date:"N j, Y, H:i" }}</dfn></small>
+                    <small><dfn>{{ post.date | localtime | date:"N j, Y, H:i" }}</dfn></small>
                     <a role="button" data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" aria-controls="#panel-title-{{ post.id }}">
                          {{ post.title }}
                     </a>
@@ -27,8 +25,6 @@
 
     {% endfor %}
 </div>
-
-{% endlocaltime %}
 
 {% endblock %}
 
