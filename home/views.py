@@ -3,7 +3,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return render(request, 'personal/home.html')
-
-def login(request):
-    return render(request, 'personal/login.html')
+    return render(request, 'home/home.html')
