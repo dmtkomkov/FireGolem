@@ -1,19 +1,7 @@
 from blog.models import Post
 from rest_framework import generics, mixins
-from api.serializers import PostSerializer
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
-
-
-class CustomPagination(PageNumberPagination):
-    def get_paginated_response(self, data):
-        return Response({
-            'count': self.page.paginator.count,
-            'page_size': self.page_size,
-            'page_number': self.page.number,
-            'page_count': self.page.paginator.num_pages,
-            'results': data
-        })
+from .serializers import PostSerializer
+from .paginator import CustomPagination
 
 
 class PostList(generics.GenericAPIView,
@@ -24,6 +12,9 @@ class PostList(generics.GenericAPIView,
     pagination_class = CustomPagination
 
     def get(self, request, *args, **kwargs):
+        page_size = request.GET.get('page_size')           # Get custom page size from request params
+        if page_size:
+            self.pagination_class.page_size = page_size    # Set custom page size for paginator
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

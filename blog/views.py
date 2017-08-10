@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
-from blog.models import Post
+from .models import Post
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 
