@@ -9,6 +9,7 @@ PPP = 10 # POSTS_PER_PAGE
 PML = 11 # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
+
 @login_required
 def index(request):
     all_posts = Post.objects.all().order_by("date")
@@ -52,6 +53,7 @@ def index(request):
                    'prev_page': prev_page,
                    'next_page': next_page
                    })
+
 
 # TODO: use post request on index url
 @login_required
