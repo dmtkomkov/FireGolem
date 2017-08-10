@@ -53,7 +53,8 @@ def index(request):
                    'next_page': next_page
                    })
 
-
+# TODO: use post request on index url
+@login_required
 def post(request):
     data = request.POST
     title = data.get('title')

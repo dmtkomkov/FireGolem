@@ -11,7 +11,6 @@ class Migration(migrations.Migration):
         ('blog', '0002_auto_20170806_2102'),
     ]
 
-    # TODO: Add sqlparse to requrements
     operations = [
         # Replaced DATETIME(6) with DATETIME
         # Milliseconds are not needed and consume db resources
