@@ -1,8 +1,9 @@
-from blog.models import Post
-from rest_framework.versioning import URLPathVersioning
 from rest_framework import generics, mixins
-from .serializers import PostSerializer, PostSerializer2
+from rest_framework.versioning import URLPathVersioning
+
+from api.models import Post
 from .paginator import CustomPagination
+from .serializers import PostSerializer, PostSerializer2
 
 
 class PostList(generics.GenericAPIView,

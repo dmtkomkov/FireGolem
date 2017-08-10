@@ -1,9 +1,9 @@
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import redirect
 from django.shortcuts import render
-from .models import Post
-from django.core.paginator import Paginator, EmptyPage
-from django.contrib.auth.decorators import login_required
 
+from api.models import Post
 
 PPP = 10 # POSTS_PER_PAGE
 PML = 11 # PAGINATOR_MAX_LENGTH

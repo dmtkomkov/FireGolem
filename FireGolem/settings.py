@@ -90,7 +90,7 @@ LOGIN_REDIRECT_URL = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog', # TODO change db name
+        'NAME': 'FireGolem',
         'USER': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
