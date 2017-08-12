@@ -1,7 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import redirect
 from django.shortcuts import render
+import requests
 
 from api.models import Post
 
@@ -10,8 +10,16 @@ PML = 11 # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
-@login_required
 def index(request):
+    # === TEST TOKEN AUTH ===
+    data = requests.post("http://localhost:8000/auth/login/",
+                         data={"username": "admin", "email": "", "password": "qwer1234"})
+    token = data.json()["key"]
+    headers = {'Authorization': 'Token %s' % token}
+    data = requests.get("http://localhost:8000/api/v1/blog/?page_size=2", headers=headers)
+    posts = data.json()
+    # === FINISH TEST TOKEN AUTH ===
+
     all_posts = Post.objects.all().order_by("date")
     paginator = Paginator(all_posts, PPP)
     active_page = request.GET.get('page')
@@ -56,7 +64,6 @@ def index(request):
 
 
 # TODO: use post request on index url
-@login_required
 def post(request):
     data = request.POST
     title = data.get('title')
