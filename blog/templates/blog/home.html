@@ -1,4 +1,4 @@
-{% extends "home/base.html" %}
+{% extends "root/base.html" %}
 
 
 {% block content %}
@@ -63,7 +63,7 @@
 <div class="modal fade" id="addPost" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="post/", method="post", role="form">
+            <form action="", method="post", role="form">
                 {% csrf_token %}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">

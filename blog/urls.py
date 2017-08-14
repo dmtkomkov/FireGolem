@@ -1,8 +1,7 @@
 from django.conf.urls import url
-from . import views
+from .views import BlogView
 
 # TODO: add Class for get and post
 urlpatterns = [
-    url(r'^$', views.index, name='home'),
-    url(r'^post/$', views.post, name='post')
+    url(r'^$', BlogView.as_view(), name='home'),
 ]

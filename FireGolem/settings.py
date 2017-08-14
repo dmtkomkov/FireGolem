@@ -24,7 +24,7 @@ INSTALLED_APPS = [
 
     # custom
     'api',
-    'home',
+    'root',
     'blog',
 ]
 
