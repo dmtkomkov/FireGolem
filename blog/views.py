@@ -1,7 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import redirect
 from django.shortcuts import render
-import requests
 
 from api.models import Post
 
@@ -11,15 +10,6 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
 def index(request):
-    # === TEST TOKEN AUTH ===
-    data = requests.post("http://localhost:8000/auth/",
-                         data={"username": "admin3", "password": "3"})
-    token = data.json()["token"]
-    headers = {'Authorization': 'JWT %s' % token}
-    data = requests.get("http://localhost:8000/api/v1/blog/?page_size=2", headers=headers)
-    posts = data.json()
-    # === FINISH TEST TOKEN AUTH ===
-
     all_posts = Post.objects.all().order_by("date")
     paginator = Paginator(all_posts, PPP)
     active_page = request.GET.get('page')
