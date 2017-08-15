@@ -1,0 +1,25 @@
+<nav class="top">
+    <ul class="pagination pagination-sm">
+
+        {% if prev_page %}
+            <li><a href="?page={{ prev_page }}"><span class="glyphicon glyphicon-step-backward"></span></a></li>
+        {% else %}
+            <li class="disabled"><span class="glyphicon glyphicon-step-backward"></span><li>
+        {% endif %}
+
+        {% for page_number in page_numbers %}
+            {% if page_number == active_page %}
+                <li class="active"><a href="?page={{ page_number }}">{{ page_number }}</a></li>
+            {% else %}
+                <li><a href="?page={{ page_number }}">{{ page_number }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if next_page %}
+            <li><a href="?page={{ next_page }}"><span class="glyphicon glyphicon-step-forward"></span></a></li>
+        {% else %}
+            <li class="disabled"><span class="glyphicon glyphicon-step-forward"></span><li>
+        {% endif %}
+
+    </ul>
+</nav>
