@@ -7,10 +7,10 @@
 
 {% include "snippets/pagination.html" %}
 
-<div class="panel-group" id="blog-accordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group" id="blog-accordion" aria-multiselectable="true">
 
     {% for post in posts %}
-        <div class="panel panel-info">
+        <div class="panel">
             <div class="panel-heading" role="tab" id="panel-header-{{ post.id }}">
                 <h5 class="panel-title">
                     <small><dfn>{{ post.date | localtime | date:"D, j M Y H:i" }}</dfn></small>
@@ -34,7 +34,7 @@
 
 {% block manage %}
 
-<li type="button" class="btn btn-info" data-toggle="modal" data-target="#addPost">New Post</li>
+<li type="button" class="btn" data-toggle="modal" data-target="#addPost">New Post</li>
 
 <div class="modal fade" id="addPost" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

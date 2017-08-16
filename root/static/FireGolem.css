@@ -1,12 +1,27 @@
-/* Space for toolbar */
+/* Body */
 
 body {
+    /* Some space for toolbar */
     padding-top: 70px;
+    background-color: #D1C4E9;
 }
 
-/* Ajust dropdown menu width to the button*/
+/* Control elements */
+
+.sidebar>.nav>li>a {
+    border-color: #9575CD;
+    border-style: solid;
+    border-width: 2px;
+    color: black;
+}
+
+.sidebar>.nav>li>a:focus,
+.sidebar>.nav>li>a:hover {
+    background-color: #EDE7F6;
+}
 
 .dropdown-menu.pull-left {
+    /* Ajust dropdown menu width to the button */
     left: 0px;
 }
 
@@ -16,3 +31,5 @@ nav.top ul.pagination {
     margin-top: 0px;
     margin-bottom: 10px;
 }
+
+/* Links */
