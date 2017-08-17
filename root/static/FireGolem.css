@@ -17,12 +17,18 @@ body {
 
 .sidebar>.nav>li>a:focus,
 .sidebar>.nav>li>a:hover {
-    background-color: #EDE7F6;
+    background-color: #9575CD;
+    border-color: white;
+    color: white;
 }
 
 .dropdown-menu.pull-left {
     /* Ajust dropdown menu width to the button */
     left: 0px;
+}
+
+button {
+    background-color: #80CBC4;
 }
 
 /* Pagination */
@@ -32,4 +38,7 @@ nav.top ul.pagination {
     margin-bottom: 10px;
 }
 
-/* Links */
+/* Text */
+.cursor-default {
+    cursor:default;
+}

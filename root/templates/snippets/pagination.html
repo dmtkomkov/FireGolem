@@ -4,7 +4,7 @@
         {% if prev_page %}
             <li><a href="?page={{ prev_page }}"><span class="glyphicon glyphicon-step-backward"></span></a></li>
         {% else %}
-            <li class="disabled"><span class="glyphicon glyphicon-step-backward"></span><li>
+            <li class="disabled"><a><span class="glyphicon glyphicon-step-backward"></span></a></li>
         {% endif %}
 
         {% for page_number in page_numbers %}
@@ -18,7 +18,7 @@
         {% if next_page %}
             <li><a href="?page={{ next_page }}"><span class="glyphicon glyphicon-step-forward"></span></a></li>
         {% else %}
-            <li class="disabled"><span class="glyphicon glyphicon-step-forward"></span><li>
+            <li class="disabled"><a><span class="glyphicon glyphicon-step-forward"></span></a></li>
         {% endif %}
 
     </ul>
