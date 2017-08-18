@@ -5,11 +5,12 @@
 {% load tz %}
 
 <div class="row">
-    <div class="col-md-1">
-        {% include "snippets/addPostDialog.html" %}
-    </div>
-    <div class="col-md-11">
+    <div class="col-md-10">
         {% include "snippets/pagination.html" %}
+    </div>
+    <div class="col-md-2">
+        {% include "snippets/addPostDialog.html" %}
+        {% include "snippets/deletePostDialog.html" %}
     </div>
 </div>
 
@@ -18,7 +19,7 @@
 <div class="panel-group" id="blog-accordion">
     {% for post in posts %}
         <div class="panel">
-            <div data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" class="panel-heading" id="panel-header-{{ post.id }}">
+            <div data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" class="panel-heading" post-id={{ post.id }}>
                 <h5 class="panel-title cursor-default">
                     <small><dfn>{{ post.date | localtime | date:"D, j M Y H:i" }}</dfn></small>
                     {{ post.title }}

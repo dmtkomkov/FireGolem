@@ -1,0 +1,24 @@
+<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#deletePost">
+    <span class="glyphicon glyphicon-minus"></span>
+</button>
+
+<div class="modal fade" id="deletePost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="", method="post">
+                <input class="hidden" name="_method" value="delete">
+                <input class="hidden" name="post_id" value="">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Post</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn">Delete</button>
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

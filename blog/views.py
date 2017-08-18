@@ -14,17 +14,7 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 # TODO: add filter
 # TODO: click on div to open
 class BlogView(View):
-    def post(self, request):
-        title = request.POST.get('title')
-        post = request.POST.get('post')
-        db_post = Post(title=title, body=post)
-        db_post.save()
-        return self.getBlog(request)
-
     def get(self, request):
-        return self.getBlog(request)
-
-    def getBlog(self, request):
         all_posts = Post.objects.all().order_by("date")
         paginator = Paginator(all_posts, PPP)
         active_page = request.GET.get('page')
@@ -67,3 +57,14 @@ class BlogView(View):
                        'next_page': next_page
                        })
 
+    def post(self, request):
+        title = request.POST.get('title')
+        post = request.POST.get('post')
+        db_post = Post(title=title, body=post)
+        db_post.save()
+        return self.get(request)
+
+    def delete(self, request):
+        post_id = request.DELETE['post_id']
+        Post.objects.get(id=post_id).delete()
+        return self.get(request)
