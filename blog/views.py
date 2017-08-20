@@ -59,12 +59,21 @@ class BlogView(View):
 
     def post(self, request):
         title = request.POST.get('title')
-        post = request.POST.get('post')
+        post = request.POST.get('body')
         db_post = Post(title=title, body=post)
         db_post.save()
         return self.get(request)
 
+    def put(self, request):
+        post_id = request.PUT['post_id']
+        oPost = Post.objects.get(id=post_id)
+        oPost.title = request.PUT['title']
+        oPost.body = request.PUT['body']
+        oPost.save()
+        return self.get(request)
+
     def delete(self, request):
+        # TODO: make deleted flag
         post_id = request.DELETE['post_id']
         Post.objects.get(id=post_id).delete()
         return self.get(request)

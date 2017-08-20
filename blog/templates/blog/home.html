@@ -10,6 +10,7 @@
     </div>
     <div class="col-md-2">
         {% include "snippets/addPostDialog.html" %}
+        {% include "snippets/editPostDialog.html" %}
         {% include "snippets/deletePostDialog.html" %}
     </div>
 </div>
@@ -22,12 +23,12 @@
             <div data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" class="panel-heading" post-id={{ post.id }}>
                 <h5 class="panel-title cursor-default">
                     <small><dfn>{{ post.date | localtime | date:"D, j M Y H:i" }}</dfn></small>
-                    {{ post.title }}
+                    <span class="post-title">{{ post.title }}</span>
                 </h5>
             </div>
             <div id="panel-title-{{ post.id }}" class="panel-collapse collapse">
                 <div class="panel-body">
-                    {{ post.body | linebreaks }}
+                    <span class="post-body">{{ post.body | linebreaksbr }}</span>
                 </div>
             </div>
         </div>
