@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from api.models import Post
 
@@ -13,7 +14,7 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 # TODO: snackbar for created posts
 # TODO: add filter
 # TODO: click on div to open
-class BlogView(View):
+class BlogView(LoginRequiredMixin, View):
     def get(self, request):
         all_posts = Post.objects.all().order_by("date")
         paginator = Paginator(all_posts, PPP)
