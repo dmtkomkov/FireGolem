@@ -10,10 +10,7 @@ PML = 11  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
-# TODO: move modal dialog into separate snippet
-# TODO: snackbar for created posts
-# TODO: add filter
-# TODO: click on div to open
+# TODO: add author to the post
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
         all_posts = Post.objects.all().order_by("date")
@@ -74,7 +71,7 @@ class BlogView(LoginRequiredMixin, View):
         return self.get(request)
 
     def delete(self, request):
-        # TODO: make deleted flag
+        # TODO: make deleted flag in database
         post_id = request.DELETE['post_id']
         Post.objects.get(id=post_id).delete()
         return self.get(request)
