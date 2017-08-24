@@ -5,3 +5,7 @@
 # TODO: Add documentation
 # TODO: Add tests
 # TODO: Use api instead of direct DB access
+# TODO: MySQL crashes, need tunning
+# TODO: Logs
+# TODO: Disable buttons when blog is not choosen
+# TODO: Utf-8 support
