@@ -16,7 +16,7 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 # TODO: Length limit for title and body text
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
-        all_posts = Post.objects.all().order_by("date")
+        all_posts = Post.objects.all().filter(deleted=False).order_by("date")
         paginator = Paginator(all_posts, PPP)
         active_page = request.GET.get('page')
 
@@ -75,7 +75,8 @@ class BlogView(LoginRequiredMixin, View):
         return self.get(request)
 
     def delete(self, request):
-        # TODO: make deleted flag in database
         post_id = request.DELETE['post_id']
-        Post.objects.get(id=post_id).delete()
+        oPost = Post.objects.get(id=post_id)
+        oPost.deleted = True
+        oPost.save()
         return self.get(request)

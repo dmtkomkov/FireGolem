@@ -9,6 +9,7 @@ class Post(models.Model):
     body = models.TextField()
     date = models.DateTimeField(default=datetime.now, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
