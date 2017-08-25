@@ -10,7 +10,10 @@ PML = 11  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
-# TODO: add author to the post
+# TODO: Return csrf token and do not replace delete and put method with middleware
+# TODO: Django forms
+# TODO: Bootstrap form group to align buttons together
+# TODO: Length limit for title and body text
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
         all_posts = Post.objects.all().order_by("date")
@@ -59,6 +62,7 @@ class BlogView(LoginRequiredMixin, View):
         title = request.POST.get('title')
         post = request.POST.get('body')
         db_post = Post(title=title, body=post)
+        db_post.user = request.user
         db_post.save()
         return self.get(request)
 
