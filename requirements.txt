@@ -2,3 +2,4 @@ django == 1.11.3
 sqlparse == 0.2.3
 djangorestframework == 3.6.3
 djangorestframework-jwt == 1.11.0
+mod_wsgi == 4.5.17
