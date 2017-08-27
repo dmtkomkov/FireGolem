@@ -1,6 +1,6 @@
 from settings import *
 
-ALLOWED_HOSTS = ['sosulka.com']
+ALLOWED_HOSTS = ['locahost']
 
 DEBUG = False
 
