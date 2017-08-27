@@ -1,6 +1,6 @@
 from settings import *
 
-ALLOWED_HOSTS = ['locahost']
+ALLOWED_HOSTS = ['localhost']
 
 DEBUG = False
 
