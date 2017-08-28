@@ -11,6 +11,5 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     deleted = models.BooleanField(default=False)
 
-    @property
     def __unicode__(self):
         return u"%s" % self.title
