@@ -10,10 +10,6 @@ PML = 11  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
-# TODO: Return csrf token and do not replace delete and put method with middleware
-# TODO: Django forms
-# TODO: Bootstrap form group to align buttons together
-# TODO: Length limit for title and body text
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
         all_posts = Post.objects.all().filter(deleted=False).order_by("date")
