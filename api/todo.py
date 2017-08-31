@@ -1,4 +1,3 @@
-# TODO: Logs
 # TODO: Disable buttons when blog is not chosen
 # TODO: Return csrf token and do not replace delete and put method with middleware
 # TODO: Django forms
