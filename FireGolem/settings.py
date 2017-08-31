@@ -29,7 +29,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'root.middleware.HttpPostTunnelingMiddleware',
-
+    'root.middleware.ExceptionMiddleware',
 ]
 
 REST_FRAMEWORK = {
