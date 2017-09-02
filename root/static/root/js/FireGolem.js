@@ -8,5 +8,15 @@ $(document).ready(function() {
         $('input.hidden[name="post_id"]').attr('value', post_id);
         $('input.post-title[name="title"]').attr('value', post_title);
         $('textarea.post-body[name="body"]').val(post_body);
+
+        $('.btn[data-target="#deletePost"]').prop('disabled', false);
+        $('.btn[data-target="#editPost"]').prop('disabled', false);
+    });
+
+    $('.panel').on('hidden.bs.collapse', function () {
+        if ($('[aria-expanded=true]').length == 0) {
+            $('.btn[data-target="#deletePost"]').prop('disabled', true);
+            $('.btn[data-target="#editPost"]').prop('disabled', true);
+        }
     });
 });
