@@ -28,7 +28,7 @@ body {
 }
 
 button {
-    background-color: #80CBC4;
+    background-color: #009688;
 }
 
 /* Pagination */
@@ -41,4 +41,10 @@ nav.top ul.pagination {
 /* Text */
 .cursor-default {
     cursor:default;
+}
+
+/* colors */
+
+.white {
+  color: white;
 }
