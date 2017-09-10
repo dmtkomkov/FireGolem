@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length = 140)
     body = models.TextField()
-    date = models.DateTimeField(default=datetime.now, blank=True)
+    date = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     deleted = models.BooleanField(default=False)
 
@@ -18,8 +18,8 @@ class Post(models.Model):
 class Task(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    created = models.DateTimeField(default=datetime.now, blank=True)
-    updated = models.DateTimeField(default=datetime.now, blank=True)
+    created = models.DateTimeField(default=datetime.now)
+    updated = models.DateTimeField(default=datetime.now)
     worklog = models.PositiveSmallIntegerField(default=0)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL)
     parent = models.ForeignKey(settings.TASK_MODEL)
