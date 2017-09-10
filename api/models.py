@@ -13,3 +13,17 @@ class Post(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.title
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    created = models.DateTimeField(default=datetime.now, blank=True)
+    updated = models.DateTimeField(default=datetime.now, blank=True)
+    worklog = models.PositiveSmallIntegerField(default=0)
+    status = models.ForeignKey(settings.TASK_STATUS_MODEL)
+    parent = models.ForeignKey(settings.TASK_MODEL)
+
+
+class TaskStatus(models.Model):
+    status = models.CharField(max_length=10, unique=True)

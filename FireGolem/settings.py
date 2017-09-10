@@ -87,3 +87,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+# Task status model used for tasks
+TASK_STATUS_MODEL = "TaskStatus"
+TASK_MODEL = "Task"
