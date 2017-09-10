@@ -12,7 +12,7 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
-        all_posts = Post.objects.all().filter(deleted=False).order_by("date")
+        all_posts = Post.objects.all().filter(deleted=False).order_by("created")
         paginator = Paginator(all_posts, PPP)
         active_page = request.GET.get('page')
 

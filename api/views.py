@@ -11,7 +11,7 @@ class PostList(generics.GenericAPIView,
                   mixins.CreateModelMixin):
 
     versioning_class = URLPathVersioning
-    queryset = Post.objects.all().order_by('date')
+    queryset = Post.objects.all().order_by('created')
     pagination_class = CustomPagination
 
     def get_serializer_class(self):

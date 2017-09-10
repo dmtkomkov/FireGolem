@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    title = models.CharField(max_length = 140)
+    title = models.CharField(max_length=255)
     body = models.TextField()
-    date = models.DateTimeField(default=datetime.now)
+    created = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     deleted = models.BooleanField(default=False)
 

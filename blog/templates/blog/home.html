@@ -24,7 +24,7 @@
         <div class="panel">
             <div data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" class="panel-heading" post-id={{ post.id }}>
                 <h5 class="panel-title cursor-default">
-                    <small><dfn>[ {{ post.date | localtime | date:"D, j M Y H:i" }} ]</dfn></small>
+                    <small><dfn>[ {{ post.created | localtime | date:"D, j M Y H:i" }} ]</dfn></small>
                     <span class="post-title">{{ post.title }}</span>
                     <span class="pull-right">
                         <dfn>[ {{ post.user.first_name }} {{ post.user.last_name }} ]</dfn>
