@@ -27,7 +27,4 @@ class Migration(migrations.Migration):
             name=b'worklog',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.WorkLog'),
         ),
-        migrations.RunSQL(
-            'ALTER TABLE api_post MODIFY created DATETIME;'
-        ),
     ]

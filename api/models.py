@@ -20,9 +20,8 @@ class Task(models.Model):
     description = models.TextField()
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
-    worklog = models.ForeignKey(settings.TASK_WORKLOG_MODEL)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL)
-    parent = models.ForeignKey(settings.TASK_MODEL, null=True)
+    parent = models.ForeignKey(settings.TASK_MODEL, null=True, blank=True)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -37,6 +36,7 @@ class TaskStatus(models.Model):
 
 
 class WorkLog(models.Model):
+    task = models.ForeignKey(settings.TASK_MODEL)
     log = models.PositiveSmallIntegerField(default=0)
     comment = models.ForeignKey(settings.POST_MODEL)
 
