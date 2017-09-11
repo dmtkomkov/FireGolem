@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
             field=models.CharField(max_length=255),
         ),
         migrations.RunSQL(
-            'ALTER TABLE api_post MODIFY created DATETIME;',
+            'ALTER TABLE api_post MODIFY created DATETIME;'
         ),
     ]
