@@ -20,10 +20,25 @@ class Task(models.Model):
     description = models.TextField()
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
-    worklog = models.PositiveSmallIntegerField(default=0)
+    worklog = models.ForeignKey(settings.TASK_WORKLOG_MODEL)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL)
-    parent = models.ForeignKey(settings.TASK_MODEL)
+    parent = models.ForeignKey(settings.TASK_MODEL, null=True)
+    deleted = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return u"%s" % self.name
 
 
 class TaskStatus(models.Model):
     status = models.CharField(max_length=10, unique=True)
+
+    def __unicode__(self):
+        return u"%s" % self.status
+
+
+class WorkLog(models.Model):
+    log = models.PositiveSmallIntegerField(default=0)
+    comment = models.ForeignKey(settings.POST_MODEL)
+
+    def __unicode__(self):
+        return u"%s %s %s" % (self.log, self.comment.created, self.comment.title)

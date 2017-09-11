@@ -88,6 +88,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
-# Task status model used for tasks
+# Models
 TASK_STATUS_MODEL = "TaskStatus"
 TASK_MODEL = "Task"
+TASK_WORKLOG_MODEL = "WorkLog"
+POST_MODEL = "Post"
