@@ -41,4 +41,4 @@ class WorkLog(models.Model):
     comment = models.ForeignKey(settings.POST_MODEL)
 
     def __unicode__(self):
-        return u"%s %s %s" % (self.log, self.comment.created, self.comment.title)
+        return u"%s %s %s" % (self.log, self.task.name, self.comment.title)
