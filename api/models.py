@@ -14,6 +14,25 @@ class Post(models.Model):
     def __unicode__(self):
         return u"%s" % self.title
 
+class Domain(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+class Aria(models.Model):
+    name = models.CharField(max_length=255)
+    domain = models.ForeignKey(settings.DOMAIN_MODEL)
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    aria = models.ForeignKey(settings.ARIA_MODEL)
+
+    def __unicode__(self):
+        return u"%s" % self.name
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
