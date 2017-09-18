@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'api',
     'root',
     'blog',
+    'todo',
 ]
 
 MIDDLEWARE = [
