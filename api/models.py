@@ -16,6 +16,7 @@ class Post(models.Model):
 
 class Domain(models.Model):
     name = models.CharField(max_length=255)
+    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -23,6 +24,7 @@ class Domain(models.Model):
 class Aria(models.Model):
     name = models.CharField(max_length=255)
     domain = models.ForeignKey(settings.DOMAIN_MODEL)
+    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -30,6 +32,7 @@ class Aria(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=255)
     aria = models.ForeignKey(settings.ARIA_MODEL)
+    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -40,7 +43,7 @@ class Task(models.Model):
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL)
-    parent = models.ForeignKey(settings.TASK_MODEL, null=True, blank=True)
+    project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
