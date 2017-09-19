@@ -12,3 +12,11 @@ class TodoView(LoginRequiredMixin, View):
                       {
                           'todos': todos,
                       })
+
+
+class TodoDetails(LoginRequiredMixin, View):
+    def get(self, request, task_id):
+        return render(request, 'todo/details.html',
+                      {
+                          'task_id': task_id,
+                      })
