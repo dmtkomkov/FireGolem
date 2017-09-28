@@ -3,7 +3,7 @@ from rest_framework.versioning import URLPathVersioning
 
 from api.models import Post
 from .paginator import CustomPagination
-from .serializers import PostSerializer, PostSerializer2
+from .serializers import PostSerializer
 
 
 class PostList(generics.GenericAPIView,
@@ -15,9 +15,7 @@ class PostList(generics.GenericAPIView,
     pagination_class = CustomPagination
 
     def get_serializer_class(self):
-        if self.request.version == 'v1':
-            return PostSerializer
-        return PostSerializer2
+        return PostSerializer
 
     def get(self, request, *args, **kwargs):
         page_size = request.GET.get('page_size')           # Get custom page size from request params
