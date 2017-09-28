@@ -89,7 +89,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = ''
+STATIC_ROOT = '/var/www/FireGolem/static/'
 
 # Models
 TASK_STATUS_MODEL = "TaskStatus"
