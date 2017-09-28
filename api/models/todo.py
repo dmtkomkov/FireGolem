@@ -1,18 +1,9 @@
 from django.db import models
 from datetime import datetime
 from django.conf import settings
-from django.contrib.auth.models import User
 
+__all__ = ("Domain", "Aria", "Project", "Task", "TaskStatus", "WorkLog")
 
-class Post(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    created = models.DateTimeField(default=datetime.now)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    deleted = models.BooleanField(default=False)
-
-    def __unicode__(self):
-        return u"%s" % self.title
 
 class Domain(models.Model):
     name = models.CharField(max_length=255)
@@ -20,6 +11,7 @@ class Domain(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
 
 class Aria(models.Model):
     name = models.CharField(max_length=255)
@@ -29,6 +21,7 @@ class Aria(models.Model):
     def __unicode__(self):
         return u"%s" % self.name
 
+
 class Project(models.Model):
     name = models.CharField(max_length=255)
     aria = models.ForeignKey(settings.ARIA_MODEL)
@@ -36,6 +29,7 @@ class Project(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
