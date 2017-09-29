@@ -37,6 +37,7 @@ class Task(models.Model):
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL)
+    estimation = models.PositiveSmallIntegerField(default=0)
     project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
