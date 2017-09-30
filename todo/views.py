@@ -55,6 +55,12 @@ class TodoView(LoginRequiredMixin, View):
                        'next_page': next_page
                        })
 
+    def post(self, request):
+        name = request.POST.get('name')
+        db_task = Task(name=name)
+        db_task.save()
+        return self.get(request)
+
 
 class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
