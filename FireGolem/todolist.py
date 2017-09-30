@@ -11,6 +11,7 @@
 # TODO: sidebar
 
 # Public web-site tasks
+# TODO: create and copy .my.cfg for automation
 # TODO: Return csrf token and do not replace delete and put method with middleware
 # TODO: load fixtures statuses
 # TODO: add defense from brute force
