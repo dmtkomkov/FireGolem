@@ -64,7 +64,8 @@ class TodoView(LoginRequiredMixin, View):
 
 class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
+        task = Task.objects.get(id=task_id)
         return render(request, 'todo/details.html',
                       {
-                          'task_id': task_id,
+                          'task': task,
                       })
