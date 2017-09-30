@@ -1,0 +1,8 @@
+- model: api.taskstatus
+  pk: 1
+  fields:
+    status: Open
+- model: api.taskstatus
+  pk: 2
+  fields:
+    status: Closed

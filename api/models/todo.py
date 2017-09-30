@@ -33,10 +33,10 @@ class Project(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
-    status = models.ForeignKey(settings.TASK_STATUS_MODEL)
+    status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
     estimation = models.PositiveSmallIntegerField(default=0)
     project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
