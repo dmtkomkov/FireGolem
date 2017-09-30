@@ -99,3 +99,18 @@ POST_MODEL = "Post"
 DOMAIN_MODEL = "Domain"
 ARIA_MODEL = "Aria"
 PROJECT_MODEL = "Project"
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
