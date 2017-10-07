@@ -9,6 +9,7 @@
 # TODO: Add tests
 # TODO: print all exception trace
 # TODO: sidebar
+# TODO: Remove bootstrap CDN
 
 # Public web-site tasks
 # TODO: create and copy .my.cfg for automation

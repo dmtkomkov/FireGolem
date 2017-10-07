@@ -19,4 +19,13 @@ $(document).ready(function() {
             $('.btn[data-target="#editPost"]').prop('disabled', true);
         }
     });
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    to_edit = ['#task-name', '#task-description'];
+    for (i = 0; i < to_edit.length; i++) {
+        $(to_edit[i]).editable({
+            send: 'always'
+        });
+    }
 });

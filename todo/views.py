@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -57,8 +58,8 @@ class TodoView(LoginRequiredMixin, View):
 
     def post(self, request):
         name = request.POST.get('name')
-        db_task = Task(name=name)
-        db_task.save()
+        task = Task(name=name)
+        task.save()
         return self.get(request)
 
 
@@ -69,3 +70,16 @@ class TodoDetails(LoginRequiredMixin, View):
                       {
                           'task': task,
                       })
+
+    def post(self, request, task_id):
+        """
+        Process AJAX request for bootstrap-editable plugin
+        """
+        # TODO: error handling
+        task = Task.objects.get(id=task_id)
+        name = request.POST.get("name")
+        name = name.split("-")[1] # convert attribute value task-<name> to <name>
+        value = request.POST.get("value")
+        setattr(task, name, value)
+        task.save()
+        return HttpResponse('')
