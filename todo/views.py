@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import QueryDict
 
 from api.models import Task
 
@@ -71,15 +72,16 @@ class TodoDetails(LoginRequiredMixin, View):
                           'task': task,
                       })
 
-    def post(self, request, task_id):
+    def put(self, request, task_id):
         """
         Process AJAX request for bootstrap-editable plugin
         """
         # TODO: error handling
+        request.PUT = QueryDict(request.body)
         task = Task.objects.get(id=task_id)
-        name = request.POST.get("name")
+        name = request.PUT.get("name")
         name = name.split("-")[1] # convert attribute value task-<name> to <name>
-        value = request.POST.get("value")
+        value = request.PUT.get("value")
         setattr(task, name, value)
         task.save()
         return HttpResponse('')

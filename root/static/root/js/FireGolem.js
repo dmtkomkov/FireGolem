@@ -21,6 +21,7 @@ $(document).ready(function() {
     });
 
     $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
 
     to_edit = ['#task-name', '#task-description'];
     for (i = 0; i < to_edit.length; i++) {
