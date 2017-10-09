@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import QueryDict
 
-from api.models import Task
+from api.models import Task, TaskStatus
 
 PPP = 10  # POSTS_PER_PAGE
 PML = 11  # PAGINATOR_MAX_LENGTH
@@ -82,6 +82,8 @@ class TodoDetails(LoginRequiredMixin, View):
         name = request.PUT.get("name")
         name = name.split("-")[1] # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
+        if name == "status":
+            value = TaskStatus.objects.get(id=int(value))
         setattr(task, name, value)
         task.save()
         return HttpResponse('')

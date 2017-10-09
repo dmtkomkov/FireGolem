@@ -23,10 +23,15 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';
     $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
 
-    to_edit = ['#task-name', '#task-description'];
+    to_edit = ['#task-name', '#task-description', '#task-status'];
     for (i = 0; i < to_edit.length; i++) {
         $(to_edit[i]).editable({
-            send: 'always'
+            send: 'always',
+            source: [
+                {value: 1, text: 'New'},
+                {value: 2, text: 'Open'},
+                {value: 3, text: 'Closed'}
+            ],
         });
     }
 });
