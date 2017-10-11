@@ -2,20 +2,11 @@ from django.db import models
 from datetime import datetime
 from django.conf import settings
 
-__all__ = ("Domain", "Aria", "Project", "Task", "TaskStatus", "WorkLog")
-
-
-class Domain(models.Model):
-    name = models.CharField(max_length=255)
-    deleted = models.BooleanField(default=False)
-
-    def __unicode__(self):
-        return u"%s" % self.name
+__all__ = ("Aria", "Project", "Task", "TaskStatus", "WorkLog")
 
 
 class Aria(models.Model):
     name = models.CharField(max_length=255)
-    domain = models.ForeignKey(settings.DOMAIN_MODEL)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -24,7 +15,6 @@ class Aria(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
-    aria = models.ForeignKey(settings.ARIA_MODEL)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -38,6 +28,7 @@ class Task(models.Model):
     updated = models.DateTimeField(default=datetime.now)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
     estimation = models.PositiveSmallIntegerField(default=0)
+    aria = models.ForeignKey(settings.ARIA_MODEL, blank=True, null=True)
     project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
