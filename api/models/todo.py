@@ -2,10 +2,10 @@ from django.db import models
 from datetime import datetime
 from django.conf import settings
 
-__all__ = ("Aria", "Project", "Task", "TaskStatus", "WorkLog")
+__all__ = ("Area", "Project", "Task", "TaskStatus", "WorkLog")
 
 
-class Aria(models.Model):
+class Area(models.Model):
     name = models.CharField(max_length=255)
     deleted = models.BooleanField(default=False)
 
@@ -28,7 +28,7 @@ class Task(models.Model):
     updated = models.DateTimeField(default=datetime.now)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
     estimation = models.PositiveSmallIntegerField(default=0)
-    aria = models.ForeignKey(settings.ARIA_MODEL, blank=True, null=True)
+    area = models.ForeignKey(settings.AREA_MODEL, blank=True, null=True)
     project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 

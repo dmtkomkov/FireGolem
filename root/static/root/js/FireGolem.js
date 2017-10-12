@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('.panel').on('shown.bs.collapse', function () {
-        post = $('[aria-expanded=true]');
+        post = $('[area-expanded=true]');
         post_id = post.attr('post-id');
         post_title = post.find('.post-title')[0].innerText;
         post_body = post.find('.post-body')[0].innerText;
@@ -14,7 +14,7 @@ $(document).ready(function() {
     });
 
     $('.panel').on('hidden.bs.collapse', function () {
-        if ($('[aria-expanded=true]').length == 0) {
+        if ($('[area-expanded=true]').length == 0) {
             $('.btn[data-target="#deletePost"]').prop('disabled', true);
             $('.btn[data-target="#editPost"]').prop('disabled', true);
         }

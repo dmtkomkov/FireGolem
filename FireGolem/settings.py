@@ -96,7 +96,7 @@ TASK_STATUS_MODEL = "TaskStatus"
 TASK_MODEL = "Task"
 TASK_WORKLOG_MODEL = "WorkLog"
 POST_MODEL = "Post"
-ARIA_MODEL = "Aria"
+AREA_MODEL = "Area"
 PROJECT_MODEL = "Project"
 
 LOGGING = {
