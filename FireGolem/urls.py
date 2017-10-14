@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^', include('root.urls', namespace='root')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^todo/', include('todo.urls', namespace='todo')),
+    url(r'^area/', include('todo.area_urls', namespace='area')),
+    url(r'^project/', include('todo.project_urls', namespace='project')),
 ]

@@ -5,12 +5,41 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import QueryDict
 
-from api.models import Task, TaskStatus
+from api.models import Area, Project, Task, TaskStatus
 
 PPP = 10  # POSTS_PER_PAGE
 PML = 11  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
+
+class ProjectView(LoginRequiredMixin, View):
+    def get(self, request):
+        all_projects = Project.objects.all()
+        return render(request, 'project/home.html',
+                      {
+                          'projects': all_projects
+                      })
+
+    def post(self, request):
+        name = request.POST.get('name')
+        project = Project(name=name)
+        project.save()
+        return self.get(request)
+
+
+class AreaView(LoginRequiredMixin, View):
+    def get(self, request):
+        all_areas = Area.objects.all()
+        return render(request, 'area/home.html',
+                      {
+                          'areas': all_areas
+                      })
+
+    def post(self, request):
+        name = request.POST.get('name')
+        area = Area(name=name)
+        area.save()
+        return self.get(request)
 
 class TodoView(LoginRequiredMixin, View):
     def get(self, request):
