@@ -7,7 +7,7 @@
 <form method="post">
 <table class="table table-hover cursor-default">
     <tr><td>Status</td><td>
-        <a href="" id="task-status" data-type="select" data-value="{{ task.status.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.status }}</a>
+        <a href="" id="task-status" data-type="select" data-source="[{value: 1, text: 'New'}, {value: 2, text: 'Open'}, {value: 3, text: 'Closed'}]"  data-value="{{ task.status.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.status }}</a>
     </td></tr>
     <tr><td>Name</td><td>
         <a href="" id="task-name" data-type="text" data-url="{% url 'todo:details' task.id %}">{{ task.name }}</a>
@@ -18,8 +18,12 @@
     <tr><td>Created</td><td>{{ task.created }}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated }}</td></tr>
     <tr><td>Estimation</td><td>{{ task.estimation }}</td></tr>
-    <tr><td>Area</td><td>{{ task.area }}</td></tr>
-    <tr><td>Project</td><td>{{ task.project }}</td></tr>
+    <tr><td>Area</td><td>
+        <a href="" id="task-area" data-type="select" data-value="{{ task.area.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.area }}</a>
+    </td></tr>
+    <tr><td>Project</td><td>
+        <a href="" id="task-project" data-type="select" data-value="{{ task.project.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.project }}</a>
+    </td></tr>
 </table>
 </form>
 
