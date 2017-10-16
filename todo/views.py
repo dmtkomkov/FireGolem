@@ -15,10 +15,13 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 class ProjectView(LoginRequiredMixin, View):
     def get(self, request):
         all_projects = Project.objects.all()
-        return render(request, 'project/home.html',
-                      {
-                          'projects': all_projects
-                      })
+        active_page = request.GET.get('page')
+
+        projects, page_conf = get_page(all_projects, active_page)
+        page = {'projects': projects}
+        page.update(page_conf)
+
+        return render(request, 'project/home.html', page)
 
     def post(self, request):
         name = request.POST.get('name')
@@ -30,10 +33,13 @@ class ProjectView(LoginRequiredMixin, View):
 class AreaView(LoginRequiredMixin, View):
     def get(self, request):
         all_areas = Area.objects.all()
-        return render(request, 'area/home.html',
-                      {
-                          'areas': all_areas
-                      })
+        active_page = request.GET.get('page')
+
+        areas, page_conf = get_page(all_areas, active_page)
+        page = {'areas': areas}
+        page.update(page_conf)
+
+        return render(request, 'area/home.html', page)
 
     def post(self, request):
         name = request.POST.get('name')

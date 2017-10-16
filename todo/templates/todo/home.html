@@ -4,7 +4,24 @@
 
 {% load tz %}
 
-{% include "snippets/pagination.html" %}
+<div class="row">
+    <div class="col-md-10">
+        {% include "snippets/pagination.html" %}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group pull-right">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="todo-navigator" data-toggle="dropdown">
+                    Tasks<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="todo-navigator">
+                    <li><a href="{% url 'area:home' %}">Areas</a></li>
+                    <li><a href="{% url 'project:home' %}">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="list-group">
     {% for todo in todos %}

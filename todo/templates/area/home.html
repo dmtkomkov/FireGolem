@@ -4,6 +4,25 @@
 
 {% load tz %}
 
+<div class="row">
+    <div class="col-md-10">
+        {% include "snippets/pagination.html" %}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group pull-right">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="todo-navigator" data-toggle="dropdown">
+                    Areas<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="todo-navigator">
+                    <li><a href="{% url 'todo:home' %}">Tasks</a></li>
+                    <li><a href="{% url 'project:home' %}">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="list-group">
     {% for area in areas %}
         <a href="{% url 'todo:home' %}" class="list-group-item">{{ area }}</a>
