@@ -69,9 +69,18 @@ class TodoView(LoginRequiredMixin, View):
 class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
         task = Task.objects.get(id=task_id)
+        statuses = TaskStatus.objects.all()
+        statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
+        areas = Area.objects.all().filter(deleted=False)
+        areas_source = [{'value': int(a.id), 'text': str(a.name)} for a in areas]
+        projects = Project.objects.all().filter(deleted=False)
+        projects_source = [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         return render(request, 'todo/details.html',
                       {
                           'task': task,
+                          'statuses_source': str(statuses_source),
+                          'areas_source': str(areas_source),
+                          'projects_source': str(projects_source),
                       })
 
     def put(self, request, task_id):
@@ -79,13 +88,15 @@ class TodoDetails(LoginRequiredMixin, View):
         Process AJAX request for bootstrap-editable plugin
         """
         # TODO: error handling
+        # TODO: Empty choice for project and area
+        # TODO: update "Updated Date" on put
         request.PUT = QueryDict(request.body)
         task = Task.objects.get(id=task_id)
         name = request.PUT.get("name")
-        name = name.split("-")[1] # convert attribute value task-<name> to <name>
+        name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
-        if name == "status":
-            value = TaskStatus.objects.get(id=int(value))
+        model = {"status": TaskStatus, "area": Area, "project": Project}[name]      # Get model by attribute name
+        value = model.objects.get(id=int(value))
         setattr(task, name, value)
         task.save()
         return HttpResponse('')
