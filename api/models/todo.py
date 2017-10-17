@@ -6,7 +6,8 @@ __all__ = ("Area", "Project", "Task", "TaskStatus", "WorkLog")
 
 
 class Area(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -14,7 +15,8 @@ class Area(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
