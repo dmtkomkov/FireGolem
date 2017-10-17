@@ -127,8 +127,9 @@ class TodoDetails(LoginRequiredMixin, View):
         name = request.PUT.get("name")
         name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
-        model = {"status": TaskStatus, "area": Area, "project": Project}[name]      # Get model by attribute name
-        value = model.objects.get(id=int(value))
+        if name in ("status", "area", "project"):  # Get db object by id
+            model = {"status": TaskStatus, "area": Area, "project": Project}[name]     # Get model by attribute name
+            value = model.objects.get(id=int(value))
         setattr(task, name, value)                                # Change model attribute
         task.save()
         return HttpResponse('')
