@@ -23,7 +23,8 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';
     $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
 
-    var to_edit = ['#task-name', '#task-description', '#task-status', '#task-area', '#task-project'];
+    var to_edit = ['#task-name', '#task-description', '#task-status', '#task-area', '#task-project',
+                '#area-name', '#area-description', '#project-name', '#project-description'];
     for (i = 0; i < to_edit.length; i++) {
         $(to_edit[i]).editable({
             send: 'always',

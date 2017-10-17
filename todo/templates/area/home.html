@@ -25,7 +25,7 @@
 
 <div class="list-group">
     {% for area in areas %}
-        <a href="{% url 'todo:home' %}" class="list-group-item">{{ area }}</a>
+        <a href="{% url 'area:details' area.id %}" class="list-group-item">{{ area }}</a>
     {% endfor %}
 </div>
 

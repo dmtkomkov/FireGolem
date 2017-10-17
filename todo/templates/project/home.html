@@ -25,7 +25,7 @@
 
 <div class="list-group">
     {% for project in projects %}
-        <a href="{% url 'todo:home' %}" class="list-group-item">{{ project }}</a>
+        <a href="{% url 'project:details' project.id %}" class="list-group-item">{{ project }}</a>
     {% endfor %}
 </div>
 

@@ -30,6 +30,22 @@ class ProjectView(LoginRequiredMixin, View):
         return self.get(request)
 
 
+class ProjectDetails(LoginRequiredMixin, View):
+    def get(self, request, project_id):
+        project = Project.objects.get(id=project_id)
+        return render(request, 'project/details.html', { 'project': project })
+
+    def put(self, request, project_id):
+        request.PUT = QueryDict(request.body)
+        project = Project.objects.get(id=project_id)
+        name = request.PUT.get("name")
+        name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
+        value = request.PUT.get("value")
+        setattr(project, name, value)                             # Change model attribute
+        project.save()
+        return HttpResponse('')
+
+
 class AreaView(LoginRequiredMixin, View):
     def get(self, request):
         all_areas = Area.objects.all()
@@ -46,6 +62,22 @@ class AreaView(LoginRequiredMixin, View):
         area = Area(name=name)
         area.save()
         return self.get(request)
+
+
+class AreaDetails(LoginRequiredMixin, View):
+    def get(self, request, area_id):
+        area = Area.objects.get(id=area_id)
+        return render(request, 'area/details.html', { 'area': area })
+
+    def put(self, request, area_id):
+        request.PUT = QueryDict(request.body)
+        area = Area.objects.get(id=area_id)
+        name = request.PUT.get("name")
+        name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
+        value = request.PUT.get("value")
+        setattr(area, name, value)                                # Change model attribute
+        area.save()
+        return HttpResponse('')
 
 
 class TodoView(LoginRequiredMixin, View):
@@ -97,6 +129,6 @@ class TodoDetails(LoginRequiredMixin, View):
         value = request.PUT.get("value")
         model = {"status": TaskStatus, "area": Area, "project": Project}[name]      # Get model by attribute name
         value = model.objects.get(id=int(value))
-        setattr(task, name, value)
+        setattr(task, name, value)                                # Change model attribute
         task.save()
         return HttpResponse('')
