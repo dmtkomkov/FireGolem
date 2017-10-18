@@ -1,0 +1,23 @@
+<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#delete{{ object }}">
+    <span class="glyphicon glyphicon-trash white"></span>
+</button>
+
+<div class="modal fade" id="delete{{ object }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post">
+                <input class="hidden" name="_method" value="delete">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete {{ object }}</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn">Delete</button>
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

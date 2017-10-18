@@ -25,6 +25,9 @@
     <tr><td>Created</td><td>{{ task.created }}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated }}</td></tr>
 </table>
+
+{% include "snippets/deleteObjectDialog.html" with object="Task"%}
+
 </form>
 
 {% endblock %}

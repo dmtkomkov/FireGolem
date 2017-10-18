@@ -13,6 +13,9 @@
         <a href="" id="project-description" data-type="textarea" data-rows="3" data-url="{% url 'project:details' project.id %}">{{ project.description }}</a>
     </td></tr>
 </table>
+
+{% include "snippets/deleteObjectDialog.html" with object="Project"%}
+
 </form>
 
 {% endblock %}

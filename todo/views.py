@@ -1,8 +1,8 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, QueryDict
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import QueryDict
+from django.urls import reverse
 
 from api.models import Area, Project, Task, TaskStatus
 from helpers.pagination import get_page
@@ -45,6 +45,11 @@ class ProjectDetails(LoginRequiredMixin, View):
         project.save()
         return HttpResponse('')
 
+    def delete(self, request, project_id):
+        project = Project.objects.get(id=project_id)
+        project.delete()
+        return redirect(reverse('project:home'))
+
 
 class AreaView(LoginRequiredMixin, View):
     def get(self, request):
@@ -78,6 +83,11 @@ class AreaDetails(LoginRequiredMixin, View):
         setattr(area, name, value)                                # Change model attribute
         area.save()
         return HttpResponse('')
+
+    def delete(self, request, area_id):
+        area = Area.objects.get(id=area_id)
+        area.delete()
+        return redirect(reverse('area:home'))
 
 
 class TodoView(LoginRequiredMixin, View):
@@ -133,3 +143,9 @@ class TodoDetails(LoginRequiredMixin, View):
         setattr(task, name, value)                                # Change model attribute
         task.save()
         return HttpResponse('')
+
+    def delete(self, request, task_id):
+        task = Task.objects.get(id=task_id)
+        task.deleted = True
+        task.save()
+        return redirect(reverse('todo:home'))
