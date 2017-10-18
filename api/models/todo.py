@@ -8,7 +8,6 @@ __all__ = ("Area", "Project", "Task", "TaskStatus", "WorkLog")
 class Area(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
-    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -17,7 +16,6 @@ class Area(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
-    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s" % self.name
@@ -30,8 +28,8 @@ class Task(models.Model):
     updated = models.DateTimeField(default=datetime.now)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
     estimation = models.PositiveSmallIntegerField(default=0)
-    area = models.ForeignKey(settings.AREA_MODEL, blank=True, null=True)
-    project = models.ForeignKey(settings.PROJECT_MODEL, blank=True, null=True)
+    area = models.ForeignKey(settings.AREA_MODEL, models.SET_NULL, blank=True, null=True)
+    project = models.ForeignKey(settings.PROJECT_MODEL, models.SET_NULL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
     def __unicode__(self):

@@ -34,4 +34,5 @@ class ExceptionMiddleware(object):
 
     def process_exception(self, request, exception):
         logging.error(exception)
+        raise
         return HttpResponse("Server Error")

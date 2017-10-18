@@ -113,9 +113,9 @@ class TodoDetails(LoginRequiredMixin, View):
         task = Task.objects.get(id=task_id)
         statuses = TaskStatus.objects.all()
         statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
-        areas = Area.objects.all().filter(deleted=False)
+        areas = Area.objects.all()
         areas_source = [{'value': int(a.id), 'text': str(a.name)} for a in areas]
-        projects = Project.objects.all().filter(deleted=False)
+        projects = Project.objects.all()
         projects_source = [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         return render(request, 'todo/details.html',
                       {
