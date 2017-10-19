@@ -4,7 +4,7 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
-from api.models import Area, Project, Task, TaskStatus
+from api.models import Area, Project, Task, TaskStatus, Post, WorkLog
 from helpers.pagination import get_page
 
 PPP = 10  # POSTS_PER_PAGE
@@ -124,6 +124,19 @@ class TodoDetails(LoginRequiredMixin, View):
                           'areas_source': str(areas_source),
                           'projects_source': str(projects_source),
                       })
+
+    def post(self, request, task_id):
+        task = Task.objects.get(id=task_id)                              # Get Task
+        log = request.POST.get("worklog")
+        comment = request.POST.get("comment")
+        title = " ".join(["[WorkLog {0}]".format(log), task.name])
+        post = Post(title=title, body=comment)                           # Create Post
+        post.user = request.user
+        post.save()
+        worklog = WorkLog(task=task, log=log, comment=post)              # Create WorkLog
+        worklog.save()
+        return self.get(request, task_id)
+
 
     def put(self, request, task_id):
         """

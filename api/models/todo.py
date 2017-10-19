@@ -46,7 +46,7 @@ class TaskStatus(models.Model):
 class WorkLog(models.Model):
     task = models.ForeignKey(settings.TASK_MODEL)
     log = models.PositiveSmallIntegerField(default=0)
-    comment = models.ForeignKey(settings.POST_MODEL)
+    comment = models.ForeignKey(settings.POST_MODEL)  # TODO: change name comment -> post
 
     def __unicode__(self):
-        return u"%s %s %s" % (self.log, self.task.name, self.comment.title)
+        return u"%s" % self.comment.title

@@ -24,10 +24,12 @@
     <tr><td>Estimation</td><td>{{ task.estimation }}</td></tr>
     <tr><td>Created</td><td>{{ task.created }}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated }}</td></tr>
+    <tr><td colspan="2">
+        {% include "snippets/deleteObjectDialog.html" with object="Task"%}
+        {% include "snippets/addWorkLogDialog.html"%}
+    </td>
+    </tr>
 </table>
-
-{% include "snippets/deleteObjectDialog.html" with object="Task"%}
-
 </form>
 
 {% endblock %}
