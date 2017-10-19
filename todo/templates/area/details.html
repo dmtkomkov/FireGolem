@@ -12,9 +12,9 @@
     <tr><td>Description</td><td>
         <a href="" id="area-description" data-type="textarea" data-rows="3" data-url="{% url 'area:details' area.id %}">{{ area.description }}</a>
     </td></tr>
+    <tr><td colspan="2">
+        {% include "snippets/deleteObjectDialog.html" with object="Area"%}
+    </td></tr>
 </table>
-
-{% include "snippets/deleteObjectDialog.html" with object="Area"%}
-
 </form>
 {% endblock %}
