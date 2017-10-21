@@ -21,7 +21,9 @@
     <tr><td>Project</td><td>
         <a href="" id="task-project" data-type="select" data-source="{{ projects_source }}" data-value="{{ task.project.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.project }}</a>
     </td></tr>
-    <tr><td>Estimation</td><td>{{ task.estimation }}</td></tr>
+    <tr><td>Estimation</td><td>
+        <a href="" id="task-estimation" data-type="select" data-source="{{ estimations_source }}" data-value="{{ task.estimation }}" data-url="{% url 'todo:details' task.id %}">{{ task.estimation }}</a>
+    </td></tr>
     <tr><td>Created</td><td>{{ task.created }}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated }}</td></tr>
     <tr><td colspan="2">

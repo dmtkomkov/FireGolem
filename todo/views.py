@@ -117,12 +117,27 @@ class TodoDetails(LoginRequiredMixin, View):
         areas_source = [{'value': int(a.id), 'text': str(a.name)} for a in areas]
         projects = Project.objects.all()
         projects_source = [{'value': int(p.id), 'text': str(p.name)} for p in projects]
+        estimations_source = [
+            {'value': 0, 'text': 'Empty'},
+            {'value': 1, 'text': '1 hour'},
+            {'value': 2, 'text': '2 hours'},
+            {'value': 3, 'text': '3 hours'},
+            {'value': 4, 'text': '4 hours'},
+            {'value': 5, 'text': '1 day'},
+            {'value': 10, 'text': '2 days'},
+            {'value': 15, 'text': '3 days'},
+            {'value': 20, 'text': '4 days'},
+            {'value': 25, 'text': '5 days'},
+            {'value': 30, 'text': '6 days'},
+            {'value': 35, 'text': '1 week'}
+        ]
         return render(request, 'todo/details.html',
                       {
                           'task': task,
                           'statuses_source': str(statuses_source),
                           'areas_source': str(areas_source),
                           'projects_source': str(projects_source),
+                          'estimations_source': str(estimations_source),
                       })
 
     def post(self, request, task_id):
