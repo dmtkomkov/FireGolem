@@ -92,11 +92,31 @@ class AreaDetails(LoginRequiredMixin, View):
 
 class TodoView(LoginRequiredMixin, View):
     def get(self, request):
+        all_statuses = TaskStatus.objects.all().order_by("id")
+        all_areas = Area.objects.all().order_by("id")
+        all_projects = Project.objects.all().order_by("id")
         all_todos = Task.objects.all().filter(deleted=False).order_by("updated")
+
+        status_id = request.GET.get("status")
+        area_id = request.GET.get("area")
+        project_id = request.GET.get("project")
+
+        if status_id:
+            all_todos = all_todos.filter(status=status_id)
+        if area_id:
+            all_todos = all_todos.filter(area=area_id)
+        if project_id:
+            all_todos = all_todos.filter(project=project_id)
+
         active_page = request.GET.get('page')
 
         todos, page_conf = get_page(all_todos, active_page)
-        page = {'todos': todos}
+        page = {
+            'statuses': all_statuses,
+            'areas': all_areas,
+            'projects': all_projects,
+            'todos': todos,
+        }
         page.update(page_conf)
 
         return render(request, 'todo/home.html', page)

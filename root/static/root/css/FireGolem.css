@@ -48,3 +48,8 @@ nav.top ul.pagination {
 .white {
   color: white;
 }
+
+/* List component */
+.list-group-item {
+    padding: 5px 20px;
+}

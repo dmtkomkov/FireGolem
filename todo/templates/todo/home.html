@@ -1,5 +1,52 @@
 {% extends "root/base.html" %}
 
+{% block menu %}
+
+<div class="panel-group">
+
+    <div class="panel">
+        <div href="#status-panel" data-toggle="collapse" class="panel-heading">
+            <h5 class="panel-title cursor-default">Statuses</h5>
+        </div>
+        <div id="status-panel" class="panel-collapse collapse in">
+            <ul class="list-group">
+                {% for status in statuses %}
+                    <a href="?status={{ status.id }}" class="list-group-item">{{ status }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div href="#area-panel" data-toggle="collapse" class="panel-heading">
+            <h5 class="panel-title cursor-default">Areas</h5>
+        </div>
+        <div id="area-panel" class="panel-collapse collapse in">
+            <ul class="list-group">
+                {% for area in areas %}
+                    <a href="?area={{ area.id }}" class="list-group-item">{{ area }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div href="#project-panel" data-toggle="collapse" class="panel-heading">
+            <h5 class="panel-title cursor-default">Projects</h5>
+        </div>
+        <div id="project-panel" class="panel-collapse collapse in">
+            <ul class="list-group">
+                {% for project in projects %}
+                    <a href="?project={{ project.id }}" class="list-group-item">{{ project }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
 {% block content %}
 
 {% load tz %}
