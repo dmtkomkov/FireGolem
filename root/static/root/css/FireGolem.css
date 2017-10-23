@@ -6,21 +6,7 @@ body {
     background-color: #D1C4E9;
 }
 
-/* Control elements */
-
-.sidebar>.nav>li>a {
-    border-color: #9575CD;
-    border-style: solid;
-    border-width: 2px;
-    color: black;
-}
-
-.sidebar>.nav>li>a:focus,
-.sidebar>.nav>li>a:hover {
-    background-color: #9575CD;
-    border-color: white;
-    color: white;
-}
+/* Sidebar dropdown */
 
 .dropdown-menu.pull-left {
     /* Ajust dropdown menu width to the button */
