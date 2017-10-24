@@ -26,16 +26,25 @@ nav.top ul.pagination {
 
 /* Text */
 .cursor-default {
-    cursor:default;
+    cursor: default;
 }
 
 /* colors */
 
 .white {
-  color: white;
+    color: white;
 }
 
-/* List component */
-.list-group-item {
-    padding: 5px 20px;
+/* Labels */
+
+span.label {
+    float: right;
+    margin-right: 2px;
+    margin-left: 2px;
+    width: 70px;
+}
+
+a.list-group-item > h5 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }

@@ -11,7 +11,7 @@
         <div id="status-panel" class="panel-collapse collapse in">
             <ul class="list-group">
                 {% for status in statuses %}
-                    <a href="?status={{ status.id }}" class="list-group-item">{{ status }}</a>
+                <a href="?status={{ status.id }}" class="list-group-item"><h5>{{ status }}</h5></a></h5>
                 {% endfor %}
             </ul>
         </div>
@@ -24,7 +24,7 @@
         <div id="area-panel" class="panel-collapse collapse in">
             <ul class="list-group">
                 {% for area in areas %}
-                    <a href="?area={{ area.id }}" class="list-group-item">{{ area }}</a>
+                <a href="?area={{ area.id }}" class="list-group-item"><h5>{{ area }}</h5></a>
                 {% endfor %}
             </ul>
         </div>
@@ -37,7 +37,7 @@
         <div id="project-panel" class="panel-collapse collapse in">
             <ul class="list-group">
                 {% for project in projects %}
-                    <a href="?project={{ project.id }}" class="list-group-item">{{ project }}</a>
+                <a href="?project={{ project.id }}" class="list-group-item"><h5>{{ project }}</h5></a>
                 {% endfor %}
             </ul>
         </div>
@@ -72,7 +72,14 @@
 
 <div class="list-group">
     {% for todo in todos %}
-        <a href="{% url 'todo:details' todo.id %}" class="list-group-item">{{ todo }}</a>
+        <a href="{% url 'todo:details' todo.id %}" class="list-group-item">
+            <h5>
+                {{ todo }}
+                <span class="label label-info">{{ todo.project }}</span>
+                <span class="label label-success">{{ todo.area }}</span>
+                <span class="label label-primary">{{ todo.status }}</span>
+            </h5>
+        </a>
     {% endfor %}
 </div>
 
