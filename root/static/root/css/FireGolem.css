@@ -3,7 +3,7 @@
 body {
     /* Some space for toolbar */
     padding-top: 50px;
-    background-color: #CCCCCC;
+    background-color: #fde19a;
 }
 
 /* Sidebar */
@@ -12,11 +12,15 @@ body {
     position: fixed;
     width: 200px;
     height: 100vh;
+    background-color: #f3d17a;
 }
 
 #content {
-    width: calc(100% - 200px);
     margin-left: 200px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
 }
 
 /* Topbar dropdown */
@@ -53,4 +57,33 @@ span.label {
 a.list-group-item > h5   {
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+/* Card */
+
+.card {
+    margin: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #080808;
+    background-color: #f8f8f8;
+}
+
+.card-header,
+.card-body,
+.card-footer {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.card-body {
+    background-color: #f3d17a;
+    border-style: solid;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-color: #080808;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

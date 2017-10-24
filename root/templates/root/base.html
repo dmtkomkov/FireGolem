@@ -52,7 +52,7 @@
     </nav>
 
     <!-- Sidebar -->
-    <nav id="sidebar" class="navbar navbar-default">
+    <nav id="sidebar" class="navbar">
         <div class="container-fluid">
             <div class="sidebar-header">
                 <h3>Header</h3>
@@ -64,8 +64,19 @@
 
     <!-- Page Content -->
     <div id="content" class="container-fluid">
-        {% block content %}
-        {% endblock %}
+        <div class="card">
+            <div class="card-header">
+                <h4>Card Header</h4>
+            </div>
+            <div class="card-body">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="card-footer">
+                <h4>Card Footer</h4>
+            </div>
+        </div>
+
     </div>
 
 </body>
