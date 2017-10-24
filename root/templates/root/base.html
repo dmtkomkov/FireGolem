@@ -18,6 +18,8 @@
 </head>
 
 <body>
+
+    <!-- Topbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -49,18 +51,23 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2 sidebar">
-                {% block menu %}
-                {% endblock %}
+    <!-- Sidebar -->
+    <nav id="sidebar" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="sidebar-header">
+                <h3>Header</h3>
             </div>
-            <div class="col-md-10 contentbar">
-                {% block content %}
-                {% endblock %}
-            </div>
+            {% block menu %}
+            {% endblock %}
         </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content" class="container-fluid">
+        {% block content %}
+        {% endblock %}
     </div>
+
 </body>
 
 </html>

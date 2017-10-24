@@ -2,11 +2,24 @@
 
 body {
     /* Some space for toolbar */
-    padding-top: 70px;
-    background-color: #D1C4E9;
+    padding-top: 50px;
+    background-color: #CCCCCC;
 }
 
-/* Sidebar dropdown */
+/* Sidebar */
+
+#sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+}
+
+#content {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+}
+
+/* Topbar dropdown */
 
 .dropdown-menu.pull-left {
     /* Ajust dropdown menu width to the button */
@@ -15,13 +28,6 @@ body {
 
 button {
     background-color: #009688;
-}
-
-/* Pagination */
-
-nav.top ul.pagination {
-    margin-top: 0px;
-    margin-bottom: 10px;
 }
 
 /* Text */
@@ -44,7 +50,7 @@ span.label {
     width: 70px;
 }
 
-a.list-group-item > h5 {
+a.list-group-item > h5   {
     margin-top: 0px;
     margin-bottom: 0px;
 }

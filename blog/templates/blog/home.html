@@ -4,17 +4,12 @@
 
 {% load tz %}
 
-<div class="row">
-    <div class="col-md-10">
-        {% include "snippets/pagination.html" %}
-    </div>
-    <div class="col-md-2">
-        <div class="form-group pull-right">
-            {% include "snippets/addPostDialog.html" %}
-            {% include "snippets/editPostDialog.html" %}
-            {% include "snippets/deletePostDialog.html" %}
-        </div>
-    </div>
+{% include "snippets/pagination.html" %}
+
+<div class="form-group">
+    {% include "snippets/addPostDialog.html" %}
+    {% include "snippets/editPostDialog.html" %}
+    {% include "snippets/deletePostDialog.html" %}
 </div>
 
 <div class="row">
