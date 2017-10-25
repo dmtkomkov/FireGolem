@@ -13,13 +13,13 @@
         <a href="" id="task-name" data-type="text" data-url="{% url 'todo:details' task.id %}">{{ task.name }}</a>
     </td></tr>
     <tr><td>Description</td><td>
-        <a href="" id="task-description" data-type="textarea" data-rows="3" data-url="{% url 'todo:details' task.id %}">{{ task.description }}</a>
+        <a href="" id="task-description" data-type="textarea" data-rows="3" data-url="{% url 'todo:details' task.id %}">{{ task.description|default_if_none:"" }}</a>
     </td></tr>
     <tr><td>Area</td><td>
-        <a href="" id="task-area" data-type="select" data-source="{{ areas_source }}" data-value="{{ task.area.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.area }}</a>
+        <a href="" id="task-area" data-type="select" data-source="{{ areas_source }}" data-value="{{ task.area.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.area|default_if_none:"" }}</a>
     </td></tr>
     <tr><td>Project</td><td>
-        <a href="" id="task-project" data-type="select" data-source="{{ projects_source }}" data-value="{{ task.project.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.project }}</a>
+        <a href="" id="task-project" data-type="select" data-source="{{ projects_source }}" data-value="{{ task.project.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.project|default_if_none:"" }}</a>
     </td></tr>
     <tr><td>Estimation</td><td>
         <a href="" id="task-estimation" data-type="select" data-source="{{ estimations_source }}" data-value="{{ task.estimation }}" data-url="{% url 'todo:details' task.id %}">{{ task.estimation }}</a>

@@ -29,6 +29,11 @@ $(document).ready(function() {
     for (i = 0; i < to_edit.length; i++) {
         $(to_edit[i]).editable({
             send: 'always',
+            validate: function(value) {
+                if($.trim(value) == '') {
+                    return 'This field is required';
+                }
+            }
         });
     }
 });
