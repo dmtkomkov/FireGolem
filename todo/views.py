@@ -7,6 +7,8 @@ from django.urls import reverse
 from api.models import Area, Project, Task, TaskStatus, Post, WorkLog
 from helpers.pagination import get_page
 
+from datetime import datetime
+
 PPP = 10  # POSTS_PER_PAGE
 PML = 11  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
@@ -185,10 +187,15 @@ class TodoDetails(LoginRequiredMixin, View):
         name = request.PUT.get("name")
         name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
-        if name in ("status", "area", "project"):  # Get db object by id
-            model = {"status": TaskStatus, "area": Area, "project": Project}[name]     # Get model by attribute name
-            value = model.objects.get(id=int(value))
+        if name in ("status", "area", "project"):                 # Get model to assign
+            model = {                                             # Get model by attribute name
+                "status": TaskStatus,
+                "area": Area,
+                "project": Project
+            }[name]
+            value = model.objects.get(id=int(value))              # Get db object by id
         setattr(task, name, value)                                # Change model attribute
+        task.updated = datetime.now()                             # Change updated date
         task.save()
         return HttpResponse('')
 
