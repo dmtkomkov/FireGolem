@@ -135,10 +135,11 @@ class TodoDetails(LoginRequiredMixin, View):
         task = Task.objects.get(id=task_id)
         statuses = TaskStatus.objects.all()
         statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
+        fake_source = [{'value': 'null', 'text': 'Empty'}]              # Fake value represents database null
         areas = Area.objects.all()
-        areas_source = [{'value': int(a.id), 'text': str(a.name)} for a in areas]
+        areas_source = fake_source + [{'value': int(a.id), 'text': str(a.name)} for a in areas]
         projects = Project.objects.all()
-        projects_source = [{'value': int(p.id), 'text': str(p.name)} for p in projects]
+        projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         estimations_source = [
             {'value': 0, 'text': 'Empty'},
             {'value': 1, 'text': '1 hour'},
@@ -193,7 +194,10 @@ class TodoDetails(LoginRequiredMixin, View):
                 "area": Area,
                 "project": Project
             }[name]
-            value = model.objects.get(id=int(value))              # Get db object by id
+            if value == 'null':
+                value = None                                      # Process special case when attribute is null
+            else:
+                value = model.objects.get(id=int(value))          # Get db object by id
         setattr(task, name, value)                                # Change model attribute
         task.updated = datetime.now()                             # Change updated date
         task.save()
