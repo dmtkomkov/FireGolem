@@ -5,23 +5,23 @@
 <div class="panel-group">
 
     <div class="panel panel-info">
-        <div href="#status-panel" data-toggle="collapse" class="panel-heading">
+        <div href="#status-panel" data-toggle="collapse" class="panel-heading" aria-expanded="false">
             <h5 class="panel-title cursor-default">Statuses</h5>
         </div>
-        <div id="status-panel" class="panel-collapse collapse in">
+        <div id="status-panel" class="panel-collapse collapse">
             <ul class="list-group">
                 {% for status in statuses %}
-                <a href="?status={{ status.id }}" class="list-group-item"><h5>{{ status }}</h5></a></h5>
+                <a href="?status={{ status.id }}" class="list-group-item"><h5>{{ status }}</h5></a>
                 {% endfor %}
             </ul>
         </div>
     </div>
 
     <div class="panel panel-info">
-        <div href="#area-panel" data-toggle="collapse" class="panel-heading">
+        <div href="#area-panel" data-toggle="collapse" class="panel-heading" aria-expanded="false">
             <h5 class="panel-title cursor-default">Areas</h5>
         </div>
-        <div id="area-panel" class="panel-collapse collapse in">
+        <div id="area-panel" class="panel-collapse collapse">
             <ul class="list-group">
                 {% for area in areas %}
                 <a href="?area={{ area.id }}" class="list-group-item"><h5>{{ area }}</h5></a>
@@ -31,10 +31,10 @@
     </div>
 
     <div class="panel panel-info">
-        <div href="#project-panel" data-toggle="collapse" class="panel-heading">
+        <div href="#project-panel" data-toggle="collapse" class="panel-heading" aria-expanded="false">
             <h5 class="panel-title cursor-default">Projects</h5>
         </div>
-        <div id="project-panel" class="panel-collapse collapse in">
+        <div id="project-panel" class="panel-collapse collapse">
             <ul class="list-group">
                 {% for project in projects %}
                 <a href="?project={{ project.id }}" class="list-group-item"><h5>{{ project }}</h5></a>

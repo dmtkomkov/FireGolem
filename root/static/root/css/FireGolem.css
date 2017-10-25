@@ -10,13 +10,13 @@ body {
 
 #sidebar {
     position: fixed;
-    width: 200px;
+    width: 250px;
     height: 100vh;
     background-color: #f3d17a;
 }
 
 #content {
-    margin-left: 200px;
+    margin-left: 250px;
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -92,4 +92,23 @@ a.list-group-item > h5   {
 .card-header {
     background-color: #b3a14a;
     color: white;
+}
+
+/* Sidebar collapse arrows */
+
+div[data-toggle="collapse"] {
+    position: relative;
+}
+
+div[aria-expanded="false"]::before, div[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+
+div[aria-expanded="true"]::before {
+    content: '\e260';
 }
