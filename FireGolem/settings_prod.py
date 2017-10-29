@@ -20,15 +20,3 @@ LOGGING = {
         },
     },
 }
-
-# Database
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FireGolem',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
