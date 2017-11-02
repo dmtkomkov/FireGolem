@@ -20,7 +20,7 @@ class ProjectView(LoginRequiredMixin, View):
         active_page = request.GET.get('page')
 
         projects, page_conf = get_page(all_projects, active_page)
-        page = {'projects': projects}
+        page = {'projects': projects, 'title': 'Projects'}
         page.update(page_conf)
 
         return render(request, 'project/home.html', page)
@@ -35,7 +35,7 @@ class ProjectView(LoginRequiredMixin, View):
 class ProjectDetails(LoginRequiredMixin, View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
-        return render(request, 'project/details.html', { 'project': project })
+        return render(request, 'project/details.html', {'project': project, 'title': 'Project Details'})
 
     def put(self, request, project_id):
         request.PUT = QueryDict(request.body)
@@ -59,7 +59,7 @@ class AreaView(LoginRequiredMixin, View):
         active_page = request.GET.get('page')
 
         areas, page_conf = get_page(all_areas, active_page)
-        page = {'areas': areas}
+        page = {'areas': areas, 'title': 'Areas'}
         page.update(page_conf)
 
         return render(request, 'area/home.html', page)
@@ -74,7 +74,7 @@ class AreaView(LoginRequiredMixin, View):
 class AreaDetails(LoginRequiredMixin, View):
     def get(self, request, area_id):
         area = Area.objects.get(id=area_id)
-        return render(request, 'area/details.html', { 'area': area })
+        return render(request, 'area/details.html', {'area': area, 'title': 'Area Details'})
 
     def put(self, request, area_id):
         request.PUT = QueryDict(request.body)
@@ -118,6 +118,7 @@ class TodoView(LoginRequiredMixin, View):
             'areas': all_areas,
             'projects': all_projects,
             'todos': todos,
+            'title': 'Tasks',
         }
         page.update(page_conf)
 
@@ -157,6 +158,7 @@ class TodoDetails(LoginRequiredMixin, View):
         return render(request, 'todo/details.html',
                       {
                           'task': task,
+                          'title': 'Task Details',
                           'statuses_source': str(statuses_source),
                           'areas_source': str(areas_source),
                           'projects_source': str(projects_source),
