@@ -11,7 +11,7 @@ body {
 #sidebar {
     position: fixed;
     width: 250px;
-    height: 100vh;
+    height: calc(100% - 50px);
     background-color: #f3d17a;
 }
 

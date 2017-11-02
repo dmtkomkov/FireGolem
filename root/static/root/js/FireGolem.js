@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $("#sidebar").niceScroll(".wrap-sidebar");
+
     $('.panel.panel-blog').on('shown.bs.collapse', function () {
         post = $('[aria-expanded=true]');
         post_id = post.attr('post-id');
@@ -19,6 +21,15 @@ $(document).ready(function() {
             $('.btn[data-target="#deletePost"]').prop('disabled', true);
             $('.btn[data-target="#editPost"]').prop('disabled', true);
         }
+    });
+
+    $('.panel.panel-sidebar').on('shown.bs.collapse', function () {
+        $("#sidebar").getNiceScroll().resize();
+        console.log('resize');
+    });
+
+    $('.panel.panel-sidebar').on('hidden.bs.collapse', function () {
+        $("#sidebar").getNiceScroll().resize();
     });
 
     $.fn.editable.defaults.mode = 'inline';
