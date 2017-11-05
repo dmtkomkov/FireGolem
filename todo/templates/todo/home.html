@@ -71,9 +71,15 @@
         <a href="{% url 'todo:details' todo.id %}" class="list-group-item list-group-item-info">
             <h5>
                 {{ todo }}
-                <span class="label label-warning">{{ todo.estimation }}</span>
-                <span class="label label-info">{{ todo.project }}</span>
-                <span class="label label-success">{{ todo.area|tail:":" }}</span>
+                {% if todo.estimation %}
+                    <span class="label label-warning">{{ todo.estimation }}</span>
+                {% endif %}
+                {% if todo.project %}
+                    <span class="label label-info">{{ todo.project }}</span>
+                {% endif %}
+                {% if todo.area %}
+                    <span class="label label-success">{{ todo.area|tail:":" }}</span>
+                {% endif %}
                 <span class="label label-primary">{{ todo.status }}</span>
             </h5>
         </a>
