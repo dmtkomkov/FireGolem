@@ -5,10 +5,10 @@
 <div class="panel-group">
 
     <div class="panel panel-sidebar panel-info">
-        <div href="#status-panel" data-toggle="collapse" class="panel-heading" aria-expanded="false">
+        <div href="#status-panel" data-toggle="collapse" class="panel-heading" aria-expanded="true">
             <h5 class="panel-title cursor-default">Statuses</h5>
         </div>
-        <div id="status-panel" class="panel-collapse collapse">
+        <div id="status-panel" class="panel-collapse collapse in">
             <ul class="list-group">
                 {% for status in statuses %}
                 <a href="?status={{ status.id }}" class="list-group-item"><h5>{{ status }}</h5></a>
