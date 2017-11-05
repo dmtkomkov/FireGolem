@@ -134,12 +134,12 @@ class TodoView(LoginRequiredMixin, View):
 class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
         task = Task.objects.get(id=task_id)
-        statuses = TaskStatus.objects.all()
+        statuses = TaskStatus.objects.all().order_by("id")
         statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
         fake_source = [{'value': 'null', 'text': 'Empty'}]              # Fake value represents database null
-        areas = Area.objects.all()
+        areas = Area.objects.all().order_by("id")
         areas_source = fake_source + [{'value': int(a.id), 'text': str(a.name)} for a in areas]
-        projects = Project.objects.all()
+        projects = Project.objects.all().order_by("id")
         projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         estimations_source = [
             {'value': 0, 'text': 'Empty'},
