@@ -12,6 +12,10 @@ class Area(models.Model):
     def __unicode__(self):
         return u"%s" % self.name
 
+    @property
+    def count(self):
+        return Task.objects.filter(status=self.id).count()
+
 
 class Project(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -19,6 +23,10 @@ class Project(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+    @property
+    def count(self):
+        return Task.objects.filter(status=self.id).count()
 
 
 class Task(models.Model):
@@ -41,6 +49,10 @@ class TaskStatus(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.status
+
+    @property
+    def count(self):
+        return Task.objects.filter(status=self.id).count()
 
 
 class WorkLog(models.Model):
