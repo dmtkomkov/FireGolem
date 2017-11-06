@@ -1,5 +1,10 @@
 {% extends "root/base.html" %}
 
+{% block header %}
+    <h4>Task <a href="" id="task-name" data-type="text" data-url="{% url 'todo:details' task.id %}">{{ task.name }}</a></h4>
+{% endblock %}
+
+
 {% block content %}
 
 {% load tz %}
@@ -8,9 +13,6 @@
 <table class="table table-hover cursor-default">
     <tr><td>Status</td><td>
         <a href="" id="task-status" data-type="select" data-source="{{ statuses_source }}"  data-value="{{ task.status.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.status }}</a>
-    </td></tr>
-    <tr><td>Name</td><td>
-        <a href="" id="task-name" data-type="text" data-url="{% url 'todo:details' task.id %}">{{ task.name }}</a>
     </td></tr>
     <tr><td>Description</td><td>
         <a href="" id="task-description" data-type="textarea" data-rows="3" data-url="{% url 'todo:details' task.id %}">{{ task.description|default_if_none:"" }}</a>
@@ -26,11 +28,12 @@
     </td></tr>
     <tr><td>Created</td><td>{{ task.created }}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated }}</td></tr>
-    <tr><td colspan="2">
-        {% include "snippets/deleteObjectDialog.html" with object="Task"%}
-        {% include "snippets/addWorkLogDialog.html"%}
-    </td></tr>
 </table>
 </form>
 
+{% endblock %}
+
+{% block footer %}
+    {% include "snippets/deleteObjectDialog.html" with object="Task"%}
+    {% include "snippets/addWorkLogDialog.html"%}
 {% endblock %}

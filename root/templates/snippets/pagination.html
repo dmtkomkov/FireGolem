@@ -1,7 +1,7 @@
 {% load url_helpers %}
 
 <nav class="top">
-    <ul class="pagination pagination-sm">
+    <ul class="pagination pagination-sm pull-right">
 
         {% if prev_page %}
             <li><a href="?{% set_url_option request 'page' prev_page %}"><span class="glyphicon glyphicon-step-backward"></span></a></li>

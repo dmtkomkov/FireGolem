@@ -72,8 +72,13 @@ a.list-group-item > h5   {
 .card-header,
 .card-body,
 .card-footer {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 10px;
+}
+
+.card-header > h4,
+.card-footer > h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .card-body {
@@ -84,8 +89,6 @@ a.list-group-item > h5   {
     border-left-width: 0px;
     border-right-width: 0px;
     border-color: #080808;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .card-footer,
@@ -111,4 +114,8 @@ div[aria-expanded="false"]::before, div[aria-expanded="true"]::before {
 
 div[aria-expanded="true"]::before {
     content: '\e260';
+}
+
+.pagination {
+    margin: 0px;
 }

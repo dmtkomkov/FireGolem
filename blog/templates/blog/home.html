@@ -1,16 +1,12 @@
 {% extends "root/base.html" %}
 
+{% block header %}
+    <h4>Blog</h4>
+{% endblock %}
+
 {% block content %}
 
 {% load tz %}
-
-{% include "snippets/pagination.html" %}
-
-<div class="form-group">
-    {% include "snippets/addPostDialog.html" %}
-    {% include "snippets/editPostDialog.html" %}
-    {% include "snippets/deletePostDialog.html" %}
-</div>
 
 <div class="row">
 <div class="col-md-12">
@@ -37,4 +33,13 @@
 </div>
 </div>
 
+{% endblock %}
+
+{% block footer %}
+    <div class="form-inline pull-left">
+        {% include "snippets/addPostDialog.html" %}
+        {% include "snippets/editPostDialog.html" %}
+        {% include "snippets/deletePostDialog.html" %}
+    </div>
+    {% include "snippets/pagination.html" %}
 {% endblock %}

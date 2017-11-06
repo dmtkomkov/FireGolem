@@ -66,17 +66,18 @@
     <!-- Page Content -->
     <div id="content" class="container-fluid">
         <div class="card">
-            {% if title %}
-                <div class="card-header container-fluid">
-                    <h4>{{ title }}</h4>
-                </div>
-            {% endif %}
+
+            <div class="card-header container-fluid">
+                {% block header %}
+                {% endblock %}
+            </div>
             <div class="card-body container-fluid">
                 {% block content %}
                 {% endblock %}
             </div>
             <div class="card-footer container-fluid">
-                <h4>Footer</h4>
+                {% block footer %}
+                {% endblock %}
             </div>
         </div>
 

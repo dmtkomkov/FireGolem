@@ -53,14 +53,7 @@
 
 {% endblock %}
 
-{% block content %}
-
-{% load url_helpers %}
-{% load tz %}
-
-{% include "snippets/pagination.html" %}
-
-<div class="form-group">
+{% block header %}
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="todo-navigator" data-toggle="dropdown">
             Tasks <span class="caret"></span>
@@ -70,7 +63,12 @@
             <li><a href="{% url 'project:home' %}">Projects</a></li>
         </ul>
     </div>
-</div>
+{% endblock %}
+
+{% block content %}
+
+{% load url_helpers %}
+{% load tz %}
 
 <div class="list-group">
     {% for todo in todos %}
@@ -92,11 +90,14 @@
     {% endfor %}
 </div>
 
-<form method="post" class="form-inline">
-    <input class="form-control" name="name" placeholder="New Task" required>
-    <button type="submit" class="btn btn-sm">
-        <span class="glyphicon glyphicon-plus white"></span>
-    </button>
-</form>
+{% endblock %}
 
+{% block footer %}
+    <form method="post" class="form-inline pull-left">
+        <input class="form-control" name="name" placeholder="New Task" required>
+        <button type="submit" class="btn btn-sm">
+            <span class="glyphicon glyphicon-plus white"></span>
+        </button>
+    </form>
+    {% include "snippets/pagination.html" %}
 {% endblock %}
