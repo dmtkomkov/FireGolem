@@ -14,7 +14,7 @@ class Area(models.Model):
 
     @property
     def count(self):
-        return Task.objects.filter(status=self.id).count()
+        return Task.objects.filter(area=self.id).filter(deleted=False).count()
 
 
 class Project(models.Model):
@@ -26,7 +26,7 @@ class Project(models.Model):
 
     @property
     def count(self):
-        return Task.objects.filter(status=self.id).count()
+        return Task.objects.filter(project=self.id).filter(deleted=False).count()
 
 
 class Task(models.Model):
@@ -52,7 +52,7 @@ class TaskStatus(models.Model):
 
     @property
     def count(self):
-        return Task.objects.filter(status=self.id).count()
+        return Task.objects.filter(status=self.id).filter(deleted=False).count()
 
 
 class WorkLog(models.Model):

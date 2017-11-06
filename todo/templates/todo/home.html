@@ -12,7 +12,7 @@
             <ul class="list-group">
                 {% for status in statuses %}
                 <a href="?status={{ status.id }}" class="list-group-item">
-                    <h5>{{ status }} <span class="badge pull-right">{{ status.count }}</span></h5>
+                    <h5>{{ status }} {% if status.count %}<span class="badge pull-right">{{ status.count }}</span>{% endif %}</h5>
                 </a>
                 {% endfor %}
             </ul>
@@ -27,7 +27,7 @@
             <ul class="list-group">
                 {% for area in areas %}
                 <a href="?area={{ area.id }}" class="list-group-item">
-                    <h5>{{ area }}<span class="badge pull-right">{{ area.count }}</span></h5>
+                    <h5>{{ area }} {% if area.count %}<span class="badge pull-right">{{ area.count }}</span>{% endif %}</h5>
                 </a>
                 {% endfor %}
             </ul>
@@ -42,7 +42,7 @@
             <ul class="list-group">
                 {% for project in projects %}
                 <a href="?project={{ project.id }}" class="list-group-item">
-                    <h5>{{ project }}<span class="badge pull-right">{{ project.count }}</span></h5>
+                    <h5>{{ project }} {% if project.count %}<span class="badge pull-right">{{ project.count }}</span>{% endif %}</h5>
                 </a>
                 {% endfor %}
             </ul>
