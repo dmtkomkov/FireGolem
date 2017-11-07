@@ -116,6 +116,7 @@ div[aria-expanded="true"]::before {
     content: '\e260';
 }
 
-.pagination {
+.pagination,
+.form-group {
     margin: 0px;
 }
