@@ -175,6 +175,8 @@ class TodoDetails(LoginRequiredMixin, View):
         post.save()
         worklog = WorkLog(task=task, log=log, comment=post)              # Create WorkLog
         worklog.save()
+        task.updated = datetime.now()
+        task.save()
         return self.get(request, task_id)
 
 
