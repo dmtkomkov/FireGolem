@@ -127,6 +127,18 @@ class TodoView(LoginRequiredMixin, View):
     def post(self, request):
         name = request.POST.get('name')
         task = Task(name=name)
+
+        status_id = request.GET.get("status")
+        area_id = request.GET.get("area")
+        project_id = request.GET.get("project")
+
+        if status_id:
+            task.status = TaskStatus.objects.get(id=status_id)
+        if area_id:
+            task.area = Area.objects.get(id=area_id)
+        if project_id:
+            task.project = Project.objects.get(id=project_id)
+
         task.save()
         return self.get(request)
 
