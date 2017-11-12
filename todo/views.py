@@ -196,9 +196,6 @@ class TodoDetails(LoginRequiredMixin, View):
         """
         Process AJAX request for bootstrap-editable plugin
         """
-        # TODO: error handling
-        # TODO: Empty choice for project and area
-        # TODO: update "Updated Date" on put
         request.PUT = QueryDict(request.body)
         task = Task.objects.get(id=task_id)
         name = request.PUT.get("name")
