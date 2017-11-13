@@ -25,7 +25,6 @@ $(document).ready(function() {
 
     $('.panel.panel-sidebar').on('shown.bs.collapse', function () {
         $("#sidebar").getNiceScroll().resize();
-        console.log('resize');
     });
 
     $('.panel.panel-sidebar').on('hidden.bs.collapse', function () {
