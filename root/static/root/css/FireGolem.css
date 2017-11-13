@@ -126,3 +126,7 @@ div[aria-expanded="true"]::before {
 .form-group {
     margin: 0px;
 }
+
+.right {
+    margin-left: auto;
+}
