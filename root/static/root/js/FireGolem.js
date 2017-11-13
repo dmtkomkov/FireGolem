@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $("#sidebar").niceScroll(".wrap-sidebar");
+    $("#card-body").niceScroll();
 
     $('.panel.panel-blog').on('shown.bs.collapse', function () {
         post = $('[aria-expanded=true]');

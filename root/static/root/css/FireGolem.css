@@ -4,6 +4,7 @@ body {
     /* Some space for toolbar */
     padding-top: 50px;
     background-color: #f1e5b2;
+    overflow: hidden;
 }
 
 /* Sidebar */
@@ -72,7 +73,10 @@ a.list-group-item > h5   {
 .card-header,
 .card-body,
 .card-footer {
+    height: 50px;
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .card-header > h4,
@@ -89,6 +93,8 @@ a.list-group-item > h5   {
     border-left-width: 0px;
     border-right-width: 0px;
     border-color: #080808;
+    display:block;
+    height: calc(100vh - 170px);
 }
 
 .card-footer,
