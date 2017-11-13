@@ -5,10 +5,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from api.models import Post
 from helpers.pagination import get_page
 
-PPP = 10  # POSTS_PER_PAGE
-PML = 11  # PAGINATOR_MAX_LENGTH
-PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
-
 
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):

@@ -9,10 +9,6 @@ from helpers.pagination import get_page
 
 from datetime import datetime
 
-PPP = 10  # POSTS_PER_PAGE
-PML = 11  # PAGINATOR_MAX_LENGTH
-PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
-
 
 class ProjectView(LoginRequiredMixin, View):
     def get(self, request):
