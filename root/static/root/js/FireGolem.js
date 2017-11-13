@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $("#sidebar").niceScroll(".wrap-sidebar");
+    $("#sidebar").niceScroll();
     $("#card-body").niceScroll();
 
     $('.panel.panel-blog').on('shown.bs.collapse', function () {
