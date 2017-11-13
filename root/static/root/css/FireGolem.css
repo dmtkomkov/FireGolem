@@ -85,8 +85,12 @@ a.list-group-item > h5   {
     margin-bottom: 0px;
 }
 
+.modal-body,
 .card-body {
     background-color: #f3d17a;
+}
+
+.card-body {
     border-style: solid;
     border-top-width: 2px;
     border-bottom-width: 2px;
@@ -97,6 +101,8 @@ a.list-group-item > h5   {
     height: calc(100vh - 170px);
 }
 
+.modal-header,
+.modal-footer,
 .card-footer,
 .card-header {
     background-color: #b3a14a;
