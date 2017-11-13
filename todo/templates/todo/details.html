@@ -34,6 +34,8 @@
 {% endblock %}
 
 {% block footer %}
-    {% include "snippets/deleteObjectDialog.html" with object="Task"%}
-    {% include "snippets/addWorkLogDialog.html"%}
+    <div class="form-group">
+        {% include "snippets/deleteObjectDialog.html" with object="Task"%}
+        {% include "snippets/addWorkLogDialog.html"%}
+    <div class="form-group">
 {% endblock %}
