@@ -16,7 +16,7 @@ PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 class ProjectView(LoginRequiredMixin, View):
     def get(self, request):
-        all_projects = Project.objects.all()
+        all_projects = Project.objects.all().order_by("name")
         active_page = request.GET.get('page')
 
         projects, page_conf = get_page(all_projects, active_page)
@@ -55,7 +55,7 @@ class ProjectDetails(LoginRequiredMixin, View):
 
 class AreaView(LoginRequiredMixin, View):
     def get(self, request):
-        all_areas = Area.objects.all()
+        all_areas = Area.objects.all().order_by("name")
         active_page = request.GET.get('page')
 
         areas, page_conf = get_page(all_areas, active_page)
@@ -95,9 +95,9 @@ class AreaDetails(LoginRequiredMixin, View):
 class TodoView(LoginRequiredMixin, View):
     def get(self, request):
         all_statuses = TaskStatus.objects.all().order_by("id")
-        all_areas = Area.objects.all().order_by("id")
-        all_projects = Project.objects.all().order_by("id")
-        all_todos = Task.objects.all().filter(deleted=False).order_by("updated")
+        all_areas = Area.objects.all().order_by("name")
+        all_projects = Project.objects.all().order_by("name")
+        all_todos = Task.objects.all().filter(deleted=False).order_by("-updated")
 
         status_id = request.GET.get("status")
         area_id = request.GET.get("area")

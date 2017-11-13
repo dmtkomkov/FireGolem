@@ -12,7 +12,7 @@ def get_page(all_objects, active_page):
         active_page = int(active_page)
         objects = paginator.page(active_page)
     except (ValueError, TypeError, EmptyPage):  # get the last page in case of wrong active page
-        active_page = paginator.num_pages
+        active_page = 1
         objects = paginator.page(active_page)
 
     if paginator.num_pages <= PML:  # num_pages less than maximum
