@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from api.models import Area, Project, Task, TaskStatus, Post, WorkLog
 from helpers.pagination import get_page
+from helpers.task import get_estimations
 
 from datetime import datetime
 
@@ -149,20 +150,7 @@ class TodoDetails(LoginRequiredMixin, View):
         areas_source = fake_source + [{'value': int(a.id), 'text': str(a.name)} for a in areas]
         projects = Project.objects.all().order_by("id")
         projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
-        estimations_source = [
-            {'value': 0, 'text': 'Empty'},
-            {'value': 1, 'text': '1 hour'},
-            {'value': 2, 'text': '2 hours'},
-            {'value': 3, 'text': '3 hours'},
-            {'value': 4, 'text': '4 hours'},
-            {'value': 5, 'text': '1 day'},
-            {'value': 10, 'text': '2 days'},
-            {'value': 15, 'text': '3 days'},
-            {'value': 20, 'text': '4 days'},
-            {'value': 25, 'text': '5 days'},
-            {'value': 30, 'text': '6 days'},
-            {'value': 35, 'text': '1 week'}
-        ]
+        estimations_source = get_estimations()
         return render(request, 'todo/details.html',
                       {
                           'task': task,

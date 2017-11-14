@@ -99,6 +99,10 @@ POST_MODEL = "Post"
 AREA_MODEL = "Area"
 PROJECT_MODEL = "Project"
 
+# Hours in a day
+HOURS_IN_A_DAY = 5
+
+# Logging
 LOGGING = {
     'version': 1,
     'handlers': {
