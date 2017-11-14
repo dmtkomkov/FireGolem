@@ -151,9 +151,11 @@ class TodoDetails(LoginRequiredMixin, View):
         projects = Project.objects.all().order_by("id")
         projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         estimations_source = get_estimations()
+        posts = Post.objects.filter(worklog__task = task_id).order_by("-created")
         return render(request, 'todo/details.html',
                       {
                           'task': task,
+                          'posts': posts,
                           'title': 'Task Details',
                           'statuses_source': str(statuses_source),
                           'areas_source': str(areas_source),
