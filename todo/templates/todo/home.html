@@ -76,7 +76,7 @@
             <h5>
                 {{ todo }}
                 {% if todo.estimation %}
-                    <span class="label label-warning">{{ todo.estimation }}</span>
+                    <span class="label label-warning">{{ todo.logged }} / {{ todo.estimation }}</span>
                 {% endif %}
                 {% if todo.project %}
                     <span class="label label-info">{{ todo.project }}</span>

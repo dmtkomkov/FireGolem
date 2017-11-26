@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from django.conf import settings
 
+from django.db.models import Sum
+
 __all__ = ("Area", "Project", "Task", "TaskStatus", "WorkLog")
 
 
@@ -39,6 +41,11 @@ class Task(models.Model):
     area = models.ForeignKey(settings.AREA_MODEL, models.SET_NULL, blank=True, null=True)
     project = models.ForeignKey(settings.PROJECT_MODEL, models.SET_NULL, blank=True, null=True)
     deleted = models.BooleanField(default=False)
+
+    @property
+    def logged(self):
+        task_logs = WorkLog.objects.filter(task=self.id).filter(task__deleted=False)
+        return task_logs.aggregate(Sum('log'))['log__sum'] or 0  # Do not return None in case of no logs
 
     def __unicode__(self):
         return u"%s" % self.name
