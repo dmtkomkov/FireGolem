@@ -146,9 +146,9 @@ class TodoDetails(LoginRequiredMixin, View):
         statuses = TaskStatus.objects.all().order_by("id")
         statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
         fake_source = [{'value': 'null', 'text': 'Empty'}]              # Fake value represents database null
-        areas = Area.objects.all().order_by("id")
+        areas = Area.objects.all().order_by("id").order_by("name")
         areas_source = fake_source + [{'value': int(a.id), 'text': str(a.name)} for a in areas]
-        projects = Project.objects.all().order_by("id")
+        projects = Project.objects.all().order_by("id").order_by("name")
         projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         estimations_source = get_estimations()
         posts = Post.objects.filter(worklog__task = task_id).order_by("-created")
