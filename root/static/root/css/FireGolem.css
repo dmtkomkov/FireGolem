@@ -115,7 +115,7 @@ div[data-toggle="collapse"] {
     position: relative;
 }
 
-div[aria-expanded="false"]::before, div[aria-expanded="true"]::before {
+div.menu[aria-expanded="false"]::before, div.menu[aria-expanded="true"]::before {
     content: '\e259';
     display: block;
     position: absolute;
@@ -124,7 +124,7 @@ div[aria-expanded="false"]::before, div[aria-expanded="true"]::before {
     font-size: 0.6em;
 }
 
-div[aria-expanded="true"]::before {
+div.menu[aria-expanded="true"]::before {
     content: '\e260';
 }
 
