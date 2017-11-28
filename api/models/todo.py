@@ -16,7 +16,8 @@ class Area(models.Model):
 
     @property
     def count(self):
-        return Task.objects.filter(area=self.id).filter(deleted=False).count()
+        # Exclude deleted, cancelled and closed tasks
+        return Task.objects.filter(area=self.id).filter(deleted=False).exclude(status__in=(21, 22)).count()
 
 
 class Project(models.Model):
@@ -28,7 +29,8 @@ class Project(models.Model):
 
     @property
     def count(self):
-        return Task.objects.filter(project=self.id).filter(deleted=False).count()
+        # Exclude deleted, cancelled and closed tasks
+        return Task.objects.filter(project=self.id).filter(deleted=False).exclude(status__in=(21, 22)).count()
 
 
 class Task(models.Model):

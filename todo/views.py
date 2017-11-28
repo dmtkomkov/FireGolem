@@ -102,6 +102,9 @@ class TodoView(LoginRequiredMixin, View):
 
         if status_id:
             all_todos = all_todos.filter(status=status_id)
+        else:
+            all_todos = all_todos.exclude(status__in=(21, 22))  # Exclude cancelled and closed tasks
+
         if area_id:
             all_todos = all_todos.filter(area=area_id)
         if project_id:
