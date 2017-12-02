@@ -1,7 +1,7 @@
 {% extends "root/base.html" %}
 
 {% block header %}
-    <h4>Area <a href="" id="area-name" data-type="text" data-url="{% url 'area:details' area.id %}">{{ area.name }}</a></h4>
+    <h4><a href="" id="area-name" data-type="text" data-url="{% url 'area:details' area.id %}">{{ area.name }}</a></h4>
 {% endblock %}
 
 {% block content %}
