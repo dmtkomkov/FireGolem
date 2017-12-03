@@ -6,6 +6,7 @@
     --body-color: #acbfd2;
     --panel-color: #bfccb3;
     --button-color: #809966;
+    --link-color: #9cd1e2;
 }
 
 /* Body */
@@ -142,9 +143,21 @@ a.list-group-item > h5   {
     cursor: default;
 }
 
+input {
+    color: black;
+}
+
 /* Panels */
 
 .panel-heading,
 .list-group-item {
     background-color: var(--panel-color);
+    border-color: white;
+}
+
+/* Editable fields */
+
+.editable-click, a.editable-click, a.editable-click:hover {
+    border: none;
+    color: var(--link-color);
 }
