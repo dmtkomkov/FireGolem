@@ -4,9 +4,13 @@
 
 <div class="panel-group">
 
-    <div class="panel panel-sidebar panel-info">
-        <div href="#status-panel" data-toggle="collapse" class="menu panel-heading" aria-expanded="{% if request.GET.status %}true{% else %}false{% endif %}">
-            <h5 class="panel-title cursor-default">Statuses</h5>
+    <div class="panel panel-sidebar">
+        <div class="panel-heading">
+            <h5 class="panel-title cursor-default">
+                <a href="#status-panel" data-toggle="collapse" aria-expanded="{% if request.GET.status %}true{% else %}false{% endif %}">
+                    Statuses
+                </a>
+            </h5>
         </div>
         <div id="status-panel" class="panel-collapse collapse {% if request.GET.status %}in{% endif %}">
             <ul class="list-group">
@@ -19,9 +23,13 @@
         </div>
     </div>
 
-    <div class="panel panel-sidebar panel-info">
-        <div href="#area-panel" data-toggle="collapse" class="menu panel-heading" aria-expanded="{% if request.GET.area %}true{% else %}false{% endif %}">
-            <h5 class="panel-title cursor-default">Areas</h5>
+    <div class="panel panel-sidebar">
+        <div class="panel-heading" >
+            <h5 class="panel-title cursor-default">
+                <a href="#area-panel" data-toggle="collapse" aria-expanded="{% if request.GET.area %}true{% else %}false{% endif %}">
+                    Areas
+                </a>
+            </h5>
         </div>
         <div id="area-panel" class="panel-collapse collapse {% if request.GET.area %}in{% endif %}">
             <ul class="list-group">
@@ -34,9 +42,13 @@
         </div>
     </div>
 
-    <div class="panel panel-sidebar panel-info">
-        <div href="#project-panel" data-toggle="collapse" class="menu panel-heading" aria-expanded="{% if request.GET.project %}true{% else %}false{% endif %}">
-            <h5 class="panel-title cursor-default">Projects</h5>
+    <div class="panel panel-sidebar">
+        <div class="panel-heading">
+            <h5 class="panel-title cursor-default">
+                <a href="#project-panel" data-toggle="collapse" aria-expanded="{% if request.GET.project %}true{% else %}false{% endif %}">
+                    Projects
+                </a>
+            </h5>
         </div>
         <div id="project-panel" class="panel-collapse collapse {% if request.GET.project %}in{% endif %}">
             <ul class="list-group">

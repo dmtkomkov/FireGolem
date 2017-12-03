@@ -10,15 +10,17 @@
 
 <div class="row">
 <div class="col-md-12">
-<div class="panel-group" id="blog-accordion">
+<div class="panel-group black" id="blog-accordion">
     {% for post in posts %}
         <div class="panel panel-blog">
-            <div data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" class="panel-heading" post-id={{ post.id }}>
+            <div class="panel-heading">
                 <h5 class="panel-title cursor-default">
-                    <small><dfn>[ {{ post.created | localtime | date:"D, j M Y H:i" }} ]</dfn></small>
-                    <span class="post-title">{{ post.title }}</span>
+                    <a data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" post-id={{ post.id }}>
+                        <small><dfn>{{ post.created | localtime | date:"D, j M Y H:i" }}</dfn></small>
+                        <span class="post-title">{{ post.title }}</span>
+                    </a>
                     <span class="pull-right">
-                        <dfn>[ {{ post.user.first_name }} {{ post.user.last_name }} ]</dfn>
+                        <dfn>{{ post.user.first_name }} {{ post.user.last_name }}</dfn>
                     </span>
                 </h5>
             </div>

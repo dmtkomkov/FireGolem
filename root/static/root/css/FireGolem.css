@@ -1,9 +1,18 @@
+/* Variables */
+
+:root {
+    --main-color: #6B6E70;
+    --secondary-color: #474B4F;
+    --body-color: #acbfd2;
+    --panel-color: #bfccb3;
+    --button-color: #809966;
+}
+
 /* Body */
 
 body {
-    /* Some space for toolbar */
-    padding-top: 50px;
-    background-color: #f1e5b2;
+    padding-top: 50px; /* some space for toolbar */
+    background-color: var(--body-color);
     overflow: hidden;
 }
 
@@ -13,7 +22,7 @@ body {
     position: fixed;
     width: 250px;
     height: calc(100% - 50px);
-    background-color: #f3d17a;
+    background-color: var(--secondary-color);
 }
 
 #content {
@@ -24,50 +33,22 @@ body {
     padding: 0px;
 }
 
-/* Topbar dropdown */
+/* Toolbar dropdown */
 
 .dropdown-menu.pull-left {
-    /* Ajust dropdown menu width to the button */
-    left: 0px;
+    left: 0px; /* ajust dropdown menu width to the button */
 }
+
+/* Buttons */
 
 button {
-    background-color: #009688;
+    background-color: var(--button-color);
 }
 
-/* Text */
-.cursor-default {
-    cursor: default;
-}
-
-/* colors */
-
-.white {
-    color: white;
-}
-
-/* Labels */
-
-span.label {
-    float: right;
-    margin-right: 2px;
-    margin-left: 2px;
-    width: 70px;
-}
-
-a.list-group-item > h5   {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-/* Card */
+/* Card and Dialog */
 
 .card {
     margin: 10px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #080808;
-    background-color: #f8f8f8;
 }
 
 .card-header,
@@ -87,46 +68,40 @@ a.list-group-item > h5   {
 
 .modal-body,
 .card-body {
-    background-color: #f3d17a;
+    background-color: var(--main-color);
 }
 
 .card-body {
     border-style: solid;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
+    border-top-width: 3px;
+    border-bottom-width: 3px;
     border-left-width: 0px;
     border-right-width: 0px;
-    border-color: #080808;
+    border-color: var(--body-color);
     display:block;
     height: calc(100vh - 170px);
+    color: white;
 }
 
 .modal-header,
 .modal-footer,
 .card-footer,
 .card-header {
-    background-color: #b3a14a;
+    background-color: var(--secondary-color);
     color: white;
 }
 
-/* Sidebar collapse arrows */
-
-div[data-toggle="collapse"] {
-    position: relative;
+.card-header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
-div.menu[aria-expanded="false"]::before, div.menu[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
+.card-footer {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
-div.menu[aria-expanded="true"]::before {
-    content: '\e260';
-}
+/* Footer elements */
 
 .pagination,
 .form-group {
@@ -135,4 +110,41 @@ div.menu[aria-expanded="true"]::before {
 
 .right {
     margin-left: auto;
+}
+
+/* Colors */
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+/* Labels */
+
+span.label {
+    float: right;
+    margin-right: 2px;
+    margin-left: 2px;
+    width: 70px;
+}
+
+a.list-group-item > h5   {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Text */
+
+.cursor-default {
+    cursor: default;
+}
+
+/* Panels */
+
+.panel-heading,
+.list-group-item {
+    background-color: var(--panel-color);
 }
