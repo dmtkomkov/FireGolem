@@ -85,7 +85,7 @@
 <div class="list-group">
     {% for todo in todos %}
         <a href="{% url 'todo:details' todo.id %}" class="list-group-item">
-            <h5>
+            <h5 class="black">
                 {{ todo }}
                 {% if todo.estimation %}
                     <span class="label label-warning">{{ todo.logged }} / {{ todo.estimation }}</span>
