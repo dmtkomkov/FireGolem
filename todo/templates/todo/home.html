@@ -7,6 +7,8 @@
     <div class="panel panel-sidebar">
         <div class="panel-heading">
             <h5 class="panel-title cursor-default">
+                <span class="glyphicon glyphicon-sort white" aria-hidden="true"></span>
+                &nbsp;
                 <a href="#status-panel" data-toggle="collapse" aria-expanded="{% if request.GET.status %}true{% else %}false{% endif %}">
                     Statuses
                 </a>
@@ -16,7 +18,11 @@
             <ul class="list-group">
                 {% for status in statuses %}
                 <a href="?status={{ status.id }}" class="list-group-item">
-                    <h5>{{ status }} {% if status.count %}<span class="badge pull-right">{{ status.count }}</span>{% endif %}</h5>
+                    <h5>
+                        <span class="glyphicon glyphicon-{{ status.icon }} icon-color" aria-hidden="true"></span>
+                        &nbsp;  <!-- Space between icon and text -->
+                        {{ status }} {% if status.count %}<span class="badge pull-right">{{ status.count }}</span>{% endif %}
+                    </h5>
                 </a>
                 {% endfor %}
             </ul>
@@ -26,6 +32,8 @@
     <div class="panel panel-sidebar">
         <div class="panel-heading" >
             <h5 class="panel-title cursor-default">
+                <span class="glyphicon glyphicon-unchecked white" aria-hidden="true"></span>
+                &nbsp;
                 <a href="#area-panel" data-toggle="collapse" aria-expanded="{% if request.GET.area %}true{% else %}false{% endif %}">
                     Areas
                 </a>
@@ -45,6 +53,8 @@
     <div class="panel panel-sidebar">
         <div class="panel-heading">
             <h5 class="panel-title cursor-default">
+                <span class="glyphicon glyphicon-record white" aria-hidden="true"></span>
+                &nbsp;
                 <a href="#project-panel" data-toggle="collapse" aria-expanded="{% if request.GET.project %}true{% else %}false{% endif %}">
                     Projects
                 </a>
@@ -86,6 +96,8 @@
     {% for todo in todos %}
         <a href="{% url 'todo:details' todo.id %}" class="list-group-item">
             <h5 class="black">
+                <span class="glyphicon glyphicon-{{ todo.status.icon }} icon-color" aria-hidden="true"></span>
+                &nbsp;  <!-- Space between icon and text -->
                 {{ todo }}
                 {% if todo.estimation %}
                     <span class="label label-warning">{{ todo.logged }} / {{ todo.estimation }}</span>
@@ -96,7 +108,6 @@
                 {% if todo.area %}
                     <span class="label label-success">{{ todo.area|tail:":" }}</span>
                 {% endif %}
-                <span class="label label-primary">{{ todo.status }}</span>
             </h5>
         </a>
     {% endfor %}

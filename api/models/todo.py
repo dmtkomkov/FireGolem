@@ -55,6 +55,7 @@ class Task(models.Model):
 
 class TaskStatus(models.Model):
     status = models.CharField(max_length=10, unique=True)
+    icon = models.CharField(max_length=20, blank=True, null=True)
 
     def __unicode__(self):
         return u"%s" % self.status

@@ -7,6 +7,8 @@
     --panel-color: #bfccb3;
     --button-color: #809966;
     --link-color: #9cd1e2;
+    --icon-color: #409fbf;
+    --brand-color: #cc7a66;
 }
 
 /* Body */
@@ -34,10 +36,19 @@ body {
     padding: 0px;
 }
 
-/* Toolbar dropdown */
+/* Toolbar */
+
+.navbar-brand {
+    width: 250px;
+}
 
 .dropdown-menu.pull-left {
     left: 0px; /* ajust dropdown menu width to the button */
+}
+
+.navbar-nav>li:hover {
+    background-color: var(--secondary-color);
+    color: black;
 }
 
 /* Buttons */
@@ -121,6 +132,14 @@ button {
 
 .black {
     color: black;
+}
+
+.icon-color {
+    color: var(--icon-color);
+}
+
+.brand-color {
+    color: var(--brand-color);
 }
 
 /* Labels */
