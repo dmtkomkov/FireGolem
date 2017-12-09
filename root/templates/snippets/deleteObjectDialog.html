@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#delete{{ object }}">
-    <span class="glyphicon glyphicon-trash white"></span>
+    <span class="glyphicon glyphicon-trash white"></span> Remove {{ object }}
 </button>
 
 <div class="modal fade" id="delete{{ object }}">
@@ -11,7 +11,7 @@
                     <h4 class="modal-title">Delete {{ object }}</h4>
                 </div>
                 <div class="modal-body">
-                    Are you sure?
+                    Are you sure you want to remove {{ object }}?
                 </div>
                 <div class="modal-footer">
                     <button class="btn">Delete</button>

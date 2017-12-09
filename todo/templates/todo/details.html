@@ -32,8 +32,8 @@
 </table>
 </form>
 
-<h4>Comments</h4>
-<table class="table table-hover cursor-default">
+<h4>Comments&nbsp;&nbsp;{% include "snippets/addWorkLogDialog.html"%}</h4>
+<table class="table cursor-default">
     {% for post in posts %}
         <tr><td>{{ post.created | localtime | date:"D, j M Y H:i"}}</td><td>{{ post.body }}</td></tr>
     {% endfor %}
@@ -44,6 +44,5 @@
 {% block footer %}
     <div class="form-group">
         {% include "snippets/deleteObjectDialog.html" with object="Task"%}
-        {% include "snippets/addWorkLogDialog.html"%}
     <div class="form-group">
 {% endblock %}
