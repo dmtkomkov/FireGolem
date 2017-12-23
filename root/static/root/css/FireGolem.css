@@ -3,7 +3,7 @@
 :root {
     --main-color: #6B6E70;
     --secondary-color: #474B4F;
-    --body-color: #acbfd2;
+    --body-color: #e2e7e9;
     --panel-color: #bfccb3;
     --button-color: #809966;
     --link-color: #9cd1e2;
@@ -162,8 +162,11 @@ a.list-group-item > h5   {
     cursor: default;
 }
 
-input {
+input,
+.form-control,
+.panel-body {
     color: black;
+    background-color: var(--body-color);
 }
 
 /* Panels */
