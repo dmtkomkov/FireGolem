@@ -2,6 +2,9 @@
 
 {% block header %}
     <h4><a href="" id="area-name" data-type="text" data-url="{% url 'area:details' area.id %}">{{ area.name }}</a></h4>
+    <button type="button" class="btn btn-sm right" onclick="javascript:history.go(-1);">
+        <span class="glyphicon glyphicon-menu-left white"></span>
+    </button>
 {% endblock %}
 
 {% block content %}

@@ -2,6 +2,9 @@
 
 {% block header %}
     <h4><a href="" id="task-name" data-type="text" data-url="{% url 'todo:details' task.id %}">{{ task.name }}</a></h4>
+    <button type="button" class="btn btn-sm right" onclick="javascript:history.go(-1);">
+        <span class="glyphicon glyphicon-menu-left white"></span>
+    </button>
 {% endblock %}
 
 
