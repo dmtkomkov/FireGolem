@@ -94,7 +94,7 @@ class TodoView(LoginRequiredMixin, View):
         all_statuses = TaskStatus.objects.all().order_by("id")
         all_areas = Area.objects.all().order_by("name")
         all_projects = Project.objects.all().order_by("name")
-        all_todos = Task.objects.all().filter(deleted=False).order_by("-updated")
+        all_todos = Task.objects.all().order_by("-updated")
 
         status_id = request.GET.get("status")
         area_id = request.GET.get("area")
@@ -154,7 +154,7 @@ class TodoDetails(LoginRequiredMixin, View):
         projects = Project.objects.all().order_by("id").order_by("name")
         projects_source = fake_source + [{'value': int(p.id), 'text': str(p.name)} for p in projects]
         estimations_source = get_estimations()
-        posts = Post.objects.filter(worklog__task = task_id).filter(deleted=False).order_by("-created")
+        posts = Post.objects.filter(worklog__task = task_id).order_by("-created")
         return render(request, 'todo/details.html',
                       {
                           'task': task,
