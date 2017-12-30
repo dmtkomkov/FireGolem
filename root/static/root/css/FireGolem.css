@@ -17,7 +17,8 @@ body {
     padding-top: 50px; /* some space for toolbar */
     overflow: hidden;
     font-family: Georgia, "Times New Roman", Times, serif;
-    background-image: linear-gradient(var(--button-color), var(--link-color), var(--icon-color));
+    background-image: url("stone.jpg");
+    /* background-image: linear-gradient(var(--button-color), var(--link-color), var(--icon-color)); */
 }
 
 /* Sidebar */
