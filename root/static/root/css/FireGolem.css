@@ -15,9 +15,9 @@
 
 body {
     padding-top: 50px; /* some space for toolbar */
-    background-color: var(--body-color);
     overflow: hidden;
     font-family: Georgia, "Times New Roman", Times, serif;
+    background-image: linear-gradient(var(--button-color), var(--link-color), var(--icon-color));
 }
 
 /* Sidebar */
@@ -155,6 +155,7 @@ span.label {
 a.list-group-item > h5   {
     margin-top: 0px;
     margin-bottom: 0px;
+
 }
 
 /* Text */
