@@ -17,6 +17,7 @@ body {
     padding-top: 50px; /* some space for toolbar */
     background-color: var(--body-color);
     overflow: hidden;
+    font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 /* Sidebar */
