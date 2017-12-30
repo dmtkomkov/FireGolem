@@ -78,6 +78,7 @@ button {
     opacity: var(--opacity);
 }
 
+.quick-access > h4,
 .card-header > h4,
 .card-footer > h4 {
     margin-top: 0px;
@@ -189,4 +190,20 @@ input,
 .editable-click, a.editable-click, a.editable-click:hover {
     border: none;
     color: var(--link-color);
+}
+
+/* Dashboard */
+.quick-access {
+    padding: 5px;
+}
+
+.quick-access > hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.quick-access-row {
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
