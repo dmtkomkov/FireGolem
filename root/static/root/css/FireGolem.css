@@ -9,6 +9,7 @@
     --link-color: #9cd1e2;
     --icon-color: #409fbf;
     --brand-color: #cc7a66;
+    --opacity: 0.95;
 }
 
 /* Body */
@@ -28,6 +29,7 @@ body {
     width: 250px;
     height: calc(100% - 50px);
     background-color: var(--secondary-color);
+    opacity: var(--opacity);
 }
 
 #content {
@@ -36,6 +38,7 @@ body {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
+    opacity: var(--opacity);
 }
 
 /* Toolbar */
@@ -72,6 +75,7 @@ button {
     padding: 10px;
     display: flex;
     align-items: center;
+    opacity: var(--opacity);
 }
 
 .card-header > h4,
