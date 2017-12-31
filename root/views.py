@@ -1,8 +1,40 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from api.models import Post, Task, WorkLog
+from django.db.models import Sum
+from datetime import datetime, timedelta
 
 
 class RootView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'root/home.html', {'title': 'Dashboard'})
+        blogStats = {}  # Build data for blog dashboard
+
+        blogStats['count'] = Post.objects.count()
+
+        if blogStats['count'] > 0:
+            latestPost = Post.objects.order_by('-created')[0]
+            daysDelta = (datetime.today() - latestPost.created).days
+            if not daysDelta:
+                blogStats['latest'] = "today"
+            else:
+                blogStats['latest'] = "{} days ago".format(daysDelta)
+        else:
+            blogStats['latest'] = "No posts"
+
+        todoStats ={}  # Build data for todo dashboard
+
+        currentLogs = WorkLog.objects.filter(task__status=2).filter(post__deleted=False)
+        currentLogged = currentLogs.aggregate(Sum('log'))['log__sum'] or 0
+        currentTasks = Task.objects.filter(status=2)
+        currentEstimation = currentTasks.aggregate(Sum('estimation'))['estimation__sum'] or 0
+        todoStats['payLoad'] = currentEstimation - currentLogged
+
+        weekAgo = datetime.today() - timedelta(days=7)
+        latestLogs = WorkLog.objects.filter(post__deleted=False).filter(post__created__gte=weekAgo)
+        todoStats['lastWeekLogged'] = latestLogs.aggregate(Sum('log'))['log__sum'] or 0
+
+        return render(request, 'root/home.html', {
+            'blogStats': blogStats,
+            'todoStats': todoStats,
+        })

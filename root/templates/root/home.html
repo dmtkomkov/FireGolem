@@ -12,23 +12,32 @@
     <div class="row container-fluid quick-access-row">
         <div class="col-sm-4">
             <div class="quick-access container-fluid">
-            <h4>Blog</h4><hr/>
-            Posts: 1000<br>
-            Latest post: 2 days ago<br>
+            <h4>Blog</h4>
+                <hr/>
+                <ul>
+                    <li>Posts: {{ blogStats.count }}</li>
+                    <li>Latest: {{ blogStats.latest }}</li>
+                </ul>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="quick-access container-fluid">
-            <h4>Todo<br></h4><hr/>
-            Current payload: 5d<br>
-            Logged last week: 3d<br>
+            <h4>Todo<br></h4>
+                <hr/>
+                <ul>
+                    <li>Current payload: {{ todoStats.payLoad }}h</li>
+                    <li>Logged last week: {{ todoStats.lastWeekLogged }}h</li>
+                </ul>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="quick-access container-fluid">
-            <h4>Money</h4><hr/>
-            TBD<br>
-            TBD<br>
+            <h4>Money</h4>
+                <hr/>
+                <ul>
+                    <li>TBD</li>
+                    <li>TBD</li>
+                </ul>
             </div>
         </div>
     </div>

@@ -201,6 +201,10 @@ input,
     margin-bottom: 5px;
 }
 
+.quick-access > h4 {
+    padding-left: 25px;
+}
+
 .quick-access-row {
     padding: 0px;
     margin-left: 0px;
