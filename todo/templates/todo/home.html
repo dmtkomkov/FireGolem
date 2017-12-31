@@ -102,7 +102,7 @@
                 <span class="glyphicon glyphicon-{{ todo.status.icon }} icon-color" aria-hidden="true"></span>
                 &nbsp;  <!-- Space between icon and text -->
                 {{ todo }}
-                {% if todo.estimation %}
+                {% if todo.estimation or todo.logged %}
                     <span class="label label-warning">{{ todo.logged }} / {{ todo.estimation }}</span>
                 {% endif %}
                 {% if todo.project %}
