@@ -23,6 +23,40 @@
 
 <body>
 
+    <!-- Add WorkLog modal dialog  -->
+    <div class="modal fade" id="addWorkLog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New WorkLog</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>WorkLog</label>
+                            <select class="form-control" name="worklog">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Comment</label>
+                            <textarea rows="5" class="form-control" name="comment" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn">Add</button>
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Topbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
