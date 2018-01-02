@@ -99,6 +99,7 @@ TASK_WORKLOG_MODEL = "WorkLog"
 POST_MODEL = "Post"
 AREA_MODEL = "Area"
 PROJECT_MODEL = "Project"
+CATEGORY_MODEL = "Category"
 
 # Hours in a day
 HOURS_IN_A_DAY = 5
