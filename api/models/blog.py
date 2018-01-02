@@ -2,12 +2,9 @@ from django.db import models
 from datetime import datetime
 from django.conf import settings
 
+from .managers import ExistingManager
+
 __all__ = 'Post',
-
-
-class PostManager(models.Manager):
-    def get_queryset(self):
-        return super(models.Manager, self).get_queryset().filter(deleted=False)
 
 
 class Post(models.Model):
@@ -17,7 +14,7 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     deleted = models.BooleanField(default=False)
 
-    objects = PostManager()
+    objects = ExistingManager()
 
     def __unicode__(self):
         return u"%s" % self.title
