@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'root',
     'blog',
     'todo',
+    'money',
 ]
 
 MIDDLEWARE = [
