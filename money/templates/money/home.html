@@ -10,10 +10,16 @@
 {% block content %}
 
 {% load tz %}
-
-    {% for payment in payments %}
-        {{ payment.amount }} | {{ payment.spent }} | {{ payment.category }} <br>
-    {% endfor %}
+    <h4>Spendings</h4>
+    <table class="table cursor-default">
+        {% for payment in payments %}
+            <tr>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.category }}</td>
+                <td>{{ payment.spent }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}
 
