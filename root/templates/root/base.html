@@ -57,6 +57,28 @@
         </div>
     </div>
 
+    <!-- Delete payment dialog  -->
+    <div class="modal fade" id="deletePayment">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post">
+                <input class="hidden" name="_method" value="delete">
+                <input class="hidden" name="payment_id" value="">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Payment</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn">Delete</button>
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Topbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">

@@ -32,6 +32,10 @@ $(document).ready(function() {
         $("#card-body").getNiceScroll().resize();
     });
 
+    $('.delete-payment').on('click', function () {
+        $('input.hidden[name="payment_id"]').attr('value', this.id);  // Setup payment_id for delete dialog
+    });
+
     $('.panel.panel-sidebar').on('shown.bs.collapse', function () {
         $("#sidebar").getNiceScroll().resize();
     });

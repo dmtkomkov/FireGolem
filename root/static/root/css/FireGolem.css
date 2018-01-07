@@ -225,3 +225,16 @@ select[name="category"].form-control {
 input[name="date"].form-control {
     width: 160px;
 }
+
+.delete-payment {
+    display: none;
+}
+
+tr:hover .delete-payment {
+    display: block;
+}
+
+.table>tbody>tr>td.hidden-button {
+    width: 70px;
+    padding: 6px;
+}

@@ -27,3 +27,9 @@ class MoneyView(LoginRequiredMixin, View):
         oPayment = Payment(amount=amount, spent=spent, category=oCategory)
         oPayment.save()
         return self.get(request)
+
+    def delete(self, request):
+        payment_id = request.DELETE["payment_id"]
+        payment = Payment.objects.get(id=payment_id)
+        payment.delete()
+        return self.get(request)
