@@ -223,5 +223,5 @@ select[name="category"].form-control {
 }
 
 input[name="date"].form-control {
-    width: 170px;
+    width: 160px;
 }
