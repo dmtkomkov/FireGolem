@@ -1,0 +1,64 @@
+- model: api.category
+  pk: 1
+  fields:
+    name: Еда
+    description: Все съедобное
+- model: api.category
+  pk: 2
+  fields:
+    name: Вкусняшки
+    description: Все вредное и вкусное
+
+- model: api.category
+  pk: 11
+  fields:
+    name: Аптека
+    description: Траты на лекарства и лечение
+- model: api.category
+  pk: 12
+  fields:
+    name: Транспорт
+    description: Автобус, велик, такси, телефон, интернет, вебсайт
+- model: api.category
+  pk: 13
+  fields:
+    name: Бытовуха
+    description: Товары для дома и расходные материалы
+
+- model: api.category
+  pk: 21
+  fields:
+    name: Отдых
+    description: Поездки, развлечения, рестораны
+- model: api.category
+  pk: 22
+  fields:
+    name: Хобби
+    description: Спорт, книги, игры
+
+- model: api.category
+  pk: 31
+  fields:
+    name: Квартира
+    description: Аренда и комунальные траты
+- model: api.category
+  pk: 32
+  fields:
+    name: Детсад
+    description: Детсад и няня
+- model: api.category
+  pk: 33
+  fields:
+    name: Документы
+    description: Создание, копирование и запрос документов
+
+- model: api.category
+  pk: 41
+  fields:
+    name: Техника
+    description: Крупная техника
+- model: api.category
+  pk: 42
+  fields:
+    name: Одежда
+    description: Детская и взрослая одежда
