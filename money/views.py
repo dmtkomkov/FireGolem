@@ -10,7 +10,7 @@ from helpers.pagination import get_page
 class MoneyView(LoginRequiredMixin, View):
     def get(self, request):
         all_payments = Payment.objects.all().order_by("-spent", "-id")
-        categories = Category.objects.all().order_by("name")
+        categories = Category.objects.all().order_by("id")
         active_page = request.GET.get('page')
 
         payments, page_conf = get_page(all_payments, active_page)
