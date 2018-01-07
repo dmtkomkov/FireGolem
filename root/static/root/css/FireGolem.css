@@ -192,6 +192,7 @@ input,
 }
 
 /* Dashboard */
+
 .quick-access {
     padding: 5px;
 }
@@ -209,4 +210,18 @@ input,
     padding: 0px;
     margin-left: 0px;
     margin-right: 0px;
+}
+
+/* Input size for money app */
+
+input[name="amount"].form-control {
+    width: 80px;
+}
+
+select[name="category"].form-control {
+    width: 120px;
+}
+
+input[name="date"].form-control {
+    width: 170px;
 }

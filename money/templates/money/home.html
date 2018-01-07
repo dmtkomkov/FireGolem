@@ -25,7 +25,7 @@
 
 {% block footer %}
     <form method="post" class="form-inline pull-left">
-        <input type="number" class="form-control" name="amount" placeholder="Payment" required>
+        <input type="number" class="form-control" name="amount" placeholder="Sum" required>
         <select name="category" class="form-control">
             {% for category in categories %}
                 <option value="{{ category.name }}">{{ category.name }}</option>
