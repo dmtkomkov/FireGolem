@@ -100,15 +100,22 @@ class TodoView(LoginRequiredMixin, View):
         area_id = request.GET.get("area")
         project_id = request.GET.get("project")
 
+        title = ""
         if status_id:
             all_todos = all_todos.filter(status=status_id)
+            status_name = TaskStatus.objects.get(id=status_id).status
+            title = "Status: {}".format(status_name)
         else:
             all_todos = all_todos.exclude(status__in=(21, 22))  # Exclude cancelled and closed tasks
 
         if area_id:
             all_todos = all_todos.filter(area=area_id)
+            area_name = Area.objects.get(id=area_id).name
+            title = "Area: {}".format(area_name)
         if project_id:
             all_todos = all_todos.filter(project=project_id)
+            project_name = Project.objects.get(id=project_id).name
+            title = "Project: {}".format(project_name)
 
         active_page = request.GET.get('page')
 
@@ -118,7 +125,7 @@ class TodoView(LoginRequiredMixin, View):
             'areas': all_areas,
             'projects': all_projects,
             'todos': todos,
-            'title': 'Tasks',
+            'title': title,
         }
         page.update(page_conf)
 

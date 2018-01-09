@@ -130,6 +130,11 @@ button {
     margin-left: auto;
 }
 
+.center {
+    text-align: center;
+    margin: auto;
+}
+
 /* Colors */
 
 .white {
