@@ -54,9 +54,12 @@ $(document).ready(function() {
         $(to_edit[i]).editable({
             send: 'always',
             validate: function(value) {
-                if($.trim(value) == '') {
+                if ($.trim(value) == '') {
                     return 'This field is required';
                 }
+            },
+            error: function(response, value) {
+                return "Server returned error " + response.status;
             }
         });
     }
