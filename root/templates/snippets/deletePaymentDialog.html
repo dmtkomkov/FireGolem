@@ -1,13 +1,14 @@
-<div class="modal fade" id="delete{{ object }}">
+<div class="modal fade" id="deletePayment">
     <div class="modal-dialog">
         <div class="modal-content">
             <form method="post">
                 <input class="hidden" name="_method" value="delete">
+                <input class="hidden" name="payment_id" value="">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete {{ object }}</h4>
+                    <h4 class="modal-title">Delete Payment</h4>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to remove {{ object }}?
+                    Are you sure?
                 </div>
                 <div class="modal-footer">
                     <button class="btn">Delete</button>

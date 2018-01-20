@@ -20,5 +20,7 @@
 {% endblock %}
 
 {% block footer %}
-    {% include "snippets/deleteObjectDialog.html" with object="Area"%}
+    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#deleteArea">
+        <span class="glyphicon glyphicon-trash white"></span> Remove
+    </button>
 {% endblock %}

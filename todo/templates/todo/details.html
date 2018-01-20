@@ -35,7 +35,11 @@
 </table>
 </form>
 
-<h4>Comments&nbsp;&nbsp;{% include "snippets/addWorkLogDialog.html"%}</h4>
+<h4>Comments&nbsp;&nbsp
+    <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#addWorkLog">
+        <span class="glyphicon glyphicon-time white"></span> Add
+    </button>
+</h4>
 <table class="table cursor-default">
     {% for post in posts %}
         <tr><td>{{ post.created | localtime | date:"D, j M Y H:i"}}</td><td>{{ post.body }}</td></tr>
@@ -45,7 +49,7 @@
 {% endblock %}
 
 {% block footer %}
-    <div class="form-group">
-        {% include "snippets/deleteObjectDialog.html" with object="Task"%}
-    <div class="form-group">
+    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#deleteTask">
+        <span class="glyphicon glyphicon-trash white"></span> Remove
+    </button>
 {% endblock %}

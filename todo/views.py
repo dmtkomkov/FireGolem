@@ -32,7 +32,7 @@ class ProjectView(LoginRequiredMixin, View):
 class ProjectDetails(LoginRequiredMixin, View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
-        return render(request, 'project/details.html', {'project': project, 'title': 'Project Details'})
+        return render(request, 'project/details.html', {'project': project, 'object': 'Project'})
 
     def put(self, request, project_id):
         request.PUT = QueryDict(request.body)
@@ -71,7 +71,7 @@ class AreaView(LoginRequiredMixin, View):
 class AreaDetails(LoginRequiredMixin, View):
     def get(self, request, area_id):
         area = Area.objects.get(id=area_id)
-        return render(request, 'area/details.html', {'area': area, 'title': 'Area Details'})
+        return render(request, 'area/details.html', {'area': area, 'object': 'Area'})
 
     def put(self, request, area_id):
         request.PUT = QueryDict(request.body)
@@ -171,6 +171,7 @@ class TodoDetails(LoginRequiredMixin, View):
                           'areas_source': str(areas_source),
                           'projects_source': str(projects_source),
                           'estimations_source': str(estimations_source),
+                          'object': 'Task',
                       })
 
     def post(self, request, task_id):
