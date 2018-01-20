@@ -196,6 +196,10 @@ input,
     color: var(--link-color);
 }
 
+.editableform textarea.form-control {
+    width: 50ch;
+}
+
 /* Dashboard */
 
 .quick-access {
