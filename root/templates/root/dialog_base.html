@@ -1,0 +1,19 @@
+<div class="modal fade" id="{{ dlg_id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ dlg_title }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% block dialog_body %}
+                    {% endblock %}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn">{{ btn_yes }}</button>
+                    <button type="button" class="btn" data-dismiss="modal">{{ btn_no }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -24,9 +24,9 @@
 <body>
 
     <!-- Blog dialogs -->
-    {% include "snippets/addPostDialog.html" %}
-    {% include "snippets/editPostDialog.html" %}
-    {% include "snippets/deletePostDialog.html" %}
+    {% include "snippets/dialog.html" with dlg_id="addPost" dlg_title="New Post" btn_yes="Add" btn_no="Cancel" %}
+    {% include "snippets/dialog.html" with dlg_id="editPost" dlg_title="Edit Post" btn_yes="Edit" btn_no="Cancel" %}
+    {% include "snippets/dialog.html" with dlg_id="deletePost" dlg_title="Delete Post" btn_yes="Delete" btn_no="Cancel" %}
 
     <!-- Todo dialogs -->
     {% include "snippets/addWorkLogDialog.html" %}
