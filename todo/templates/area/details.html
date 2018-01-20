@@ -13,7 +13,7 @@
 
 <table class="table cursor-default">
     <tr><td>Description</td><td>
-        <a href="" id="area-description" data-type="textarea" data-rows="3" data-url="{% url 'area:details' area.id %}">{{ area.description }}</a>
+        <a href="" id="area-description" data-type="textarea" data-rows="3" data-url="{% url 'area:details' area.id %}">{{ area.description|default_if_none:"" }}</a>
     </td></tr>
 </table>
 
