@@ -247,3 +247,9 @@ tr:hover .delete-payment {
     width: 70px;
     padding: 6px;
 }
+
+/* Adjust tables */
+
+.start-column {
+    width: 20ch;
+}

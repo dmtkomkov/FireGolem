@@ -12,7 +12,7 @@
 {% load tz %}
 
 <table class="table cursor-default">
-    <tr><td>Description</td><td>
+    <tr><td class="start-column">Description</td><td>
         <a href="" id="project-description" data-type="textarea" data-rows="3" data-url="{% url 'project:details' project.id %}">{{ project.description|default_if_none:"" }}</a>
     </td></tr>
 </table>

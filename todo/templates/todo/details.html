@@ -15,7 +15,7 @@
 <h4>Information</h4>
 <form method="post">
 <table class="table cursor-default">
-    <tr><td>Status</td><td>
+    <tr><td class="start-column">Status</td><td>
         <a href="" id="task-status" data-type="select" data-source="{{ statuses_source }}"  data-value="{{ task.status.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.status }}</a>
     </td></tr>
     <tr><td>Description</td><td>
