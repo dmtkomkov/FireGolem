@@ -21,6 +21,9 @@
     <tr><td>Description</td><td>
         <a href="" id="task-description" data-type="textarea" data-rows="3" data-url="{% url 'todo:details' task.id %}">{{ task.description|default_if_none:"" }}</a>
     </td></tr>
+    <tr><td>Assignee</td><td>
+        <a href="" id="task-assignee" data-type="select" data-source="{{ users_source }}" data-value="{{ task.user.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.assignee|default_if_none:"" }}</a>
+    </td></tr>
     <tr><td>Area</td><td>
         <a href="" id="task-area" data-type="select" data-source="{{ areas_source }}" data-value="{{ task.area.id }}" data-url="{% url 'todo:details' task.id %}">{{ task.area|default_if_none:"" }}</a>
     </td></tr>

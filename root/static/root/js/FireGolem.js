@@ -47,7 +47,7 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';
     $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
 
-    var to_edit = ['#task-name', '#task-description', '#task-status',
+    var to_edit = ['#task-name', '#task-description', '#task-assignee', '#task-status',
                     '#task-area', '#task-project', '#task-estimation',
                     '#area-name', '#area-description', '#project-name', '#project-description'];
     for (i = 0; i < to_edit.length; i++) {

@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
 from api.models import Area, Project, Task, TaskStatus, Post, WorkLog
+from django.contrib.auth.models import User
 from helpers.pagination import get_page
 from helpers.task import get_estimations
 
@@ -153,9 +154,11 @@ class TodoView(LoginRequiredMixin, View):
 class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
         task = Task.objects.get(id=task_id)
+        fake_source = [{'value': 'null', 'text': 'Empty'}]
+        users = User.objects.all()
+        users_source = fake_source + [{'value': int(u.id), 'text': str(u.username)} for u in users]
         statuses = TaskStatus.objects.all().order_by("id")
-        statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]
-        fake_source = [{'value': 'null', 'text': 'Empty'}]              # Fake value represents database null
+        statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]              # Fake value represents database null
         areas = Area.objects.all().order_by("id").order_by("name")
         areas_source = fake_source + [{'value': int(a.id), 'text': str(a.name)} for a in areas]
         projects = Project.objects.all().order_by("id").order_by("name")
@@ -167,6 +170,7 @@ class TodoDetails(LoginRequiredMixin, View):
                           'task': task,
                           'posts': posts,
                           'title': 'Task Details',
+                          'users_source': str(users_source),
                           'statuses_source': str(statuses_source),
                           'areas_source': str(areas_source),
                           'projects_source': str(projects_source),
@@ -188,7 +192,6 @@ class TodoDetails(LoginRequiredMixin, View):
         task.save()
         return self.get(request, task_id)
 
-
     def put(self, request, task_id):
         """
         Process AJAX request for bootstrap-editable plugin
@@ -198,11 +201,12 @@ class TodoDetails(LoginRequiredMixin, View):
         name = request.PUT.get("name")
         name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
-        if name in ("status", "area", "project"):                 # Get model to assign
+        if name in ("status", "area", "project", "assignee"):     # Get model to assign
             model = {                                             # Get model by attribute name
                 "status": TaskStatus,
                 "area": Area,
-                "project": Project
+                "project": Project,
+                "assignee": User,
             }[name]
             if value == 'null':
                 value = None                                      # Process special case when attribute is null
