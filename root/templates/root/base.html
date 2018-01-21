@@ -29,8 +29,10 @@
     {% include "snippets/dialog.html" with dlg_id="deletePost" dlg_title="Delete Post" btn_yes="Delete" btn_no="Cancel" %}
 
     <!-- Todo dialogs -->
-    {% include "snippets/addWorkLogDialog.html" %}
-    {% include "snippets/deleteObjectDialog.html" with object=object %}
+    {% include "snippets/dialog.html" with dlg_id="deleteTask" dlg_title="Delete Task" btn_yes="Delete" btn_no="Cancel" %}
+    {% include "snippets/dialog.html" with dlg_id="deleteArea" dlg_title="Delete Area" btn_yes="Delete" btn_no="Cancel" %}
+    {% include "snippets/dialog.html" with dlg_id="deleteProject" dlg_title="Delete Project" btn_yes="Delete" btn_no="Cancel" %}
+    {% include "snippets/dialog.html" with dlg_id="addWorkLog" dlg_title="New WorkLog" btn_yes="Add" btn_no="Cancel" %}
 
     <!-- Money dialogs -->
     {% include "snippets/deletePaymentDialog.html" %}
