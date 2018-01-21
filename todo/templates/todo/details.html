@@ -33,6 +33,9 @@
     <tr><td>Estimation</td><td>
         <a href="" id="task-estimation" data-type="select" data-source="{{ estimations_source }}" data-value="{{ task.estimation }}" data-url="{% url 'todo:details' task.id %}">{{ task.estimation }}</a>
     </td></tr>
+    <tr><td>Scheduled</td><td>
+        <a href="" id="task-scheduled" data-type="date" data-url="{% url 'todo:details' task.id %}">{{ task.scheduled | date:"Y-m-d" }}</a>
+    </td></tr>
     <tr><td>Created</td><td>{{ task.created | localtime | date:"D, j M Y H:i"}}</td></tr>
     <tr><td>Updated</td><td>{{ task.updated | localtime | date:"D, j M Y H:i"}}</td></tr>
 </table>

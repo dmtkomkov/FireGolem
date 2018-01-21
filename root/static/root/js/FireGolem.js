@@ -63,4 +63,13 @@ $(document).ready(function() {
             }
         });
     }
+    // field for scheduled date does not work in inline mode and is not mandatory
+    $('#task-scheduled').editable({
+        mode: 'popup',
+        send: 'always',
+        // datepicker: { autoclose: true },
+        error: function(response, value) {
+            return "Server returned error " + response.status;
+        }
+    });
 });

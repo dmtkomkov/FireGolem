@@ -201,6 +201,7 @@ class TodoDetails(LoginRequiredMixin, View):
         name = request.PUT.get("name")
         name = name.split("-")[1]                                 # convert attribute value task-<name> to <name>
         value = request.PUT.get("value")
+        value = None if not value else value                      # Convert empty string to None for empty date
         if name in ("status", "area", "project", "assignee"):     # Get model to assign
             model = {                                             # Get model by attribute name
                 "status": TaskStatus,
