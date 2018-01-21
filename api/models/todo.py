@@ -36,8 +36,10 @@ class Project(models.Model):
 class Task(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    assignee = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
     created = models.DateTimeField(default=datetime.now)
     updated = models.DateTimeField(default=datetime.now)
+    scheduled = models.DateField(blank=True, null=True)
     status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
     estimation = models.PositiveSmallIntegerField(default=0)
     area = models.ForeignKey(settings.AREA_MODEL, models.SET_NULL, blank=True, null=True)
