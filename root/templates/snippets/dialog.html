@@ -65,6 +65,12 @@
             <textarea rows="5" class="form-control" name="comment" required></textarea>
         </div>
 
+    {% elif dlg_id == "deletePayment" %}
+
+        <input class="hidden" name="_method" value="delete">
+        <input class="hidden" name="payment_id" value="">
+        Are you sure?
+
     {% endif %}
 
 {% endblock %}
