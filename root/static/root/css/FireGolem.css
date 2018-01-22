@@ -257,3 +257,11 @@ tr:hover .delete-payment {
 .start-column {
     width: 20ch;
 }
+
+.amount-column {
+    width: 5ch;
+}
+
+.category-column {
+    width: 10ch;
+}
