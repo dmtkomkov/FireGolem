@@ -36,8 +36,8 @@
     <tr><td>Scheduled</td><td>
         <a href="" id="task-scheduled" data-type="date" data-url="{% url 'todo:details' task.id %}">{{ task.scheduled | date:"Y-m-d" }}</a>
     </td></tr>
-    <tr><td>Created</td><td>{{ task.created | localtime | date:"D, j M Y H:i"}}</td></tr>
-    <tr><td>Updated</td><td>{{ task.updated | localtime | date:"D, j M Y H:i"}}</td></tr>
+    <tr><td>Created</td><td>{{ task.created | localtime | date:"Y-m-d H:i"}}</td></tr>
+    <tr><td>Updated</td><td>{{ task.updated | localtime | date:"Y-m-d H:i"}}</td></tr>
 </table>
 </form>
 
@@ -48,7 +48,7 @@
 </h4>
 <table class="table cursor-default">
     {% for post in posts %}
-        <tr><td>{{ post.created | localtime | date:"D, j M Y H:i"}}</td><td>{{ post.body }}</td></tr>
+        <tr><td class="start-column">{{ post.created | localtime | date:"Y-m-d H:i"}}</td><td>{{ post.body }}</td></tr>
     {% endfor %}
 </table>
 

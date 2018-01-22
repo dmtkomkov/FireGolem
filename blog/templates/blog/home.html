@@ -17,7 +17,7 @@
             <div class="panel-heading">
                 <h5 class="panel-title cursor-default">
                     <a data-toggle="collapse" data-parent="#blog-accordion" href="#panel-title-{{ post.id }}" post-id={{ post.id }}>
-                        <small><dfn>{{ post.created | localtime | date:"D, j M Y H:i" }}</dfn></small>
+                        <small><dfn>{{ post.created | localtime | date:"j M Y H:i" }}</dfn></small>
                         <span class="post-title">{{ post.title }}</span>
                     </a>
                     <span class="pull-right">
