@@ -155,7 +155,7 @@ class TodoDetails(LoginRequiredMixin, View):
     def get(self, request, task_id):
         task = Task.objects.get(id=task_id)
         fake_source = [{'value': 'null', 'text': 'Empty'}]
-        users = User.objects.all()
+        users = User.objects.all().exclude(id=1)     # Exclude first user
         users_source = fake_source + [{'value': int(u.id), 'text': str(u.username)} for u in users]
         statuses = TaskStatus.objects.all().order_by("id")
         statuses_source = [{'value': int(s.id), 'text': str(s.status)} for s in statuses]              # Fake value represents database null
