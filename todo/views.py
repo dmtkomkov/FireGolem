@@ -18,7 +18,7 @@ class ProjectView(LoginRequiredMixin, View):
         active_page = request.GET.get('page')
 
         projects, page_conf = get_page(all_projects, active_page)
-        page = {'projects': projects, 'title': 'Projects'}
+        page = {'projects': projects}
         page.update(page_conf)
 
         return render(request, 'project/home.html', page)
@@ -57,7 +57,7 @@ class AreaView(LoginRequiredMixin, View):
         active_page = request.GET.get('page')
 
         areas, page_conf = get_page(all_areas, active_page)
-        page = {'areas': areas, 'title': 'Areas'}
+        page = {'areas': areas}
         page.update(page_conf)
 
         return render(request, 'area/home.html', page)
@@ -169,7 +169,6 @@ class TodoDetails(LoginRequiredMixin, View):
                       {
                           'task': task,
                           'posts': posts,
-                          'title': 'Task Details',
                           'users_source': str(users_source),
                           'statuses_source': str(statuses_source),
                           'areas_source': str(areas_source),

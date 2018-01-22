@@ -12,7 +12,7 @@ class BlogView(LoginRequiredMixin, View):
         active_page = request.GET.get('page')
 
         posts, page_conf = get_page(all_posts, active_page)
-        page = {'posts': posts, 'title': 'Blog'}
+        page = {'posts': posts}
         page.update(page_conf)
 
         return render(request, 'blog/home.html', page)
