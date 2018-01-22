@@ -200,6 +200,10 @@ input,
     width: 50ch;
 }
 
+.popover-content {
+    color: black;
+}
+
 /* Dashboard */
 
 .quick-access {
