@@ -9,6 +9,11 @@ from helpers.pagination import get_page
 class BlogView(LoginRequiredMixin, View):
     def get(self, request):
         all_posts = Post.objects.all().order_by("-created")
+        blog_filter = request.GET.get('filter')
+        if blog_filter == 'post':
+            all_posts = all_posts.filter(worklog__isnull=True)
+        elif blog_filter == 'worklog':
+            all_posts = all_posts.filter(worklog__isnull=False)
         active_page = request.GET.get('page')
 
         posts, page_conf = get_page(all_posts, active_page)
