@@ -12,17 +12,16 @@
 {% load tz %}
     <h4>Spendings</h4>
     <table class="table cursor-default">
-        {% for payment in payments %}
+        {% for pdate in dates %}
             <tr>
-                <td class="amount-column">{{ payment.amount }}</td>
-                <td class="category-column">{{ payment.category }}</td>
-                <td>{{ payment.spent | date:"Y-m-d" }}</td>
-                <td class="hidden-button">
-                    <div id="{{ payment.id }}" class="delete-payment pull-right">
-                    <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#deletePayment">
-                        Remove
-                    </button>
-                    </div>
+                <td class="date-column">{{ pdate.spent | date:"Y-m-d" }}</td>
+                <td class="amount-column">{{ pdate.day_sum }}</td>
+                <td>
+                    {% for payment in pdate.payments %}
+                        <span id="{{ payment.id }}" class="badge delete-payment" data-toggle="modal" data-target="#deletePayment">
+                            {{ payment.category }} | {{ payment.amount }}
+                        </span>
+                    {% endfor %}
                 </td>
             </tr>
         {% endfor %}

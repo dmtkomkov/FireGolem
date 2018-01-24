@@ -165,7 +165,13 @@ span.label {
 a.list-group-item > h5   {
     margin-top: 0px;
     margin-bottom: 0px;
+}
 
+/* Badges */
+
+.badge.delete-payment {
+    cursor: pointer;
+    background-color: var(--button-color);
 }
 
 /* Text */
@@ -244,19 +250,6 @@ input[name="date"].form-control {
     width: 160px;
 }
 
-.delete-payment {
-    display: none;
-}
-
-tr:hover .delete-payment {
-    display: block;
-}
-
-.table>tbody>tr>td.hidden-button {
-    width: 70px;
-    padding: 6px;
-}
-
 /* Adjust tables */
 
 .start-column {
@@ -267,8 +260,8 @@ tr:hover .delete-payment {
     width: 5ch;
 }
 
-.category-column {
-    width: 10ch;
+.date-column {
+    width: 12ch;
 }
 
 /* Linked dashboard */

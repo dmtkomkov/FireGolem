@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 from datetime import date
 
 from api.models import Payment, Category
@@ -9,12 +10,15 @@ from helpers.pagination import get_page
 
 class MoneyView(LoginRequiredMixin, View):
     def get(self, request):
-        all_payments = Payment.objects.all().order_by("-spent", "-id")
+        all_dates = Payment.objects.values('spent').annotate(day_sum=Sum('amount')).order_by("-spent")
         categories = Category.objects.all().order_by("id")
         active_page = request.GET.get('page')
 
-        payments, page_conf = get_page(all_payments, active_page)
-        page = {'payments': payments, 'categories': categories, 'today': date.today().isoformat()}
+        dates, page_conf = get_page(all_dates, active_page)
+        for pdate in dates:
+            pdate['payments'] = Payment.objects.all().filter(spent=pdate['spent'])
+
+        page = {'dates': dates, 'categories': categories, 'today': date.today().isoformat()}
         page.update(page_conf)
 
         return render(request, 'money/home.html', page)
