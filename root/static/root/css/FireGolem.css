@@ -225,6 +225,11 @@ input,
     margin-right: 0px;
 }
 
+.quick-access-row > h3 {
+    color: var(--body-color);
+    text-align: center;
+}
+
 /* Input size for money app */
 
 input[name="amount"].form-control {
@@ -283,4 +288,8 @@ a:hover hr {
 
 a:hover div.quick-access {
     background-color: var(--panel-color);
+}
+
+.quick-access-row > hr {
+    border-width: 2px;
 }

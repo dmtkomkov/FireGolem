@@ -10,6 +10,11 @@
 {% block content %}
 <div>
     <div class="row container-fluid quick-access-row">
+        <hr/>
+        <h3>Welcome {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+        <hr/>
+    </div>
+    <div class="row container-fluid quick-access-row">
         <div class="col-sm-4">
             <a href="{% url 'blog:home' %}?filter=post">
             <div class="quick-access container-fluid">
