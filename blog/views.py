@@ -14,10 +14,20 @@ class BlogView(LoginRequiredMixin, View):
             all_posts = all_posts.filter(worklog__isnull=True)
         elif blog_filter == 'worklog':
             all_posts = all_posts.filter(worklog__isnull=False)
+
+        post_count = Post.objects.filter(worklog__isnull=True).count()
+        worklog_count = Post.objects.filter(worklog__isnull=True).count()
+        blog_len = post_count + worklog_count
+
         active_page = request.GET.get('page')
 
         posts, page_conf = get_page(all_posts, active_page)
-        page = {'posts': posts}
+        page = {
+            'posts': posts,
+            'blog_len': blog_len,
+            'post_count': post_count,
+            'worklog_count': worklog_count,
+        }
         page.update(page_conf)
 
         return render(request, 'blog/home.html', page)

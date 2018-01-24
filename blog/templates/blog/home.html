@@ -5,13 +5,19 @@
 <div class="panel panel-sidebar">
     <ul class="list-group">
         <a href="{% url 'blog:home' %}" class="list-group-item">
-            <h5>All</h5>
+            <h5>
+                All {% if blog_len %}<span class="badge pull-right">{{ blog_len }}</span>{% endif %}
+            </h5>
         </a>
         <a href="?filter=post" class="list-group-item">
-            <h5>Posts</h5>
+            <h5>
+                Posts {% if post_count %}<span class="badge pull-right">{{ post_count }}</span>{% endif %}
+            </h5>
         </a>
         <a href="?filter=worklog" class="list-group-item">
-            <h5>Worklogs</h5>
+            <h5>
+                Worklogs {% if worklog_count %}<span class="badge pull-right">{{ worklog_count }}</span>{% endif %}
+            </h5>
         </a>
     </ul>
 </div>
