@@ -19,7 +19,7 @@
                 <td>
                     {% for payment in pdate.payments %}
                         <span id="{{ payment.id }}" class="badge delete-payment" data-toggle="modal" data-target="#deletePayment">
-                            {{ payment.category }} | {{ payment.amount }}
+                            {{ payment.category }} | <span class="number">{{ payment.amount }}</span>
                         </span>
                     {% endfor %}
                 </td>

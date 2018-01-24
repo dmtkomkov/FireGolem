@@ -9,6 +9,7 @@
     --link-color: #9cd1e2;
     --icon-color: #409fbf;
     --brand-color: #cc7a66;
+    --number-color: #0d5973;
     --opacity: 0.95;
 }
 
@@ -172,6 +173,10 @@ a.list-group-item > h5   {
 .badge.delete-payment {
     cursor: pointer;
     background-color: var(--button-color);
+}
+
+.number {
+    color: var(--number-color);
 }
 
 /* Text */
