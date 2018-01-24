@@ -265,3 +265,22 @@ tr:hover .delete-payment {
 .category-column {
     width: 10ch;
 }
+
+/* Linked dashboard */
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover hr {
+    border-color: black;
+}
+
+a:hover div.quick-access {
+    background-color: var(--panel-color);
+}
