@@ -17,6 +17,12 @@ class MoneyView(LoginRequiredMixin, View):
         dates, page_conf = get_page(all_dates, active_page)
         for pdate in dates:
             pdate['payments'] = Payment.objects.all().filter(spent=pdate['spent'])
+            if pdate['day_sum'] <= 100:
+                pdate['color'] = 'info'
+            elif pdate['day_sum'] <= 200:
+                pdate['color'] = 'warning'
+            else:
+                pdate['color'] = 'danger'
 
         page = {'dates': dates, 'categories': categories, 'today': date.today().isoformat()}
         page.update(page_conf)

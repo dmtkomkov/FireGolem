@@ -156,7 +156,7 @@ button {
 
 /* Labels */
 
-span.label {
+h5 span.label {
     float: right;
     margin-right: 2px;
     margin-left: 2px;

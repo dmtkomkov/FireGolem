@@ -15,7 +15,7 @@
         {% for pdate in dates %}
             <tr>
                 <td class="date-column">{{ pdate.spent | date:"Y-m-d" }}</td>
-                <td class="amount-column">{{ pdate.day_sum }}</td>
+                <td class="amount-column"><span class="label label-{{ pdate.color }}">{{ pdate.day_sum }}</span></td>
                 <td>
                     {% for payment in pdate.payments %}
                         <span id="{{ payment.id }}" class="badge delete-payment" data-toggle="modal" data-target="#deletePayment">
