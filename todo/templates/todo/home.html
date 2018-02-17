@@ -2,6 +2,10 @@
 
 {% block menu %}
 
+{% load cache %}
+
+{% cache 60 todo_sidebar expanded %}
+
 <div class="panel-group">
 
     <div class="panel panel-sidebar">
@@ -72,6 +76,8 @@
     </div>
 
 </div>
+
+{% endcache %}
 
 {% endblock %}
 

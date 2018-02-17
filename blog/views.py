@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 
 from api.models import Post
 from helpers.pagination import get_page
@@ -15,8 +16,10 @@ class BlogView(LoginRequiredMixin, View):
         elif blog_filter == 'worklog':
             all_posts = all_posts.filter(worklog__isnull=False)
 
-        post_count = Post.objects.filter(worklog__isnull=True).count()
-        worklog_count = Post.objects.filter(worklog__isnull=True).count()
+        post_count = cache.get('post_count', Post.objects.filter(worklog__isnull=True).count())
+        cache.add('post_count', post_count)
+        worklog_count = cache.get('worklog_count', Post.objects.filter(worklog__isnull=False).count())
+        cache.add('worklog_count', worklog_count)
         blog_len = post_count + worklog_count
 
         active_page = request.GET.get('page')
