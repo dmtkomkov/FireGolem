@@ -9,6 +9,7 @@
     --link-color: #9cd1e2;
     --icon-color: #409fbf;
     --brand-color: #cc7a66;
+    --user-color: #e66b4c;
     --number-color: #0d5973;
     --opacity: 0.95;
 }
@@ -163,6 +164,10 @@ button {
 
 .brand-color {
     color: var(--brand-color);
+}
+
+.user-color {
+    color: var(--user-color);
 }
 
 /* Labels */

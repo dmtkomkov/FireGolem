@@ -107,6 +107,10 @@
     {% for todo in todos %}
         <a href="{% url 'todo:details' todo.id %}" class="list-group-item">
             <h5 class="black">
+                {% if todo.assignee.usericon.icon %}
+                    <span class="glyphicon glyphicon-{{ todo.assignee.usericon.icon }} user-color" aria-hidden="true"></span>
+                    &nbsp;  <!-- Space between icons -->
+                {% endif %}
                 <span class="glyphicon glyphicon-{{ todo.status.icon }} icon-color" aria-hidden="true"></span>
                 &nbsp;  <!-- Space between icon and text -->
                 {{ todo }}
