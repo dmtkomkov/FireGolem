@@ -10,12 +10,10 @@ class PostList(generics.GenericAPIView,
                   mixins.ListModelMixin,
                   mixins.CreateModelMixin):
 
+    serializer_class = PostSerializer
     versioning_class = URLPathVersioning
     queryset = Post.objects.all().order_by('created')
     pagination_class = CustomPagination
-
-    def get_serializer_class(self):
-        return PostSerializer
 
     def get(self, request, *args, **kwargs):
         page_size = request.GET.get('page_size')           # Get custom page size from request params
@@ -25,3 +23,6 @@ class PostList(generics.GenericAPIView,
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
