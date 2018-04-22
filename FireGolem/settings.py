@@ -14,6 +14,7 @@ INSTALLED_APPS = [
 
     # third party
     'rest_framework',
+    'corsheaders',
 
     # custom
     'api',
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,3 +129,7 @@ LOGGING = {
         },
     },
 }
+
+# Allow frontend access
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ['localhost:4200']
