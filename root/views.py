@@ -5,6 +5,9 @@ from api.models import Post, Task, WorkLog, Payment
 from django.db.models import Sum
 from datetime import datetime, timedelta, date
 
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 
 class RootView(LoginRequiredMixin, View):
     def get(self, request):
@@ -46,4 +49,19 @@ class RootView(LoginRequiredMixin, View):
             'blogStats': blogStats,
             'todoStats': todoStats,
             'moneyStats': moneyStats,
+        })
+
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        user = token.user
+        return Response({
+            'token': token.key,
+            'user': {
+                'login': user.username,
+                'first': user.first_name,
+                'last': user.last_name,
+                'email': user.email,
+            },
         })
