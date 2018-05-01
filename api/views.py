@@ -1,10 +1,13 @@
+from rest_framework.views import APIView
 from rest_framework import generics, mixins
 from rest_framework.versioning import URLPathVersioning
 
 from api.models import Post
 from .paginator import CustomPagination
-from .serializers import PostSerializer
+from .serializers import PostSerializer, UserSerializer
 
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 
 class PostList(generics.GenericAPIView,
                   mixins.ListModelMixin,
@@ -26,3 +29,9 @@ class PostList(generics.GenericAPIView,
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class CurrentUser(APIView):
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
