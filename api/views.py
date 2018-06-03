@@ -15,7 +15,7 @@ class PostList(generics.GenericAPIView,
 
     serializer_class = PostSerializer
     versioning_class = URLPathVersioning
-    queryset = Post.objects.all().order_by('created')
+    queryset = Post.objects.all().order_by('-created')
     pagination_class = CustomPagination
 
     def get(self, request, *args, **kwargs):
