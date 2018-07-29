@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage
 
 PPP = 20  # POSTS_PER_PAGE
-PML = 11  # PAGINATOR_MAX_LENGTH
+PML = 3  # PAGINATOR_MAX_LENGTH
 PHL = (PML - 1) // 2 # PAGINATOR_HALF_LENGTH
 
 
