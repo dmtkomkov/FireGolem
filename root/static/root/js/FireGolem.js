@@ -72,4 +72,12 @@ $(document).ready(function() {
             return "Server returned error " + response.status;
         }
     });
+
+    $('button.add').on('click', function () {
+      var button = $(this)[0];
+      button.style.display = 'none';
+      setTimeout(function() {
+        button.style.display = 'inline-block';
+      }, 3000);
+    });
 });
