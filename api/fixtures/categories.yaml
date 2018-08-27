@@ -36,7 +36,7 @@
     name: Хобби
     description: Спорт, книги, игры
 - model: api.category
-  pk: 22
+  pk: 23
   fields:
     name: Бизнес
     description: Обучение и развитие бизнеса
