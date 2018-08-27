@@ -1,5 +1,23 @@
 {% extends "root/base.html" %}
 
+{% block menu %}
+
+<div class="panel panel-sidebar">
+    <ul class="list-group">
+        <a href="{% url 'money:home' %}" class="list-group-item">
+            <h5>Spent</h5>
+        </a>
+        <a href="{% url 'money:home' %}" class="list-group-item">
+            <h5>Report</h5>
+        </a>
+        <a href="{% url 'money:home' %}" class="list-group-item">
+            <h5>Graph</h5>
+        </a>
+    </ul>
+</div>
+
+{% endblock %}
+
 {% block header %}
     <h4>Money</h4>
     <button type="button" class="btn btn-sm right" onclick="javascript:history.go(-1);">
