@@ -17,8 +17,8 @@
 - model: api.category
   pk: 12
   fields:
-    name: Транспорт
-    description: Автобус, велик, такси, телефон, интернет, вебсайт
+    name: Транспорт\Связь
+    description: Автобус, велик, такси, телефон, интернет
 - model: api.category
   pk: 13
   fields:
@@ -35,12 +35,17 @@
   fields:
     name: Хобби
     description: Спорт, книги, игры
+- model: api.category
+  pk: 22
+  fields:
+    name: Бизнес
+    description: Обучение и развитие бизнеса
 
 - model: api.category
   pk: 31
   fields:
     name: Квартира
-    description: Аренда и комунальные траты
+    description: Аренда и комунальные траты, ипотека
 - model: api.category
   pk: 32
   fields:
@@ -49,8 +54,8 @@
 - model: api.category
   pk: 33
   fields:
-    name: Документы
-    description: Создание, копирование и запрос документов
+    name: Документы\Сервисы
+    description: Документы и онлайн сервисы
 
 - model: api.category
   pk: 41
