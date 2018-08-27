@@ -28,8 +28,8 @@
 {% block content %}
 
 {% load tz %}
-    <h4>Spent</h4>
-    <table class="table cursor-default">
+    <h4>Report</h4>
+    <!-- <table class="table cursor-default">
         {% for pdate in dates %}
             <tr>
                 <td class="date-column">{{ pdate.spent | date:"Y-m-d" }}</td>
@@ -43,12 +43,12 @@
                 </td>
             </tr>
         {% endfor %}
-    </table>
+    </table> -->
 
 {% endblock %}
 
 {% block footer %}
-    <form method="post" class="form-inline pull-left">
+    <!-- <form method="post" class="form-inline pull-left">
         <input type="number" class="form-control" name="amount" placeholder="Sum" required>
         <select name="category" class="form-control">
             {% for category in categories %}
@@ -60,5 +60,5 @@
             <span class="glyphicon glyphicon-plus white"></span>
         </button>
     </form>
-    {% include "snippets/pagination.html" %}
+    {% include "snippets/pagination.html" %} -->
 {% endblock %}

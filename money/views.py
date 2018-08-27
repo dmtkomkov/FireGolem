@@ -43,3 +43,11 @@ class MoneyView(LoginRequiredMixin, View):
         payment = Payment.objects.get(id=payment_id)
         payment.delete()
         return self.get(request)
+
+class MoneyViewReport(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'money/report.html')
+
+class MoneyViewGraph(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'money/graph.html')
