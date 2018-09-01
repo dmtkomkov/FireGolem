@@ -29,13 +29,24 @@
 
 {% load tz %}
     <h4>Report</h4>
-    {% for month in months %}
-      {{ month.month }}-{{ month.year }} | {{ month.day_sum }}
-      {% for payment in month.payments %}
-        {{ payment.category_name }} - {{ payment.category_sum }} |
-      {% endfor %}
-      </br>
-    {% endfor %}
+    <table class="table cursor-default">
+        <tr>
+          <th>Month</th>
+          <th>Sum</th>
+          {% for category in categories %}
+            <th>{{ category.id }}</th>
+          {% endfor %}
+        </tr>
+        {% for month in months %}
+            <tr>
+                <td class="date-column">{{ month.year }}-{{ month.month }}</td>
+                <td class="amount-column"><span class="label">{{ month.month_sum }}</span></td>
+                {% for payment in month.payments %}
+                  <td>{{ payment }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
     <!-- <table class="table cursor-default">
         {% for pdate in dates %}
             <tr>
@@ -55,17 +66,5 @@
 {% endblock %}
 
 {% block footer %}
-    <!-- <form method="post" class="form-inline pull-left">
-        <input type="number" class="form-control" name="amount" placeholder="Sum" required>
-        <select name="category" class="form-control">
-            {% for category in categories %}
-                <option value="{{ category.name }}">{{ category.name }}</option>
-            {% endfor %}
-        </select>
-        <input class="form-control" type="date" name="date" value="{{ today }}" required>
-        <button type="submit" class="btn btn-sm add">
-            <span class="glyphicon glyphicon-plus white"></span>
-        </button>
-    </form>  -->
     {% include "snippets/pagination.html" %}
 {% endblock %}

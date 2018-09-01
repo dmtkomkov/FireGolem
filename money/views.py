@@ -52,19 +52,26 @@ class MoneyViewReport(LoginRequiredMixin, View):
             year=ExtractYear("spent"),
             month=ExtractMonth("spent"),
         ).exclude(year__isnull=True).annotate(
-            day_sum=Sum("amount")
+            month_sum=Sum("amount")
         ).order_by("-year", "-month")
         categories = Category.objects.all().order_by("id")
-        active_page = request.GET.get('page')
+        active_page = request.GET.get("page")
 
         months, page_conf = get_page(all_months, active_page)
         for month in months:
-            month["payments"] = Payment.objects.values(
-                category_name = F("category__name"),
+            # Get payment details from database
+            # [{'name': 'food', 'sum': 4}, {'name': 'hobby', 'sum': 7}]
+            payment_details = Payment.objects.values(
+                name = F("category__name"),
             ).filter(
                 spent__month=month["month"],
                 spent__year=month["year"]
-            ).annotate(category_sum=Sum("amount")).all().order_by("category")
+            ).annotate(sum=Sum("amount")).all().order_by("category")
+            # Convert payment details to convenient format
+            # {'food': 4, 'hobby': 7}
+            payment_details = dict((p["name"], p["sum"]) for p in payment_details)
+            # Create table row
+            month['payments'] = [payment_details.get(c.name, 0) for c in categories]
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)
