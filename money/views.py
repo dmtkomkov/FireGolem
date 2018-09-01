@@ -65,7 +65,6 @@ class MoneyViewReport(LoginRequiredMixin, View):
                 spent__month=month["month"],
                 spent__year=month["year"]
             ).annotate(category_sum=Sum("amount")).all().order_by("category")
-            print month
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)
