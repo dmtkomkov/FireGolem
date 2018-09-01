@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
+from django.db.models.functions import ExtractMonth, ExtractYear
+from django.db.models import F
 from datetime import date
 
 from api.models import Payment, Category
@@ -46,7 +48,29 @@ class MoneyView(LoginRequiredMixin, View):
 
 class MoneyViewReport(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'money/report.html')
+        all_months = Payment.objects.values(
+            year=ExtractYear("spent"),
+            month=ExtractMonth("spent"),
+        ).exclude(year__isnull=True).annotate(
+            day_sum=Sum("amount")
+        ).order_by("-year", "-month")
+        categories = Category.objects.all().order_by("id")
+        active_page = request.GET.get('page')
+
+        months, page_conf = get_page(all_months, active_page)
+        for month in months:
+            month["payments"] = Payment.objects.values(
+                category_name = F("category__name"),
+            ).filter(
+                spent__month=month["month"],
+                spent__year=month["year"]
+            ).annotate(category_sum=Sum("amount")).all().order_by("category")
+            print month
+
+        page = {"months": months, "categories": categories}
+        page.update(page_conf)
+
+        return render(request, "money/report.html", page)
 
 class MoneyViewGraph(LoginRequiredMixin, View):
     def get(self, request):
