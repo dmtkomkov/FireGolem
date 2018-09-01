@@ -285,6 +285,14 @@ input[name="date"].form-control {
     width: 12ch;
 }
 
+.month-column {
+    width: 8ch;
+}
+
+.sum-column {
+    width: 8ch;
+}
+
 /* Linked dashboard */
 
 a {
@@ -306,4 +314,12 @@ a:hover div.quick-access {
 
 .quick-access-row > hr {
     border-width: 2px;
+}
+
+/* Tooltips */
+
+.header-tooltip {
+    cursor: pointer;
+    color: var(--link-color);
+    text-decoration: underline;
 }

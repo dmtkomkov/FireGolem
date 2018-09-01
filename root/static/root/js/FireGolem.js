@@ -80,4 +80,8 @@ $(document).ready(function() {
         button.style.display = 'inline-block';
       }, 3000);
     });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
 });

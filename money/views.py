@@ -76,6 +76,13 @@ class MoneyViewReport(LoginRequiredMixin, View):
             # Convert month and year to represent in template
             month['month'] = calendar.month_name[month['month']][:3]
             month['year'] = month['year'] - 2000
+            # apply colors to month sums
+            if month['month_sum'] <= 8000:
+                month['color'] = 'info'
+            elif month['month_sum'] <= 10000:
+                month['color'] = 'warning'
+            else:
+                month['color'] = 'danger'
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)

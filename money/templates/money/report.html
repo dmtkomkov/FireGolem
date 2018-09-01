@@ -34,13 +34,13 @@
           <th>Month</th>
           <th>Sum</th>
           {% for category in categories %}
-            <th>{{ category.label }}</th>
+            <th><span class="header-tooltip" data-toggle="tooltip" title="{{ category.name }} ({{ category.description }})">{{ category.label }}</span></th>
           {% endfor %}
         </tr>
         {% for month in months %}
             <tr>
-                <td class="date-column">{{ month.month }} {{ month.year }}</td>
-                <td class="amount-column"><span class="label">{{ month.month_sum }}</span></td>
+                <td class="month-column">{{ month.month }} {{ month.year }}</td>
+                <td class="sum-column"><span class="label label-{{ month.color }}">{{ month.month_sum }}</span></td>
                 {% for payment in month.payments %}
                   <td>{{ payment }}</td>
                 {% endfor %}
