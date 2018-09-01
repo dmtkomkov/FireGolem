@@ -29,6 +29,13 @@
 
 {% load tz %}
     <h4>Report</h4>
+    {% for month in months %}
+      {{ month.month }}-{{ month.year }} | {{ month.day_sum }}
+      {% for payment in month.payments %}
+        {{ payment.category_name }} - {{ payment.category_sum }} |
+      {% endfor %}
+      </br>
+    {% endfor %}
     <!-- <table class="table cursor-default">
         {% for pdate in dates %}
             <tr>
@@ -59,6 +66,6 @@
         <button type="submit" class="btn btn-sm add">
             <span class="glyphicon glyphicon-plus white"></span>
         </button>
-    </form>
-    {% include "snippets/pagination.html" %} -->
+    </form>  -->
+    {% include "snippets/pagination.html" %}
 {% endblock %}
