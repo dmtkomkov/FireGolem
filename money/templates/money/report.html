@@ -34,7 +34,7 @@
           <th>Month</th>
           <th>Sum</th>
           {% for category in categories %}
-            <th>{{ category.id }}</th>
+            <th>{{ category.label }}</th>
           {% endfor %}
         </tr>
         {% for month in months %}
