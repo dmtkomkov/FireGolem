@@ -39,7 +39,7 @@
         </tr>
         {% for month in months %}
             <tr>
-                <td class="date-column">{{ month.year }}-{{ month.month }}</td>
+                <td class="date-column">{{ month.month }} {{ month.year }}</td>
                 <td class="amount-column"><span class="label">{{ month.month_sum }}</span></td>
                 {% for payment in month.payments %}
                   <td>{{ payment }}</td>

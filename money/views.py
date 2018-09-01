@@ -4,8 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from django.db.models.functions import ExtractMonth, ExtractYear
 from django.db.models import F
-from datetime import date
 
+import calendar
+from datetime import date
 from api.models import Payment, Category
 from helpers.pagination import get_page
 
@@ -72,6 +73,9 @@ class MoneyViewReport(LoginRequiredMixin, View):
             payment_details = dict((p["name"], p["sum"]) for p in payment_details)
             # Create table row
             month['payments'] = [payment_details.get(c.name, 0) for c in categories]
+            # Convert month and year to represent in template
+            month['month'] = calendar.month_name[month['month']][:3]
+            month['year'] = month['year'] - 2000
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)
