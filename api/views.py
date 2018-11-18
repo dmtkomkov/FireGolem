@@ -29,12 +29,17 @@ class BlogView(generics.GenericAPIView,
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class PostView(generics.GenericAPIView, mixins.UpdateModelMixin):
+class PostView(generics.GenericAPIView,
+                mixins.UpdateModelMixin,
+                mixins.DestroyModelMixin):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 class CurrentUserView(APIView):
 
