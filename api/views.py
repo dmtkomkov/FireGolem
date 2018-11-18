@@ -1,18 +1,14 @@
 from rest_framework.views import APIView
-from rest_framework import generics, mixins
+from rest_framework.viewsets import ModelViewSet
 
-from api.models import Post
+from .models import Post
 from .paginator import CustomPagination
 from .serializers import PostSerializer, UserSerializer
 
-from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
 
-class BlogView(generics.GenericAPIView,
-                  mixins.ListModelMixin,
-                  mixins.CreateModelMixin):
-
+class BlogView(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all().order_by('-created')
     pagination_class = CustomPagination
@@ -29,16 +25,11 @@ class BlogView(generics.GenericAPIView,
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-class PostView(generics.GenericAPIView,
-                mixins.UpdateModelMixin,
-                mixins.DestroyModelMixin):
-    serializer_class = PostSerializer
-    queryset = Post.objects.all()
-
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
+        # FIXME: do not completely delete the post
         return self.destroy(request, *args, **kwargs)
 
 class CurrentUserView(APIView):

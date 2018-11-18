@@ -1,9 +1,12 @@
-from django.conf.urls import url
-from api import views
+from django.conf.urls import url, include
+from rest_framework.routers import SimpleRouter
 
+from .views import BlogView, CurrentUserView
+
+router = SimpleRouter()
+router.register("blog", BlogView)
 
 urlpatterns = [
-    url(r'^user/$', views.CurrentUserView.as_view(), name='current_user'),
-    url(r'^blog/$', views.BlogView.as_view(), name='blog'),
-    url(r'^blog/(?P<pk>\d+)/$', views.PostView.as_view(), name='post_update'),
+    url(r'^user/$', CurrentUserView.as_view(), name='current_user'),
+    url(r'^', include(router.urls, namespace='blog')),
 ]
