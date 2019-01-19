@@ -1,3 +1,5 @@
+import datetime
+
 SECRET_KEY = '#aat!fl%wz4+ggzj9(15e3*ryac5&h4(3r+z1*_v!*v*a&^gw!'
 
 DEBUG = True
@@ -45,6 +47,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=3),
 }
 
 ROOT_URLCONF = 'FireGolem.urls'
