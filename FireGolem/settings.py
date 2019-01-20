@@ -50,9 +50,9 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=60),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=20),
     'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=3),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(hours=2),
 }
 
 ROOT_URLCONF = 'FireGolem.urls'
