@@ -81,15 +81,12 @@ LOGIN_REDIRECT_URL = '/'
 # Database
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FireGolem',
-        'USER': 'user',
-        'PASSWORD': 'user',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'FireGolem.sqlite3',
+  }
 }
+
 
 CACHES = {
     'default': {
