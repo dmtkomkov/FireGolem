@@ -34,10 +34,4 @@ class Migration(migrations.Migration):
             name='status',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.TaskStatus'),
         ),
-        migrations.RunSQL(
-            'ALTER TABLE api_task MODIFY created DATETIME;'
-        ),
-        migrations.RunSQL(
-            'ALTER TABLE api_task MODIFY updated DATETIME;'
-        ),
     ]

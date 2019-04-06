@@ -19,7 +19,4 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(blank=True, default=datetime.datetime.now)),
             ],
         ),
-        migrations.RunSQL(
-            'ALTER TABLE api_post MODIFY date DATETIME;'  # Replaced DATETIME(6) with DATETIME
-        ),
     ]
