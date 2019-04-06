@@ -39,7 +39,7 @@ class RootView(LoginRequiredMixin, View):
         todayPayments = Payment.objects.filter(spent=date.today()).aggregate(Sum('amount'))['amount__sum'] or 0
         moneyStats['today'] = todayPayments
 
-        monthPayments = Payment.objects.filter(spent__month=date.today().month).aggregate(Sum('amount'))['amount__sum'] or 0
+        monthPayments = Payment.objects.filter(spent__month=date.today().month, spent__year=date.today().year).aggregate(Sum('amount'))['amount__sum'] or 0
         moneyStats['month'] = monthPayments
 
         return render(request, 'root/home.html', {
