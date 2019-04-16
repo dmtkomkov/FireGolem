@@ -67,6 +67,12 @@
     name: Documents
     label: DC
     description: Документы и онлайн сервисы
+- model: api.category
+  pk: 34
+  fields:
+    name: Repair
+    label: RP
+    description: Новая квартира
 
 - model: api.category
   pk: 41
