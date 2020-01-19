@@ -73,6 +73,12 @@
     name: Repair
     label: RP
     description: Новая квартира
+- model: api.category
+  pk: 35
+  fields:
+    name: Paychecks
+    label: PC
+    description: Регулярные платы за услуги и сервисы
 
 - model: api.category
   pk: 41
