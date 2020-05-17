@@ -28,12 +28,6 @@
     {% include "snippets/dialog.html" with dlg_id="editPost" dlg_title="Edit Post" btn_yes="Edit" btn_no="Cancel" %}
     {% include "snippets/dialog.html" with dlg_id="deletePost" dlg_title="Delete Post" btn_yes="Delete" btn_no="Cancel" %}
 
-    <!-- Todo dialogs -->
-    {% include "snippets/dialog.html" with dlg_id="deleteTask" dlg_title="Delete Task" btn_yes="Delete" btn_no="Cancel" %}
-    {% include "snippets/dialog.html" with dlg_id="deleteArea" dlg_title="Delete Area" btn_yes="Delete" btn_no="Cancel" %}
-    {% include "snippets/dialog.html" with dlg_id="deleteProject" dlg_title="Delete Project" btn_yes="Delete" btn_no="Cancel" %}
-    {% include "snippets/dialog.html" with dlg_id="addWorkLog" dlg_title="New WorkLog" btn_yes="Add" btn_no="Cancel" %}
-
     <!-- Money dialogs -->
     {% include "snippets/dialog.html" with dlg_id="deletePayment" dlg_title="Delete Payment" btn_yes="Delete" btn_no="Cancel" %}
 
@@ -57,10 +51,6 @@
                     <li><a class="nav-link" href="{% url 'blog:home' %}">
                         <span class="glyphicon glyphicon-book icon-color" aria-hidden="true"></span>
                         <b>Blog</b>
-                    </a></li>
-                    <li><a class="nav-link" href="{% url 'todo:home' %}">
-                        <span class="glyphicon glyphicon-tasks icon-color" aria-hidden="true"></span>
-                        <b>Todo</b>
                     </a></li>
                     <li><a class="nav-link" href="{% url 'money:home' %}">
                         <span class="glyphicon glyphicon-usd icon-color" aria-hidden="true"></span>
