@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from api.models import Post, Task, WorkLog, Payment
+from api.models import Post, Task, Payment
 from django.db.models import Sum
 from datetime import datetime, timedelta, date
 

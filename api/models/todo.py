@@ -4,75 +4,63 @@ from django.conf import settings
 
 from .managers import ExistingManager
 
-__all__ = ("Area", "Project", "Task", "TaskStatus", "WorkLog")
+__all__ = ("Task",)
 
 
-class Area(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(blank=True, null=True)
+# class Area(models.Model):
+#     name = models.CharField(max_length=255, unique=True)
+#     description = models.TextField(blank=True, null=True)
+#
+#     def __unicode__(self):
+#         return u"%s" % self.name
+#
+#     @property
+#     def count(self):
+#         # Exclude cancelled and closed tasks
+#         return Task.objects.filter(area=self.id).exclude(status__in=(21, 22)).count()
 
-    def __unicode__(self):
-        return u"%s" % self.name
 
-    @property
-    def count(self):
-        # Exclude cancelled and closed tasks
-        return Task.objects.filter(area=self.id).exclude(status__in=(21, 22)).count()
-
-
-class Project(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(blank=True, null=True)
-
-    def __unicode__(self):
-        return u"%s" % self.name
-
-    @property
-    def count(self):
-        # Exclude cancelled and closed tasks
-        return Task.objects.filter(project=self.id).exclude(status__in=(21, 22)).count()
+# class Project(models.Model):
+#     name = models.CharField(max_length=255, unique=True)
+#     description = models.TextField(blank=True, null=True)
+#
+#     def __unicode__(self):
+#         return u"%s" % self.name
+#
+#     @property
+#     def count(self):
+#         # Exclude cancelled and closed tasks
+#         return Task.objects.filter(project=self.id).exclude(status__in=(21, 22)).count()
 
 
 class Task(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
     assignee = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
-    created = models.DateTimeField(default=datetime.now)
-    updated = models.DateTimeField(default=datetime.now)
-    scheduled = models.DateField(blank=True, null=True)
-    status = models.ForeignKey(settings.TASK_STATUS_MODEL, default=1)
-    estimation = models.PositiveSmallIntegerField(default=0)
-    area = models.ForeignKey(settings.AREA_MODEL, models.SET_NULL, blank=True, null=True)
-    project = models.ForeignKey(settings.PROJECT_MODEL, models.SET_NULL, blank=True, null=True)
+    created_date = models.DateTimeField(default=datetime.now)
+    completed_date = models.DateTimeField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
-
     objects = ExistingManager()
-
-    @property
-    def logged(self):
-        task_logs = WorkLog.objects.filter(task=self.id).filter(post__deleted=False)
-        return task_logs.aggregate(models.Sum('log'))['log__sum'] or 0  # Do not return None in case of no logs
 
     def __unicode__(self):
         return u"%s" % self.name
 
 
-class TaskStatus(models.Model):
-    status = models.CharField(max_length=10, unique=True)
-    icon = models.CharField(max_length=20, blank=True, null=True)
-
-    def __unicode__(self):
-        return u"%s" % self.status
-
-    @property
-    def count(self):
-        return Task.objects.filter(status=self.id).count()
-
-
-class WorkLog(models.Model):
-    task = models.ForeignKey(settings.TASK_MODEL)
-    log = models.PositiveSmallIntegerField(default=0)
-    post = models.ForeignKey(settings.POST_MODEL)
-
-    def __unicode__(self):
-        return u"{}: {}".format(self.task, self.log)
+# class TaskStatus(models.Model):
+#     status = models.CharField(max_length=10, unique=True)
+#     icon = models.CharField(max_length=20, blank=True, null=True)
+#
+#     def __unicode__(self):
+#         return u"%s" % self.status
+#
+#     @property
+#     def count(self):
+#         return Task.objects.filter(status=self.id).count()
+#
+#
+# class WorkLog(models.Model):
+#     task = models.ForeignKey(settings.TASK_MODEL)
+#     log = models.PositiveSmallIntegerField(default=0)
+#     post = models.ForeignKey(settings.POST_MODEL)
+#
+#     def __unicode__(self):
+#         return u"{}: {}".format(self.task, self.log)
