@@ -10,10 +10,10 @@ class RootView(LoginRequiredMixin, View):
     def get(self, request):
         blogStats = {}  # Build data for blog dashboard
 
-        blogStats['count'] = Post.objects.filter(worklog__isnull=True).count()
+        blogStats['count'] = Post.objects.count()
 
         if blogStats['count'] > 0:
-            latestPost = Post.objects.filter(worklog__isnull=True).order_by('-created')[0]
+            latestPost = Post.objects.order_by('-created')[0]
             daysDelta = (datetime.today() - latestPost.created).days
             if not daysDelta:
                 blogStats['latest'] = "today"
