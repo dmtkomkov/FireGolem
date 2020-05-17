@@ -12,13 +12,13 @@ class BlogView(LoginRequiredMixin, View):
         all_posts = Post.objects.all().order_by("-created")
         blog_filter = request.GET.get('filter')
         if blog_filter == 'post':
-            all_posts = all_posts.filter(worklog__isnull=True)
+            all_posts = all_posts
         elif blog_filter == 'worklog':
-            all_posts = all_posts.filter(worklog__isnull=False)
+            all_posts = all_posts
 
-        post_count = cache.get('post_count', Post.objects.filter(worklog__isnull=True).count())
+        post_count = cache.get('post_count', Post.objects.count())
         cache.add('post_count', post_count)
-        worklog_count = cache.get('worklog_count', Post.objects.filter(worklog__isnull=False).count())
+        worklog_count = cache.get('worklog_count', Post.objects.count())
         cache.add('worklog_count', worklog_count)
         blog_len = post_count + worklog_count
 
