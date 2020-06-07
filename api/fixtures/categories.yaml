@@ -50,6 +50,12 @@
     label: HS
     description: Аренда и комунальные траты, ипотека
 - model: api.category
+  pk: 33
+  fields:
+   name: Car
+   label: CA
+   description: Обслуживание машины и аренда гаража
+- model: api.category
   pk: 32
   fields:
     name: School
