@@ -136,4 +136,4 @@ LOGGING = {
 
 # Allow frontend access
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ['localhost:4200']
+CORS_ORIGIN_WHITELIST = ['localhost:4200', '127.0.0.1:4200']
