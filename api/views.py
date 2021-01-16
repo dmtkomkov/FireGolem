@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Post, Task
+from .models import Post, Task, WorkLog
 from .paginator import CustomPagination
-from .serializers import PostSerializer, TaskSerializer, UserSerializer
+from .serializers import PostSerializer, TaskSerializer, UserSerializer, WorkLogSerializer
 
 from rest_framework.response import Response
 
@@ -38,3 +38,10 @@ class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+
+
+class WorkLogView(ModelViewSet):
+    serializer_class = WorkLogSerializer
+    # TODO: add order
+    queryset = WorkLog.objects.all()
+    pagination_class = CustomPagination

@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from django.contrib.auth.models import User
-from api.models import Task, Post, UserIcon
+from api.models import Task, Post, UserIcon, WorkLog
 
 
 class UserIconSerializer(ModelSerializer):
@@ -38,3 +38,9 @@ class TaskSerializer(ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'name', 'assignee', 'created_date', 'completed_date')
+
+
+class WorkLogSerializer(ModelSerializer):
+    class Meta:
+        model = WorkLog
+        fields = ('log',)
