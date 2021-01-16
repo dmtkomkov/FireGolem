@@ -4,7 +4,7 @@ from django.conf import settings
 
 from .managers import ExistingManager
 
-__all__ = ("Task",)
+__all__ = ("Task", "WorkLog", "LabelGroup", "Label", "WorkLogLabel")
 
 
 # class Area(models.Model):
@@ -43,6 +43,37 @@ class Task(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+
+class WorkLog(models.Model):
+    log = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return u"{}".format(self.log)
+
+
+class LabelGroup(models.Model):
+    name = models.CharField(max_length=64)
+    single = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return u"{}".format(self.name)
+
+
+class Label(models.Model):
+    name = models.CharField(max_length=64)
+    group = models.ForeignKey(settings.LABEL_GROUP_MODEL)
+
+    def __unicode__(self):
+        return u"{}".format(self.name)
+
+
+class WorkLogLabel(models.Model):
+    log = models.ForeignKey(settings.WORKLOG_MODEL)
+    label = models.ForeignKey(settings.LABEL_MODEL)
+
+    def __unicode__(self):
+        return u"{}: {}".format(self.log, self.label)
 
 
 # class TaskStatus(models.Model):

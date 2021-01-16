@@ -107,11 +107,13 @@ STATIC_ROOT = '/var/www/FireGolem/static/'
 # Models
 TASK_STATUS_MODEL = "TaskStatus"
 TASK_MODEL = "Task"
-TASK_WORKLOG_MODEL = "WorkLog"
+WORKLOG_MODEL = "WorkLog"
 POST_MODEL = "Post"
 AREA_MODEL = "Area"
 PROJECT_MODEL = "Project"
 CATEGORY_MODEL = "Category"
+LABEL_MODEL = "Label"
+LABEL_GROUP_MODEL = "LabelGroup"
 
 # Hours in a day
 HOURS_IN_A_DAY = 5
