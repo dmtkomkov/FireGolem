@@ -40,12 +40,6 @@ class TaskSerializer(ModelSerializer):
         fields = ('id', 'name', 'assignee', 'created_date', 'completed_date')
 
 
-class WorkLogSerializer(ModelSerializer):
-    class Meta:
-        model = WorkLog
-        fields = ('log',)
-
-
 class LabelGroupSerializer(ModelSerializer):
     class Meta:
         model = LabelGroup
@@ -64,4 +58,32 @@ class LabelSerializer(ModelSerializer):
         group = LabelGroup.objects.create(**group_data)
         label = Label.objects.create(group=group, **label_data)
         return label
+
+
+class WorkLogSerializer(ModelSerializer):
+    labels = LabelSerializer(many=True)
+
+    class Meta:
+        model = WorkLog
+        fields = ('log', 'labels')
+
+    def create(self, worklog_data):
+        labels_data = worklog_data.pop('labels')
+        worklog = WorkLog.objects.create(**worklog_data)
+
+        for label_data in labels_data:
+            label = Label.objects.get(name=label_data["name"])
+            worklog.labels.add(label)
+
+        return worklog
+
+
+
+
+
+
+
+
+
+
 
