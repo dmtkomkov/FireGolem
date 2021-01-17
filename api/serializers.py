@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from django.contrib.auth.models import User
-from api.models import Task, Post, UserIcon, WorkLog
+from api.models import Task, Post, UserIcon, WorkLog, Label, LabelGroup
 
 
 class UserIconSerializer(ModelSerializer):
@@ -44,3 +44,24 @@ class WorkLogSerializer(ModelSerializer):
     class Meta:
         model = WorkLog
         fields = ('log',)
+
+
+class LabelGroupSerializer(ModelSerializer):
+    class Meta:
+        model = LabelGroup
+        fields = ('name', 'single')
+
+
+class LabelSerializer(ModelSerializer):
+    group = LabelGroupSerializer()
+
+    class Meta:
+        model = Label
+        fields = ('name', 'group')
+
+    def create(self, label_data):
+        group_data = label_data.pop('group')
+        group = LabelGroup.objects.create(**group_data)
+        label = Label.objects.create(group=group, **label_data)
+        return label
+
