@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.conf import settings
 
+from django.db.models import Manager
 from .managers import ExistingManager
 
 __all__ = 'Post',
@@ -13,8 +14,8 @@ class Post(models.Model):
     created = models.DateTimeField(default=datetime.now)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     deleted = models.BooleanField(default=False)
-
     objects = ExistingManager()
+    all_objects = Manager()
 
     def __unicode__(self):
         return u"%s" % self.title

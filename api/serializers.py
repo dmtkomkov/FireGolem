@@ -76,14 +76,3 @@ class WorkLogSerializer(ModelSerializer):
             worklog.labels.add(label)
 
         return worklog
-
-
-
-
-
-
-
-
-
-
-
