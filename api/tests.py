@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from api.models import Post
+from api.models import Post, Label, LabelGroup
 
 
 class BlogTests(APITestCase):
@@ -73,7 +73,6 @@ class BlogTests(APITestCase):
         self.assertEqual(response.data['page_number'], 1)
         self.assertEqual(response.data['page_size'], 100)
         for i, post in enumerate(response.data['results']):
-            self.assertEqual(post['id'], i + 1)
             self.assertEqual(post['title'], 'Title %s' % i)
             self.assertEqual(post['body'], 'Body %s' % i)
 
@@ -81,3 +80,49 @@ class BlogTests(APITestCase):
         self.assertEqual(post.title, title)
         self.assertEqual(post.body, body)
         self.assertEqual(post.user.username, self.username)
+
+
+class LabelTests(APITestCase):
+    username = 'tester'
+    password = 'tester_password'
+
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        self.client.force_authenticate(user=test_user)
+        self.label_name = 'My label'
+        self.group_name = 'My group'
+
+    def test_create_label_with_group(self):
+        # init
+        label = {
+            'name': self.label_name,
+            'group': self.group_name
+        }
+        url = reverse('api:label-list')
+        LabelGroup.objects.create(name=self.group_name, single=True).save()
+        # action
+        response = self.client.post(url, label, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Label.objects.count(), 1)
+        self.assertEqual(LabelGroup.objects.count(), 1)
+        db_label = Label.objects.first()
+        self.assertEqual(db_label.name, self.label_name)
+        self.assertEqual(db_label.group.name, self.group_name)
+
+    def test_create_label_without_group(self):
+        # init
+        label = {
+            'name': self.label_name,
+            'group': None
+        }
+        url = reverse('api:label-list')
+        # action
+        response = self.client.post(url, label, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Label.objects.count(), 1)
+        self.assertEqual(LabelGroup.objects.count(), 0)
+        db_label = Label.objects.first()
+        self.assertEqual(db_label.name, self.label_name)
+        self.assertEqual(db_label.group, None)

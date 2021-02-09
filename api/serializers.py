@@ -47,7 +47,7 @@ class LabelGroupSerializer(ModelSerializer):
 
 
 class LabelSerializer(ModelSerializer):
-    group = LabelGroupSerializer()
+    group = SlugRelatedField(slug_field='name', queryset=LabelGroup.objects.all(), allow_null=True)
 
     class Meta:
         model = Label
@@ -55,8 +55,11 @@ class LabelSerializer(ModelSerializer):
 
     def create(self, label_data):
         group_data = label_data.pop('group')
-        group = LabelGroup.objects.create(**group_data)
-        label = Label.objects.create(group=group, **label_data)
+        if group_data is not None:
+            group = LabelGroup.objects.get(name=group_data)
+            label = Label.objects.create(group=group, **label_data)
+        else:
+            label = Label.objects.create(**label_data)
         return label
 
 
