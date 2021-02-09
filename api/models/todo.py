@@ -54,7 +54,7 @@ class WorkLog(models.Model):
 
 
 class LabelGroup(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(unique=True, max_length=64)
     single = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -62,8 +62,8 @@ class LabelGroup(models.Model):
 
 
 class Label(models.Model):
-    name = models.CharField(max_length=64)
-    group = models.ForeignKey(settings.LABEL_GROUP_MODEL)
+    name = models.CharField(unique=True, max_length=64)
+    group = models.ForeignKey(settings.LABEL_GROUP_MODEL, blank=True, null=True)
 
     def __unicode__(self):
         return u"{}".format(self.name)
