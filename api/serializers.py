@@ -54,12 +54,7 @@ class LabelSerializer(ModelSerializer):
         fields = ('name', 'group')
 
     def create(self, label_data):
-        group_data = label_data.pop('group')
-        if group_data is not None:
-            group = LabelGroup.objects.get(name=group_data)
-            instance = Label.objects.create(group=group, **label_data)
-        else:
-            instance = Label.objects.create(**label_data)
+        instance = Label.objects.create(**label_data)
         return instance
 
     def update(self, instance, label_data):
