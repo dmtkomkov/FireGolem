@@ -57,10 +57,16 @@ class LabelSerializer(ModelSerializer):
         group_data = label_data.pop('group')
         if group_data is not None:
             group = LabelGroup.objects.get(name=group_data)
-            label = Label.objects.create(group=group, **label_data)
+            instance = Label.objects.create(group=group, **label_data)
         else:
-            label = Label.objects.create(**label_data)
-        return label
+            instance = Label.objects.create(**label_data)
+        return instance
+
+    def update(self, instance, label_data):
+        instance.name = label_data['name']
+        instance.group = label_data['group']
+        instance.save()
+        return instance
 
 
 class WorkLogSerializer(ModelSerializer):
@@ -72,10 +78,10 @@ class WorkLogSerializer(ModelSerializer):
 
     def create(self, worklog_data):
         labels_data = worklog_data.pop('labels')
-        worklog = WorkLog.objects.create(**worklog_data)
+        instance = WorkLog.objects.create(**worklog_data)
 
         for label_data in labels_data:
             label = Label.objects.get(name=label_data["name"])
-            worklog.labels.add(label)
+            instance.labels.add(label)
 
-        return worklog
+        return instance

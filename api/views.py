@@ -26,8 +26,8 @@ class TodoView(ModelViewSet):
     queryset = Task.objects.all().order_by('-created_date')
     pagination_class = CustomPagination
 
-    def perform_create(self, serializer):
-        serializer.save(assignee=self.request.user)
+    def perform_create(self, instance):
+        instance.save(assignee=self.request.user)
 
     def perform_destroy(self, instance):
         instance.deleted = True
