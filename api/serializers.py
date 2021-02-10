@@ -54,8 +54,8 @@ class LabelSerializer(ModelSerializer):
         fields = ('name', 'group')
 
     def to_internal_value(self, label_data):
-        # Create new group by name
-        # Otherwise set group to None
+        # Create new group by name or use existed
+        # Otherwise set group to None if its not specified
         if label_data.get('group'):
             LabelGroup.objects.get_or_create(name=label_data['group'])
         else:
