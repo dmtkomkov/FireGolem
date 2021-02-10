@@ -50,3 +50,10 @@ class LabelView(ModelViewSet):
     serializer_class = LabelSerializer
     queryset = Label.objects.all().order_by('id')
     pagination_class = None
+
+    def perform_destroy(self, instance):
+        # Remove group if it contains no labels
+        group = instance.group
+        instance.delete()
+        if group.labels.count() == 0:
+            group.delete()

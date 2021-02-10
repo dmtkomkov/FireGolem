@@ -63,7 +63,7 @@ class LabelGroup(models.Model):
 
 class Label(models.Model):
     name = models.CharField(unique=True, max_length=64)
-    group = models.ForeignKey(settings.LABEL_GROUP_MODEL, blank=True, null=True)
+    group = models.ForeignKey(settings.LABEL_GROUP_MODEL, related_name='labels', blank=True, null=True)
 
     def __unicode__(self):
         return u"{}".format(self.name)
