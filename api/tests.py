@@ -92,7 +92,20 @@ class LabelTests(APITestCase):
         self.label_name = 'My label'
         self.group_name = 'My group'
 
-    def test_create_label_with_group(self):
+    def test_create_label_with_new_group(self):
+        # init
+        label = {
+            'name': self.label_name,
+            'group': self.group_name
+        }
+        url = reverse('api:label-list')
+        # action
+        response = self.client.post(url, label, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.check_label()
+
+    def test_create_label_with_existed_group(self):
         # init
         label = {
             'name': self.label_name,
@@ -104,17 +117,12 @@ class LabelTests(APITestCase):
         response = self.client.post(url, label, format='json')
         # check
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Label.objects.count(), 1)
-        self.assertEqual(LabelGroup.objects.count(), 1)
-        db_label = Label.objects.first()
-        self.assertEqual(db_label.name, self.label_name)
-        self.assertEqual(db_label.group.name, self.group_name)
+        self.check_label()
 
     def test_create_label_without_group(self):
         # init
         label = {
             'name': self.label_name,
-            'group': None
         }
         url = reverse('api:label-list')
         # action
@@ -135,8 +143,7 @@ class LabelTests(APITestCase):
         }
         url = reverse('api:label-detail', args=[1])
         new_label = {
-            'name': 'New label',
-            'group': None
+            'name': 'New label'
         }
         group = LabelGroup.objects.create(name=self.group_name, single=True)
         Label.objects.create(name=label['name'], group=group)
@@ -153,6 +160,32 @@ class LabelTests(APITestCase):
         response = self.client.put(url, label, format='json')
         # check
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        db_label = Label.objects.first()
+        self.assertEqual(db_label.name, self.label_name)
+        self.assertEqual(db_label.group.name, self.group_name)
+
+    def test_list_label(self):
+        # init
+        label_count = 10
+        db_labels = [Label(name='Label %s' % i, group=LabelGroup.objects.create(name='Group %s' % i, single=True))
+                     for i in range(label_count)]
+        db_labels.append(Label(name='Label with empty group'))
+        Label.objects.bulk_create(db_labels)
+        url = reverse('api:label-list')
+        # action
+        response = self.client.get(url, format='json')
+        # check
+        self.assertEqual(len(response.data), label_count + 1)
+        last_label = response.data.pop()
+        for i, label in enumerate(response.data):
+            self.assertEqual(label['name'], 'Label %s' % i)
+            self.assertEqual(label['group'], 'Group %s' % i)
+        self.assertEqual(last_label['name'], 'Label with empty group')
+        self.assertEqual(last_label['group'], None)
+
+    def check_label(self):
+        self.assertEqual(Label.objects.count(), 1)
+        self.assertEqual(LabelGroup.objects.count(), 1)
         db_label = Label.objects.first()
         self.assertEqual(db_label.name, self.label_name)
         self.assertEqual(db_label.group.name, self.group_name)

@@ -42,13 +42,11 @@ class CurrentUserView(APIView):
 
 class WorkLogView(ModelViewSet):
     serializer_class = WorkLogSerializer
-    # TODO: add order
-    queryset = WorkLog.objects.all()
+    queryset = WorkLog.objects.all().order_by('id')
     pagination_class = CustomPagination
 
 
 class LabelView(ModelViewSet):
     serializer_class = LabelSerializer
-    # TODO: add order
-    queryset = Label.objects.all()
-    pagination_class = CustomPagination
+    queryset = Label.objects.all().order_by('id')
+    pagination_class = None
