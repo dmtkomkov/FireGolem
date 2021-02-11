@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from api.models import Post, Label, LabelGroup
+from api.models import Post, Label, LabelGroup, WorkLog
 
 
 class BlogTests(APITestCase):
@@ -241,7 +241,7 @@ class LabelGroupTests(APITestCase):
 
     def test_update_group(self):
         # init
-        group = LabelGroup.objects.create(name='Group1', single=False)
+        LabelGroup.objects.create(name='Group1', single=False)
         new_group = {'name': 'Group2', 'single': True}
         url = reverse('api:labelgroup-detail', args=[1])
         # action
@@ -251,3 +251,45 @@ class LabelGroupTests(APITestCase):
         group = LabelGroup.objects.first()
         self.assertEqual(group.name, 'Group2')
         self.assertEqual(group.single, True)
+
+
+class WorkLogTests(APITestCase):
+    username = 'tester'
+    password = 'tester_password'
+
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        self.client.force_authenticate(user=test_user)
+
+    def test_create_worklog_with_labels(self):
+        # init
+        Label.objects.create(name='label1', group=LabelGroup.objects.create(name='group1'))
+        Label.objects.create(name='label2', group=LabelGroup.objects.create(name='group2'))
+        worklog_data = {'log': 'worklog1', 'labels': ['label1', 'label2']}
+        url = reverse('api:worklog-list')
+        # action
+        response = self.client.post(url, worklog_data, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        worklog = WorkLog.objects.first()
+        self.assertEqual(worklog.log, 'worklog1')
+        labels = list(worklog.labels.all())
+        self.assertEqual(len(list(labels)), 2)
+        label1, label2 = labels
+        self.assertEqual(label1.name, 'label1')
+        self.assertEqual(label1.group.name, 'group1')
+        self.assertEqual(label2.name, 'label2')
+        self.assertEqual(label2.group.name, 'group2')
+
+    def test_create_worklog_without_labels(self):
+        # init
+        worklog_data = {'log': 'worklog', 'labels': []}
+        url = reverse('api:worklog-list')
+        # action
+        response = self.client.post(url, worklog_data, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        worklog = WorkLog.objects.first()
+        self.assertEqual(worklog.log, 'worklog')
+        labels = list(worklog.labels.all())
+        self.assertEqual(len(list(labels)), 0)

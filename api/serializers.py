@@ -74,18 +74,18 @@ class LabelSerializer(ModelSerializer):
 
 
 class WorkLogSerializer(ModelSerializer):
-    labels = LabelSerializer(many=True)
+    labels = SlugRelatedField(slug_field='name', many=True, queryset=Label.objects.all())
+    # labels = LabelSerializer(many=True)
 
     class Meta:
         model = WorkLog
         fields = ('log', 'labels')
 
     def create(self, worklog_data):
-        labels_data = worklog_data.pop('labels')
+        labels = worklog_data.pop('labels')
         instance = WorkLog.objects.create(**worklog_data)
 
-        for label_data in labels_data:
-            label = Label.objects.get(name=label_data["name"])
+        for label in labels:
             instance.labels.add(label)
 
         return instance
