@@ -229,3 +229,25 @@ class LabelTableTests(APITestCase):
         self.assertTrue('label12' in result['Group1'])
         self.assertTrue('label21' in result['Group2'])
         self.assertTrue('label22' in result['Group2'])
+
+
+class LabelGroupTests(APITestCase):
+    username = 'tester'
+    password = 'tester_password'
+
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        self.client.force_authenticate(user=test_user)
+
+    def test_update_group(self):
+        # init
+        group = LabelGroup.objects.create(name='Group1', single=False)
+        new_group = {'name': 'Group2', 'single': True}
+        url = reverse('api:labelgroup-detail', args=[1])
+        # action
+        response = self.client.put(url, new_group, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        group = LabelGroup.objects.first()
+        self.assertEqual(group.name, 'Group2')
+        self.assertEqual(group.single, True)

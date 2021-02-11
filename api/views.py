@@ -1,12 +1,14 @@
 from collections import defaultdict
 
+from rest_framework.mixins import UpdateModelMixin
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
 
-from .models import Post, Task, WorkLog, Label
+from .models import Post, Task, WorkLog, Label, LabelGroup
 from .paginator import CustomPagination
-from .serializers import PostSerializer, TaskSerializer, UserSerializer, WorkLogSerializer, LabelSerializer
+from .serializers import PostSerializer, TaskSerializer, UserSerializer, WorkLogSerializer, LabelSerializer, \
+    LabelGroupSerializer
 
 
 class BlogView(ModelViewSet):
@@ -58,6 +60,12 @@ class LabelView(ModelViewSet):
         instance.delete()
         if group.labels.count() == 0:
             group.delete()
+
+
+class LabelGroupView(UpdateModelMixin, GenericViewSet):
+    serializer_class = LabelGroupSerializer
+    queryset = LabelGroup.objects.all().order_by('id')
+    pagination_class = None
 
 
 class LabelTableView(APIView):
