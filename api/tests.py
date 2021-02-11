@@ -307,11 +307,11 @@ class WorkLogTests(APITestCase):
 
     def test_update_worklog(self):
         # init
-        label1 = Label.objects.create(name='label1', group=LabelGroup.objects.create(name='group1'))
+        label1 = Label.objects.create(name='label1')
         worklog1 = WorkLog.objects.create(log='worklog1')
         worklog1.labels.add(label1)
         worklog1.save()
-        Label.objects.create(name='label2', group=LabelGroup.objects.create(name='group2'))
+        Label.objects.create(name='label2')
         new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1']}
         url = reverse('api:worklog-detail', args=[1])
         # action
@@ -322,4 +322,24 @@ class WorkLogTests(APITestCase):
         self.assertEqual(worklog.log, 'worklog2')
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 2)
+
+    def test_list_worklog(self):
+        # init
+        label1 = Label.objects.create(name='label1')
+        worklog1 = WorkLog.objects.create(log='worklog1')
+        worklog1.labels.add(label1)
+        worklog1.save()
+        WorkLog.objects.create(log='worklog2')
+        url = reverse('api:worklog-list')
+        # action
+        response = self.client.get(url, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['count'], 2)
+        results = response.data['results']
+        self.assertEqual(results[0]['log'], 'worklog1')
+        self.assertEqual(results[1]['log'], 'worklog2')
+        self.assertEqual(results[0]['labels'], ['label1'])
+        self.assertEqual(results[1]['labels'], [])
+
 
