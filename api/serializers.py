@@ -88,3 +88,9 @@ class WorkLogSerializer(ModelSerializer):
             instance.labels.add(label)
 
         return instance
+
+    def update(self, instance, worklog_data):
+        instance.log = worklog_data['log']
+        instance.labels = worklog_data['labels']
+        instance.save()
+        return instance

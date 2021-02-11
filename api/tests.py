@@ -305,3 +305,21 @@ class WorkLogTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(WorkLog.objects.count(), 0)
 
+    def test_update_worklog(self):
+        # init
+        label1 = Label.objects.create(name='label1', group=LabelGroup.objects.create(name='group1'))
+        worklog1 = WorkLog.objects.create(log='worklog1')
+        worklog1.labels.add(label1)
+        worklog1.save()
+        Label.objects.create(name='label2', group=LabelGroup.objects.create(name='group2'))
+        new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1']}
+        url = reverse('api:worklog-detail', args=[1])
+        # action
+        response = self.client.put(url, new_worklog, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        worklog = WorkLog.objects.first()
+        self.assertEqual(worklog.log, 'worklog2')
+        labels = list(worklog.labels.all())
+        self.assertEqual(len(list(labels)), 2)
+
