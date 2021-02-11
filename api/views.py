@@ -60,7 +60,7 @@ class LabelView(ModelViewSet):
             group.delete()
 
 
-class LabelGroupView(APIView):
+class LabelTableView(APIView):
     def get(self, request):
         # outer join for label group to include NO_GROUP category
         labels = list(Label.objects.all().values('name', 'group__name'))

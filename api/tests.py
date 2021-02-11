@@ -200,7 +200,7 @@ class LabelTests(APITestCase):
         self.assertEqual(db_label.group.name, self.group_name)
 
 
-class LabelGroupTests(APITestCase):
+class LabelTableTests(APITestCase):
     username = 'tester'
     password = 'tester_password'
 
@@ -217,7 +217,7 @@ class LabelGroupTests(APITestCase):
         Label.objects.create(name='label21', group=group1)
         Label.objects.create(name='label22', group=group1)
         Label.objects.create(name='label00', group=None)
-        url = reverse('api:label_group')
+        url = reverse('api:label_table')
         # action
         response = self.client.get(url, format='json')
         # check
