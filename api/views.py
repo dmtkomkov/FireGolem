@@ -1,11 +1,12 @@
+from collections import defaultdict
+
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
 
 from .models import Post, Task, WorkLog, Label
 from .paginator import CustomPagination
 from .serializers import PostSerializer, TaskSerializer, UserSerializer, WorkLogSerializer, LabelSerializer
-
-from rest_framework.response import Response
 
 
 class BlogView(ModelViewSet):
@@ -57,3 +58,14 @@ class LabelView(ModelViewSet):
         instance.delete()
         if group.labels.count() == 0:
             group.delete()
+
+
+class LabelGroupView(APIView):
+    def get(self, request):
+        # outer join for label group to include NO_GROUP category
+        labels = list(Label.objects.all().values('name', 'group__name'))
+        result = defaultdict(list)
+        for label in labels:
+            key = label['group__name'] or 'NO_GROUP'
+            result[key].append(label['name'])
+        return Response(result)

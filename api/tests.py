@@ -198,3 +198,34 @@ class LabelTests(APITestCase):
         db_label = Label.objects.first()
         self.assertEqual(db_label.name, self.label_name)
         self.assertEqual(db_label.group.name, self.group_name)
+
+
+class LabelGroupTests(APITestCase):
+    username = 'tester'
+    password = 'tester_password'
+
+    def setUp(self):
+        test_user = User.objects.create_user(username=self.username, password=self.password)
+        self.client.force_authenticate(user=test_user)
+
+    def test_list_group(self):
+        # init
+        group1 = LabelGroup.objects.create(name='Group1')
+        Label.objects.create(name='label11', group=group1)
+        Label.objects.create(name='label12', group=group1)
+        group1 = LabelGroup.objects.create(name='Group2')
+        Label.objects.create(name='label21', group=group1)
+        Label.objects.create(name='label22', group=group1)
+        Label.objects.create(name='label00', group=None)
+        url = reverse('api:label_group')
+        # action
+        response = self.client.get(url, format='json')
+        # check
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        result = response.data
+        self.assertEqual(len(result), 3)  # group count
+        self.assertTrue('label00' in result['NO_GROUP'])
+        self.assertTrue('label11' in result['Group1'])
+        self.assertTrue('label12' in result['Group1'])
+        self.assertTrue('label21' in result['Group2'])
+        self.assertTrue('label22' in result['Group2'])
