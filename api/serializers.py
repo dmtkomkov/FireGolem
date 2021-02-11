@@ -75,7 +75,6 @@ class LabelSerializer(ModelSerializer):
 
 class WorkLogSerializer(ModelSerializer):
     labels = SlugRelatedField(slug_field='name', many=True, queryset=Label.objects.all())
-    # labels = LabelSerializer(many=True)
 
     class Meta:
         model = WorkLog
