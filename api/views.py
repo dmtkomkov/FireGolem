@@ -5,9 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework.response import Response
 
-from .models import Post, Task, WorkLog, Label, LabelGroup
+from .models import Post, WorkLog, Label, LabelGroup
 from .paginator import CustomPagination
-from .serializers import PostSerializer, TaskSerializer, UserSerializer, WorkLogSerializer, LabelSerializer, \
+from .serializers import PostSerializer, UserSerializer, WorkLogSerializer, LabelSerializer, \
     LabelGroupSerializer
 
 
@@ -24,26 +24,13 @@ class BlogView(ModelViewSet):
         instance.save()
 
 
-class TodoView(ModelViewSet):
-    serializer_class = TaskSerializer
-    queryset = Task.objects.all().order_by('-created_date')
-    pagination_class = CustomPagination
-
-    def perform_create(self, instance):
-        instance.save(assignee=self.request.user)
-
-    def perform_destroy(self, instance):
-        instance.deleted = True
-        instance.save()
-
-
 class CurrentUserView(APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
 
-class WorkLogView(ModelViewSet):
+class GoalView(ModelViewSet):
     serializer_class = WorkLogSerializer
     queryset = WorkLog.objects.all().order_by('id')
     pagination_class = CustomPagination

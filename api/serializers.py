@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from django.contrib.auth.models import User
-from api.models import Task, Post, UserIcon, WorkLog, Label, LabelGroup
+from api.models import Post, UserIcon, WorkLog, Label, LabelGroup
 
 
 class UserIconSerializer(ModelSerializer):
@@ -30,14 +30,6 @@ class PostSerializer(ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'title', 'body', 'created', 'user')
-
-
-class TaskSerializer(ModelSerializer):
-    assignee = ShortUserSerializer(read_only=True)
-
-    class Meta:
-        model = Task
-        fields = ('id', 'name', 'assignee', 'created_date', 'completed_date')
 
 
 class LabelGroupSerializer(ModelSerializer):

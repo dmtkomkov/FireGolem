@@ -1,4 +1,4 @@
 from .blog import *
-from .todo import *
+from .goal import *
 from .money import *
 from .user import *

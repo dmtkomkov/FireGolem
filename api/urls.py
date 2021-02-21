@@ -1,12 +1,11 @@
 from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
 
-from .views import BlogView, TodoView, CurrentUserView, WorkLogView, LabelView, LabelTableView, LabelGroupView
+from .views import BlogView, CurrentUserView, GoalView, LabelView, LabelTableView, LabelGroupView
 
 router = SimpleRouter(trailing_slash=False)
 router.register("blog", BlogView)
-router.register("todo", TodoView)
-router.register("worklog", WorkLogView)
+router.register("goal", GoalView)
 router.register("label", LabelView)
 router.register("labelgroup", LabelGroupView)
 

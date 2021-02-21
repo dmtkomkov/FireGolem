@@ -254,7 +254,7 @@ class LabelGroupTests(APITestCase):
         self.assertEqual(group.single, True)
 
 
-class WorkLogTests(APITestCase):
+class GoalTests(APITestCase):
     username = 'tester'
     password = 'tester_password'
 
