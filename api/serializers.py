@@ -72,6 +72,12 @@ class WorkLogSerializer(ModelSerializer):
         model = WorkLog
         fields = ('log', 'labels')
 
+    def to_internal_value(self, worklog_data):
+        # Added 'labels' as empty list if there is not labels key
+        if worklog_data.get('labels') is None:
+            worklog_data['labels'] = []
+        return super(WorkLogSerializer, self).to_internal_value(worklog_data)
+
     def create(self, worklog_data):
         labels = worklog_data.pop('labels')
         instance = WorkLog.objects.create(**worklog_data)

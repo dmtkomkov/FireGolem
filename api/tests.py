@@ -284,7 +284,7 @@ class GoalTests(APITestCase):
 
     def test_create_worklog_without_labels(self):
         # init
-        worklog_data = {'log': 'worklog', 'labels': []}
+        worklog_data = {'log': 'worklog'}
         url = reverse('api:worklog-list')
         # action
         response = self.client.post(url, worklog_data, format='json')
