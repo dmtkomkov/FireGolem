@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
@@ -107,7 +109,7 @@ class LabelTests(APITestCase):
         # init
         label = {'name': self.label_name, 'group': self.group_name}
         url = reverse('api:label-list')
-        LabelGroup.objects.create(name=self.group_name, single=True)
+        LabelGroup.objects.create(name=self.group_name)
         # action
         response = self.client.post(url, label, format='json')
         # check
@@ -133,7 +135,7 @@ class LabelTests(APITestCase):
         label = {'name': self.label_name, 'group': self.group_name}
         url = reverse('api:label-detail', args=[1])
         new_label = {'name': 'New label'}
-        group = LabelGroup.objects.create(name=self.group_name, single=True)
+        group = LabelGroup.objects.create(name=self.group_name)
         Label.objects.create(name=self.label_name, group=group)
         # action
         response = self.client.put(url, new_label, format='json')
@@ -154,7 +156,7 @@ class LabelTests(APITestCase):
 
     def test_delete_label(self):
         # init
-        group = LabelGroup.objects.create(name=self.group_name, single=True)
+        group = LabelGroup.objects.create(name=self.group_name)
         Label.objects.create(name=self.label_name, group=group)
         Label.objects.create(name='additional label', group=group)
         url = reverse('api:label-detail', args=[1])
@@ -176,7 +178,7 @@ class LabelTests(APITestCase):
     def test_list_label(self):
         # init
         label_count = 10
-        db_labels = [Label(name='Label %s' % i, group=LabelGroup.objects.create(name='Group %s' % i, single=True))
+        db_labels = [Label(name='Label %s' % i, group=LabelGroup.objects.create(name='Group %s' % i))
                      for i in range(label_count)]
         db_labels.append(Label(name='Label with empty group'))
         Label.objects.bulk_create(db_labels)
@@ -242,8 +244,8 @@ class LabelGroupTests(APITestCase):
 
     def test_update_group(self):
         # init
-        LabelGroup.objects.create(name='Group1', single=False)
-        new_group = {'name': 'Group2', 'single': True}
+        LabelGroup.objects.create(name='Group1')
+        new_group = {'name': 'Group2', 'color': '#aaaaaa'}
         url = reverse('api:labelgroup-detail', args=[1])
         # action
         response = self.client.put(url, new_group, format='json')
@@ -251,7 +253,7 @@ class LabelGroupTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         group = LabelGroup.objects.first()
         self.assertEqual(group.name, 'Group2')
-        self.assertEqual(group.single, True)
+        self.assertEqual(group.color, '#aaaaaa')
 
 
 class GoalTests(APITestCase):
@@ -274,6 +276,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog1')
+        self.assertEqual(worklog.date, date.today())
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 2)
         label1, label2 = labels
@@ -284,7 +287,7 @@ class GoalTests(APITestCase):
 
     def test_create_worklog_without_labels(self):
         # init
-        worklog_data = {'log': 'worklog'}
+        worklog_data = {'log': 'worklog', 'date': '2019-08-13'}
         url = reverse('api:worklog-list')
         # action
         response = self.client.post(url, worklog_data, format='json')
@@ -292,6 +295,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog')
+        self.assertEqual(worklog.date, date(2019, 8, 13))
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 0)
 
@@ -312,7 +316,7 @@ class GoalTests(APITestCase):
         worklog1.labels.add(label1)
         worklog1.save()
         Label.objects.create(name='label2')
-        new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1']}
+        new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1'], 'date': '2019-08-13'}
         url = reverse('api:worklog-detail', args=[1])
         # action
         response = self.client.put(url, new_worklog, format='json')
@@ -320,6 +324,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog2')
+        self.assertEqual(worklog.date, date(2019, 8, 13))
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 2)
 

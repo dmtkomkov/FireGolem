@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import date
 
 __all__ = ("WorkLog", "LabelGroup", "Label")
 
@@ -7,6 +8,7 @@ __all__ = ("WorkLog", "LabelGroup", "Label")
 class WorkLog(models.Model):
     log = models.CharField(max_length=255)
     labels = models.ManyToManyField(settings.LABEL_MODEL)
+    date = models.DateField(default=date.today)
 
     def __unicode__(self):
         return u"{}".format(self.log)
@@ -14,7 +16,7 @@ class WorkLog(models.Model):
 
 class LabelGroup(models.Model):
     name = models.CharField(unique=True, max_length=64)
-    single = models.BooleanField(default=False)
+    color = models.CharField(max_length=7, default='#ffffff')
 
     def __unicode__(self):
         return u"{}".format(self.name)
