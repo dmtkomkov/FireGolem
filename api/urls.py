@@ -1,7 +1,6 @@
 from django.conf.urls import url
 from rest_framework.routers import SimpleRouter
-
-from .views import BlogView, CurrentUserView, GoalView, LabelView, LabelTableView, LabelGroupView
+from api.views import BlogView, GoalView, LabelView, LabelGroupView, LabelTableView, CurrentUserView
 
 router = SimpleRouter(trailing_slash=False)
 router.register("blog", BlogView)

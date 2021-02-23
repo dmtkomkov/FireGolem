@@ -3,7 +3,7 @@ from datetime import datetime
 from django.conf import settings
 
 from django.db.models import Manager
-from .managers import ExistingManager
+from api.managers import ExistingManager
 
 __all__ = 'Post',
 

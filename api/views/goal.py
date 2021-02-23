@@ -1,33 +1,13 @@
 from collections import defaultdict
 
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
-from rest_framework.response import Response
 
-from .models import Post, WorkLog, Label, LabelGroup
-from .paginator import CustomPagination
-from .serializers import PostSerializer, UserSerializer, WorkLogSerializer, LabelSerializer, \
-    LabelGroupSerializer
-
-
-class BlogView(ModelViewSet):
-    serializer_class = PostSerializer
-    queryset = Post.objects.all().order_by('-created')
-    pagination_class = CustomPagination
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    def perform_destroy(self, instance):
-        instance.deleted = True
-        instance.save()
-
-
-class CurrentUserView(APIView):
-    def get(self, request):
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data)
+from api.models import WorkLog, Label, LabelGroup
+from api.paginator import CustomPagination
+from api.serializers import LabelGroupSerializer, LabelSerializer, WorkLogSerializer
 
 
 class GoalView(ModelViewSet):
