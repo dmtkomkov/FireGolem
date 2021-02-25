@@ -12,7 +12,7 @@ from api.serializers import LabelGroupSerializer, LabelSerializer, WorkLogSerial
 
 class GoalView(ModelViewSet):
     serializer_class = WorkLogSerializer
-    queryset = WorkLog.objects.all().order_by('id')
+    queryset = WorkLog.objects.all().order_by('-date', '-id')
     pagination_class = CustomPagination
 
 
