@@ -265,7 +265,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['count'], 2)
         results = response.data['results']
-        self.assertEqual(results[0]['log'], 'worklog1')
-        self.assertEqual(results[1]['log'], 'worklog2')
-        self.assertEqual(results[0]['labels'], ['label1'])
-        self.assertEqual(results[1]['labels'], [])
+        self.assertEqual(results[1]['log'], 'worklog1')
+        self.assertEqual(results[0]['log'], 'worklog2')
+        self.assertEqual(results[1]['labels'], ['label1'])
+        self.assertEqual(results[0]['labels'], [])

@@ -81,5 +81,3 @@ class BlogTests(APITestCase):
         self.assertEqual(post.title, title)
         self.assertEqual(post.body, body)
         self.assertEqual(post.user.username, self.username)
-
-
