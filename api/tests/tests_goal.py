@@ -199,6 +199,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog1')
+        self.assertEqual(worklog.duration, 30)
         self.assertEqual(worklog.date, date.today())
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 2)
@@ -210,7 +211,7 @@ class GoalTests(APITestCase):
 
     def test_create_worklog_without_labels(self):
         # init
-        worklog_data = {'log': 'worklog', 'date': '2019-08-13'}
+        worklog_data = {'log': 'worklog', 'date': '2019-08-13', 'duration': 99}
         url = reverse('api:worklog-list')
         # action
         response = self.client.post(url, worklog_data, format='json')
@@ -218,6 +219,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog')
+        self.assertEqual(worklog.duration, 99)
         self.assertEqual(worklog.date, date(2019, 8, 13))
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 0)
@@ -235,11 +237,11 @@ class GoalTests(APITestCase):
     def test_update_worklog(self):
         # init
         label1 = Label.objects.create(name='label1')
-        worklog1 = WorkLog.objects.create(log='worklog1')
+        worklog1 = WorkLog.objects.create(log='worklog1', duration=111)
         worklog1.labels.add(label1)
         worklog1.save()
         Label.objects.create(name='label2')
-        new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1'], 'date': '2019-08-13'}
+        new_worklog = {'log': 'worklog2', 'labels': ['label2', 'label1'], 'date': '2019-08-13', 'duration': '112'}
         url = reverse('api:worklog-detail', args=[1])
         # action
         response = self.client.put(url, new_worklog, format='json')
@@ -247,6 +249,7 @@ class GoalTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         worklog = WorkLog.objects.first()
         self.assertEqual(worklog.log, 'worklog2')
+        self.assertEqual(worklog.duration, 112)
         self.assertEqual(worklog.date, date(2019, 8, 13))
         labels = list(worklog.labels.all())
         self.assertEqual(len(list(labels)), 2)

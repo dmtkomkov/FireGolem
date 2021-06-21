@@ -9,6 +9,7 @@ class WorkLog(models.Model):
     log = models.CharField(max_length=255)
     labels = models.ManyToManyField(settings.LABEL_MODEL)
     date = models.DateField(default=date.today)
+    duration = models.IntegerField(default=30)
 
     def __unicode__(self):
         return u"{}".format(self.log)
