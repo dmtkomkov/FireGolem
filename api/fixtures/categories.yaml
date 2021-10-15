@@ -80,3 +80,9 @@
     name: Clothes
     label: CL
     description: Детская и взрослая одежда
+- model: api.category
+  pk: 45
+  fields:
+    name: Zoo
+    label: ZO
+    description: Зверюшки и их игрушки
