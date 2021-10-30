@@ -3,5 +3,5 @@ sqlparse == 0.2.3
 djangorestframework == 3.11.2
 djangorestframework-jwt == 1.11.0
 django-cors-headers == 3.10.0
-MySQL-python == 1.2.5
-pyyaml
+mysqlclient==2.0.3
+pyyaml==6.0
