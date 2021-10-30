@@ -16,44 +16,44 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='worklog',
-            name=b'post',
+            name='post',
         ),
         migrations.RemoveField(
             model_name='worklog',
-            name=b'task',
+            name='task',
         ),
         migrations.RenameField(
             model_name='task',
-            old_name=b'created',
+            old_name='created',
             new_name='created_date',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'area',
+            name='area',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'description',
+            name='description',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'estimation',
+            name='estimation',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'project',
+            name='project',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'scheduled',
+            name='scheduled',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'status',
+            name='status',
         ),
         migrations.RemoveField(
             model_name='task',
-            name=b'updated',
+            name='updated',
         ),
         migrations.AddField(
             model_name='task',
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='user_icon', to=settings.AUTH_USER_MODEL),
         ),
         migrations.DeleteModel(
-            name=b'Area',
+            name='Area',
         ),
         migrations.DeleteModel(
             name='Project',

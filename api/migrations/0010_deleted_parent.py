@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='task',
-            name=b'parent',
+            name='parent',
         ),
         migrations.AddField(
             model_name='aria',

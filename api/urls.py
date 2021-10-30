@@ -8,6 +8,8 @@ router.register("goal", GoalView)
 router.register("label", LabelView)
 router.register("labelgroup", LabelGroupView)
 
+app_name = 'api'
+
 urlpatterns = [
     url(r'^user$', CurrentUserView.as_view(), name='current_user'),
     url(r'^labelgroup$', LabelTableView.as_view(), name='label_table'),

@@ -6,6 +6,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Allow frontend access
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ['http://localhost:4200', 'http://127.0.0.1:4200']
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -133,7 +139,3 @@ LOGGING = {
         },
     },
 }
-
-# Allow frontend access
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ['localhost:4200', '127.0.0.1:4200']

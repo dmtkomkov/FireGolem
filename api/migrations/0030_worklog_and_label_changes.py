@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='labelgroup',
             name='color',
-            field=models.CharField(default=b'#ffffff', max_length=7),
+            field=models.CharField(default='#ffffff', max_length=7),
         ),
         migrations.AddField(
             model_name='worklog',

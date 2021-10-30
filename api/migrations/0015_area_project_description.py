@@ -20,12 +20,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='area',
-            name=b'name',
+            name='name',
             field=models.CharField(max_length=255, unique=True),
         ),
         migrations.AlterField(
             model_name='project',
-            name=b'name',
+            name='name',
             field=models.CharField(max_length=255, unique=True),
         ),
     ]

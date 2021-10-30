@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='task',
-            name=b'assignee',
+            name='assignee',
         ),
         migrations.DeleteModel(
             name='Task',

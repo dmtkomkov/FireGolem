@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='task',
-            name=b'worklog',
+            name='worklog',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.WorkLog'),
         ),
     ]

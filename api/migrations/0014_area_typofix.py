@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         ),
         migrations.RenameField(
             model_name='task',
-            old_name=b'aria',
+            old_name='aria',
             new_name='area',
         ),
     ]

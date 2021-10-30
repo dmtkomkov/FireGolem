@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='area',
-            name=b'deleted',
+            name='deleted',
         ),
         migrations.RemoveField(
             model_name='project',
-            name=b'deleted',
+            name='deleted',
         ),
         migrations.AlterField(
             model_name='task',

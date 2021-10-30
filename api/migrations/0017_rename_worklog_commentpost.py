@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameField(
             model_name='worklog',
-            old_name=b'comment',
+            old_name='comment',
             new_name='post',
         ),
     ]

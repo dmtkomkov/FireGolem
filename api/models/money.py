@@ -8,7 +8,7 @@ __all__ = ('Payment', 'Category')
 class Payment(models.Model):
     amount = models.PositiveSmallIntegerField()
     spent = models.DateField(default=date.today)
-    category = models.ForeignKey(settings.CATEGORY_MODEL)
+    category = models.ForeignKey(settings.CATEGORY_MODEL, on_delete=models.CASCADE)
 
     def __unicode__(self):
         return u"{}_{}_{}".format(self.amount, self.spent, self.category)

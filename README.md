@@ -5,6 +5,7 @@
 ## Installation
 
 Installation is handled by ansible script in automation repository
+In order to use debug version on Windows, use command in powershell $Env:DJANGO="DEV"
 
 ### Generate lets encrypt certificate
 

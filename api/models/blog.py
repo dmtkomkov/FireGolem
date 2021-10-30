@@ -12,7 +12,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
     created = models.DateTimeField(default=datetime.now)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     deleted = models.BooleanField(default=False)
     objects = ExistingManager()
     all_objects = Manager()

@@ -8,7 +8,7 @@ class HttpPostTunnelingMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.POST.has_key('_method'):
+        if '_method' in request.POST:
             http_method = request.POST['_method']
             if http_method.lower() == 'put':
                 request.method = 'PUT'
