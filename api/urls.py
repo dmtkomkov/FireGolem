@@ -12,7 +12,7 @@ app_name = 'api'
 
 urlpatterns = [
     url(r'^user$', CurrentUserView.as_view(), name='current_user'),
-    url(r'^labelgroup$', LabelTableView.as_view(), name='label_table'),
+    url(r'^labeltable$', LabelTableView.as_view(), name='label_table'),
 ]
 
 urlpatterns += router.urls
