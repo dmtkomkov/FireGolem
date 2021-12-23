@@ -42,7 +42,7 @@ class WorkLogSerializer(ModelSerializer):
 
     class Meta:
         model = WorkLog
-        fields = ('log', 'labels', 'date', 'duration')
+        fields = ('id', 'log', 'labels', 'date', 'duration')
 
     def to_internal_value(self, worklog_data):
         # Added 'labels' as empty list if there is not labels key
