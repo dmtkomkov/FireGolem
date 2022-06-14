@@ -61,7 +61,7 @@ class WorkLogSerializer(ModelSerializer):
 
     def update(self, instance, worklog_data):
         instance.log = worklog_data['log']
-        instance.labels = worklog_data['labels']
+        instance.labels.set(worklog_data['labels'])
         if worklog_data.get('date'):
             instance.date = worklog_data['date']
         if worklog_data.get('duration'):
