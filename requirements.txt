@@ -1,4 +1,4 @@
-django == 3.2.13
+django == 3.2.18
 sqlparse == 0.2.3
 djangorestframework == 3.11.2
 djangorestframework-jwt == 1.11.0
