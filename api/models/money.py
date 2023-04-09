@@ -6,9 +6,18 @@ __all__ = ('Payment', 'Category')
 
 
 class Payment(models.Model):
+    class Currency(models.TextChoices):
+        PLN = 'PLN',
+        EUR = 'EUR',
+
     amount = models.PositiveSmallIntegerField()
     spent = models.DateField(default=date.today)
     category = models.ForeignKey(settings.CATEGORY_MODEL, on_delete=models.CASCADE)
+    currency = models.CharField(
+        max_length=3,
+        choices=Currency.choices,
+        default=Currency.PLN,
+    )
 
     def __unicode__(self):
         return u"{}_{}_{}".format(self.amount, self.spent, self.category)
