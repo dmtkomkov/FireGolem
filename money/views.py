@@ -35,9 +35,10 @@ class MoneyView(LoginRequiredMixin, View):
     def post(self, request):
         date_string = request.POST['date']
         amount = request.POST['amount']
+        currency = request.POST['currency']
         spent = date(*map(int, date_string.split('-')))
         oCategory = Category.objects.get(name=request.POST['category'])
-        oPayment = Payment(amount=amount, spent=spent, category=oCategory)
+        oPayment = Payment(amount=amount, currency=currency, spent=spent, category=oCategory)
         oPayment.save()
         return self.get(request)
 

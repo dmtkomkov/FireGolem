@@ -37,7 +37,7 @@
                 <td>
                     {% for payment in pdate.payments %}
                         <span id="{{ payment.id }}" class="badge delete-payment" data-toggle="modal" data-target="#deletePayment">
-                            {{ payment.category.name }} | <span class="number">{{ payment.amount }}</span>
+                            {{ payment.category.name }} | <span class="number">{{ payment.amount }} {{ payment.currency }}</span>
                         </span>
                     {% endfor %}
                 </td>
@@ -50,6 +50,10 @@
 {% block footer %}
     <form method="post" class="form-inline pull-left">
         <input type="number" class="form-control" name="amount" placeholder="Sum" required>
+        <select name="currency" class="form-control">
+            <option value="EUR" selected>EUR</option>
+            <option value="PLN">PLN</option>
+        </select>
         <select name="category" class="form-control">
             {% for category in categories %}
                 <option value="{{ category.name }}">{{ category.name }}</option>
