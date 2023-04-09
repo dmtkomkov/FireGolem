@@ -7,6 +7,11 @@
 Installation is handled by ansible script in automation repository
 In order to use debug version on Windows, use command in powershell $Env:DJANGO="DEV"
 
+python .\manage.py migrate
+python .\manage.py createcachetable
+python .\manage.py loaddata categories
+python .\manage.py add_user --user=**** --password=****
+
 ### Generate lets encrypt certificate
 
 1. Install epel-release
