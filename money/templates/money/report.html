@@ -41,8 +41,8 @@
             <tr>
                 <td class="month-column">{{ month.month }} {{ month.year }}</td>
                 <td class="sum-column">
-                    <span class="label label-{{ month.color }}">{{ month.month_total_pln }} PLN</span>
-                    <span class="label label-{{ month.color }}">{{ month.month_total_eur }} EUR</span>
+                    <span class="label label-info">{{ month.month_total_pln }} PLN</span>
+                    <span class="label label-warning">{{ month.month_total_eur }} EUR</span>
                 </td>
                 {% for payment in month.payments %}
                   <td>
@@ -53,21 +53,6 @@
             </tr>
         {% endfor %}
     </table>
-    <!-- <table class="table cursor-default">
-        {% for pdate in dates %}
-            <tr>
-                <td class="date-column">{{ pdate.spent | date:"Y-m-d" }}</td>
-                <td class="amount-column"><span class="label label-{{ pdate.color }}">{{ pdate.day_sum }}</span></td>
-                <td>
-                    {% for payment in pdate.payments %}
-                        <span id="{{ payment.id }}" class="badge delete-payment" data-toggle="modal" data-target="#deletePayment">
-                            {{ payment.category }} | <span class="number">{{ payment.amount }}</span>
-                        </span>
-                    {% endfor %}
-                </td>
-            </tr>
-        {% endfor %}
-    </table> -->
 
 {% endblock %}
 

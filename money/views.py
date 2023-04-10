@@ -23,13 +23,6 @@ class MoneyView(LoginRequiredMixin, View):
         dates, page_conf = get_page(all_dates, active_page)
         for pdate in dates:
             pdate['payments'] = Payment.objects.all().filter(spent=pdate['spent'])
-            # if pdate['day_sum'] <= 100:
-            #     pdate['color'] = 'info'
-            # elif pdate['day_sum'] <= 200:
-            #     pdate['color'] = 'warning'
-            # else:
-            #     pdate['color'] = 'danger'
-            pdate['color'] = 'info'
 
         page = {'dates': dates, 'categories': categories, 'today': date.today().isoformat()}
         page.update(page_conf)
@@ -85,14 +78,6 @@ class MoneyViewReport(LoginRequiredMixin, View):
             # Convert month and year to represent in template
             month['month'] = calendar.month_name[month['month']][:3]
             month['year'] = month['year'] - 2000
-            # apply colors to month sums
-            # if month['month_sum'] <= 8000:
-            #     month['color'] = 'info'
-            # elif month['month_sum'] <= 10000:
-            #     month['color'] = 'warning'
-            # else:
-            #     month['color'] = 'danger'
-            month['color'] = 'info'
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)

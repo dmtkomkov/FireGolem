@@ -34,8 +34,8 @@
             <tr>
                 <td class="date-column">{{ pdate.spent | date:"Y-m-d" }}</td>
                 <td class="amount-column">
-                    <span class="label label-{{ pdate.color }}">{{ pdate.total_pln }} PLN</span>
-                    <span class="label label-{{ pdate.color }}">{{ pdate.total_eur }} EUR</span>
+                    <span class="label label-info">{{ pdate.total_pln }} PLN</span>
+                    <span class="label label-warning">{{ pdate.total_eur }} EUR</span>
                 </td>
                 <td>
                     {% for payment in pdate.payments %}
