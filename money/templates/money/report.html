@@ -40,9 +40,15 @@
         {% for month in months %}
             <tr>
                 <td class="month-column">{{ month.month }} {{ month.year }}</td>
-                <td class="sum-column"><span class="label label-{{ month.color }}">{{ month.month_sum }}</span></td>
+                <td class="sum-column">
+                    <span class="label label-{{ month.color }}">{{ month.month_total_pln }} PLN</span>
+                    <span class="label label-{{ month.color }}">{{ month.month_total_eur }} EUR</span>
+                </td>
                 {% for payment in month.payments %}
-                  <td>{{ payment }}</td>
+                  <td>
+                    <div>{{ payment.pln }}</div>
+                    <div>{{ payment.eur }}</div>
+                  </td>
                 {% endfor %}
             </tr>
         {% endfor %}

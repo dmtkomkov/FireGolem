@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from django.db.models.functions import ExtractMonth, ExtractYear
-from django.db.models import F
+from django.db.models import F, Case, When
 
 import calendar
 from datetime import date
@@ -13,19 +13,23 @@ from helpers.pagination import get_page
 
 class MoneyView(LoginRequiredMixin, View):
     def get(self, request):
-        all_dates = Payment.objects.values('spent').annotate(day_sum=Sum('amount')).order_by("-spent")
+        all_dates = Payment.objects.values('spent'  ).annotate(
+            total_pln=Sum(Case(When(currency='PLN', then='amount'), default=0)),
+            total_eur=Sum(Case(When(currency='EUR', then='amount'), default=0)),
+        ).order_by("-spent")
         categories = Category.objects.all().order_by("id")
         active_page = request.GET.get('page')
 
         dates, page_conf = get_page(all_dates, active_page)
         for pdate in dates:
             pdate['payments'] = Payment.objects.all().filter(spent=pdate['spent'])
-            if pdate['day_sum'] <= 100:
-                pdate['color'] = 'info'
-            elif pdate['day_sum'] <= 200:
-                pdate['color'] = 'warning'
-            else:
-                pdate['color'] = 'danger'
+            # if pdate['day_sum'] <= 100:
+            #     pdate['color'] = 'info'
+            # elif pdate['day_sum'] <= 200:
+            #     pdate['color'] = 'warning'
+            # else:
+            #     pdate['color'] = 'danger'
+            pdate['color'] = 'info'
 
         page = {'dates': dates, 'categories': categories, 'today': date.today().isoformat()}
         page.update(page_conf)
@@ -54,7 +58,8 @@ class MoneyViewReport(LoginRequiredMixin, View):
             year=ExtractYear("spent"),
             month=ExtractMonth("spent"),
         ).exclude(year__isnull=True).annotate(
-            month_sum=Sum("amount")
+            month_total_pln=Sum(Case(When(currency='PLN', then='amount'), default=0)),
+            month_total_eur=Sum(Case(When(currency='EUR', then='amount'), default=0)),
         ).order_by("-year", "-month")
         categories = Category.objects.all().order_by("id")
         active_page = request.GET.get("page")
@@ -68,22 +73,26 @@ class MoneyViewReport(LoginRequiredMixin, View):
             ).filter(
                 spent__month=month["month"],
                 spent__year=month["year"]
-            ).annotate(sum=Sum("amount")).all().order_by("category")
+            ).annotate(
+                month_category_total_pln=Sum(Case(When(currency='PLN', then='amount'), default=0)),
+                month_category_total_eur=Sum(Case(When(currency='EUR', then='amount'), default=0)),
+            ).all().order_by("category")
             # Convert payment details to convenient format
             # {'food': 4, 'hobby': 7}
-            payment_details = dict((p["name"], p["sum"]) for p in payment_details)
+            payment_details = dict((p["name"], {'pln': p["month_category_total_pln"], 'eur': p["month_category_total_eur"]}) for p in payment_details)
             # Create table row
-            month['payments'] = [payment_details.get(c.name, 0) for c in categories]
+            month['payments'] = [payment_details.get(c.name, {'pln': 0, 'eur': 0}) for c in categories]
             # Convert month and year to represent in template
             month['month'] = calendar.month_name[month['month']][:3]
             month['year'] = month['year'] - 2000
             # apply colors to month sums
-            if month['month_sum'] <= 8000:
-                month['color'] = 'info'
-            elif month['month_sum'] <= 10000:
-                month['color'] = 'warning'
-            else:
-                month['color'] = 'danger'
+            # if month['month_sum'] <= 8000:
+            #     month['color'] = 'info'
+            # elif month['month_sum'] <= 10000:
+            #     month['color'] = 'warning'
+            # else:
+            #     month['color'] = 'danger'
+            month['color'] = 'info'
 
         page = {"months": months, "categories": categories}
         page.update(page_conf)
